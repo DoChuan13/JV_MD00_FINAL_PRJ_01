@@ -1,5 +1,5 @@
 //Class set INT
-import { initLocalDB, checkLogin, logoutUser, rederLoginUI } from "./database/commont.js";
+import { initLocalDB, checkLogin, logoutUser, rederLoginUI, showAlertPopup, hideAlertPopup } from "./database/commont.js";
 import { UserInfo } from "./database/commont.js";
 
 initLocalDB();
@@ -35,7 +35,10 @@ function sendResetCode() {
             return true;
         }
         else if (i == listUserPassword.length - 1) {
-            alert("Email không hợp lệ")
+            showAlertPopup();
+            let popup_detail = document.querySelector('#pop_up_alert--detail p')
+            popup_detail.innerHTML = `Email không hợp lệ, hoặc  không tồn tại`
+            setTimeout(hideAlertPopup, 1000)
         }
     }
 }

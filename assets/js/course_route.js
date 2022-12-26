@@ -23,15 +23,10 @@ else {
     renderComboCourse();
 };
 
-// let buyOderPending = JSON.parse(localStorage.getItem('buyOderPending'));
-// if (buyOderPending.length != 0) {
-//     buyOderPending = [];
-//     localStorage.setItem('buyOderPending', JSON.stringify(buyOderPending))
-// }
 
 
 
-
+renderDetailCourse(1)
 //Render Detail Course
 function renderDetailCourse(index) {
     let removed_element = document.querySelectorAll('.content_main--advantage_group');

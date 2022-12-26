@@ -1,5 +1,5 @@
 //Class set INT
-import { initLocalDB, checkLogin, logoutUser, rederLoginUI, hideshowPassWord } from "./database/commont.js";
+import { initLocalDB, checkLogin, logoutUser, rederLoginUI, hideshowPassWord, showAlertPopup, hideAlertPopup } from "./database/commont.js";
 import { UserInfo } from "./database/commont.js";
 
 initLocalDB();
@@ -23,7 +23,6 @@ function writeLoginKey(first_name, last_name, email, password) {
         password: password
     }];
     localStorage.setItem('loginStatus', JSON.stringify(loginStatus))
-    console.log(loginStatus);
 
 }
 
@@ -48,18 +47,36 @@ function loginAccount() {
             email.style.border = '3px solid green';
             password.style.border = '3px solid red'
             console.log('%cSai mật khẩu', 'color: red');
+
+            showAlertPopup();
+            let popup_detail = document.querySelector('#pop_up_alert--detail p')
+            popup_detail.innerHTML = `Sai mật khẩu, vui lòng thử lại`
+            setTimeout(hideAlertPopup, 1000);
             return false;
         }
     }
     else if (listUserPassword.length == 0) {
         console.log('%cKhông có email người dùng đăng ký', 'color: red');
+
+        showAlertPopup();
+        let popup_detail = document.querySelector('#pop_up_alert--detail p')
+        popup_detail.innerHTML = `Tài khoản người dùng không hợp lệ, vui lòng thử lại`
+        setTimeout(hideAlertPopup, 1000);
         return false;
     }
     else {
         for (let i = 0; i < listUserPassword.length; i++) {
             if (listUserPassword[i].email == email.value) {
+                if (listUserPassword[i].status == 'Block') {
 
-                if (listUserPassword[i].password == password.value) {
+                    showAlertPopup();
+                    let popup_detail = document.querySelector('#pop_up_alert--detail p')
+                    popup_detail.innerHTML = `Tài khoản người dùng đang bị block. Vui lòng liên hệ với ban quản trị`
+                    setTimeout(hideAlertPopup, 1000);
+                    return false;
+                }
+
+                else if (listUserPassword[i].password == password.value) {
                     email.style.border = '3px solid green';
                     password.style.border = '3px solid green'
                     console.log('%cĐăng nhập thành công', 'color: green');
@@ -71,12 +88,22 @@ function loginAccount() {
                     email.style.border = '3px solid green';
                     password.style.border = '3px solid red'
                     console.log('%cSai mật khẩu', 'color: red');
+
+                    showAlertPopup();
+                    let popup_detail = document.querySelector('#pop_up_alert--detail p')
+                    popup_detail.innerHTML = `Sai mật khẩu, vui lòng thử lại`
+                    setTimeout(hideAlertPopup, 1000);
                     return false;
                 }
             }
             else if (i == listUserPassword.length - 1) {
                 email.style.border = '3px solid red'
                 console.log('%cEmail không tồn tại', 'color: red');
+
+                showAlertPopup();
+                let popup_detail = document.querySelector('#pop_up_alert--detail p')
+                popup_detail.innerHTML = `Tài khoản người dùng không hợp lệ, vui lòng thử lại`
+                setTimeout(hideAlertPopup, 1000);
                 return false;
             }
         }

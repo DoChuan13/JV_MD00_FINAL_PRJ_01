@@ -1,5 +1,5 @@
 //Class set INT
-import { initLocalDB, checkLogin, logoutUser, rederLoginUI, checkEmail, checkSubEmail, checkFirstName, checkLastName, checkMobilePhone, checkPassword, checkRepassword, hideshowPassWord } from "./database/commont.js";
+import { initLocalDB, checkLogin, logoutUser, rederLoginUI, checkEmail, checkSubEmail, checkFirstName, checkLastName, checkMobilePhone, checkPassword, checkRepassword, hideshowPassWord, showAlertPopup, hideAlertPopup } from "./database/commont.js";
 import { UserInfo } from "./database/commont.js";
 
 initLocalDB();
@@ -100,6 +100,10 @@ function registerUser() {
             }
             else {
                 console.log('Mật khẩu không trùng khớp');
+                showAlertPopup();
+                let popup_detail = document.querySelector('#pop_up_alert--detail p')
+                popup_detail.innerHTML = `Mật khẩu không trùng khớp`
+                setTimeout(hideAlertPopup, 1000)
                 return false;
             }
         }
@@ -114,11 +118,35 @@ function registerUser() {
                 }
                 else {
                     console.log('Mật khẩu không trùng khớp');
+                    showAlertPopup();
+                    let popup_detail = document.querySelector('#pop_up_alert--detail p')
+                    popup_detail.innerHTML = `Mật khẩu không trùng khớp`
+                    setTimeout(hideAlertPopup, 1000)
                     return false;
                 }
             }
         }
     }
+    else {
+        // console.log('dfadfasdfasdf', !checkFirstName() || !checkLastName() || !checkMobilePhone());
+        if (!checkFirstName() || !checkLastName() || !checkMobilePhone()) {
+            showAlertPopup();
+            let popup_detail = document.querySelector('#pop_up_alert--detail p')
+            popup_detail.innerHTML = `Vui lòng điền đầy đủ thông tin`
+            setTimeout(hideAlertPopup, 1000)
+        }
+        else if (!checkEmail()) {
+            showAlertPopup();
+            let popup_detail = document.querySelector('#pop_up_alert--detail p')
+            popup_detail.innerHTML = `Email không hợp lệ hoặc đã tồn tại`
+            setTimeout(hideAlertPopup, 1000)
+        }
+        else if (!checkPassword()) {
+            showAlertPopup();
+            let popup_detail = document.querySelector('#pop_up_alert--detail p')
+            popup_detail.innerHTML = `Mật khẩu không hợp lệ. Yêu cầu có a-z, A-Z, 0-9, ký tự đặc biệt và dài 8-20`
+            setTimeout(hideAlertPopup, 1000)
+        }
+    }
 
 }
-

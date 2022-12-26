@@ -1,5 +1,5 @@
 //Class set INT
-import { initLocalDB, checkLogin, logoutUser, rederLoginUI, checkPassword, checkRepassword, hideshowPassWord } from "./database/commont.js";
+import { initLocalDB, checkLogin, logoutUser, rederLoginUI, checkPassword, checkRepassword, hideshowPassWord, showAlertPopup, hideAlertPopup } from "./database/commont.js";
 import { UserInfo } from "./database/commont.js";
 
 initLocalDB();
@@ -165,7 +165,6 @@ function updateUserInfo() {
 
 //Render Password Info group
 function renderPassInfoTab() {
-    console.log(2312);
     renderPassInfo();
     renderBtnInfoPass();
     getValidFunction();
@@ -294,11 +293,19 @@ function updatePassInfo() {
                 re_password.value = "";
 
                 console.log('Thay đổi mật khẩu thành công');
+                showAlertPopup();
+                let popup_detail = document.querySelector('#pop_up_alert--detail p')
+                popup_detail.innerHTML = `Thay đổi mật khẩu thành công`
+                setTimeout(hideAlertPopup, 1000)
                 return true;
             }
         }
     }
     else {
+        showAlertPopup();
+        let popup_detail = document.querySelector('#pop_up_alert--detail p')
+        popup_detail.innerHTML = `Thông tin không trùng khớp, vui lòng thử lại`
+        setTimeout(hideAlertPopup, 1000)
         return false;
     }
 }

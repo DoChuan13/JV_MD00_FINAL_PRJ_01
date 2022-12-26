@@ -1,5 +1,5 @@
 //Class set INT
-import { initLocalDB, checkLogin, logoutUser, rederLoginUI, checkPassword, checkRepassword, hideshowPassWord } from "./database/commont.js";
+import { initLocalDB, checkLogin, logoutUser, rederLoginUI, checkPassword, checkRepassword, hideshowPassWord, showAlertPopup, hideAlertPopup, directToHome } from "./database/commont.js";
 import { UserInfo } from "./database/commont.js";
 
 initLocalDB();
@@ -53,16 +53,27 @@ function resetCode() {
                 localStorage.setItem('loginStatus', JSON.stringify(loginStatus));
                 resetPassCode = [];
                 localStorage.setItem('resetPassCode', JSON.stringify(resetPassCode))
-                alert("Mật khẩu đã được khôi phục mới");
-                window.location.href = '/pages/common_pages/login.html'
+                console.log(("Mật khẩu đã được khôi phục mới"));
+                showAlertPopup();
+                let popup_detail = document.querySelector('#pop_up_alert--detail p')
+                popup_detail.innerHTML = `Mật khẩu mới đã được khôi phục`
+                setTimeout(directToHome, 3000);
             }
             else {
-                alert("Mật khẩu không trùng khớp");
+                console.log(("Mật khẩu không trùng khớp"));
+                showAlertPopup();
+                let popup_detail = document.querySelector('#pop_up_alert--detail p')
+                popup_detail.innerHTML = `Mật khẩu mới không trùng khớp`
+                setTimeout(hideAlertPopup, 1000)
             }
         }
     }
     else {
-        alert("Mã khôi phục không chính xác, vui lòng thử lại")
+        console.log(("Mã khôi phục không chính xác, vui lòng thử lại"));
+        showAlertPopup();
+        let popup_detail = document.querySelector('#pop_up_alert--detail p')
+        popup_detail.innerHTML = `Mã khôi phục không chính xác, vui lòng thử lại`
+        setTimeout(hideAlertPopup, 1000)
 
     }
 }

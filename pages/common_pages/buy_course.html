@@ -16,9 +16,6 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/style/home.css">
-
-    <!-- SmtpJS.com for fogotpassword -->
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 
 <body>
@@ -41,18 +38,16 @@
         </div>
         <div class="login_form">
             <form action="#">
-                <h2 class="font_title">Quên mật khẩu</h2>
-                <input type="text" name="email" class="font_input" id="fogot_pass_input" placeholder="Email...">
-                <button type="button" class="style_button font_btn center_align" id="reset_pass_sub">Xác nhận</button>
-                <div class="login_form__register">
-                    <span>Vui lòng nhập địa chỉ email của bạn vào ô phía trên.
-                        Chúng tôi sẽ gửi thư hướng dẫn bạn cách lấy lại mật khẩu!</span>
-                </div>
-            </form>
+                <h2 class="font_title">Mua khóa học</h2>
+                <p class="buy_order_alert">Vui lòng nhập mã thẻ để thanh toán cho khóa học</p>
+                <input type="text" name="card_code" class="font_input" id="card_code" placeholder="Mã thẻ">
+                <button type="button" class="style_button font_btn center_align" id="buy_btn">Xác nhận</button>
         </div>
+        </form>
+    </div>
     </div>
 </body>
-<script type="module" src="/assets/js/fogot_password.js"></script>
+<script type="module" src="/assets/js/buy_course.js"></script>
 <script type="module" src="/assets/js/database/commont.js"></script>
 
 </html>
