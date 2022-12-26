@@ -146,7 +146,6 @@ export function initLocalDB() {
 
         if (navbar_hidden != null && window.innerWidth >= 768) {
             let check01 = navbar_hidden.childNodes[3].classList.contains('header--navbar_hidden');
-            let check02 = navbar_hidden_user.childNodes[3].classList.contains('md_visible');
             if (check01 != true) {
                 navbar_hidden.parentNode.childNodes[3].classList.add('header--navbar_hidden');
                 // color_hidden_menu.style.background = 'rgb(245, 211, 211)'
@@ -225,7 +224,7 @@ export function rederLoginUI() {
             <h3 class="hand_cursor">Hello: ${loginStatus[0].first_name}</h3>
             <ul class="header--user--opt_inf md_visible">
             <li><a href="/pages/admin_pages/user_manager.html">Quản trị người dùng</a></li>
-            <li><a href="#">Cơ sở dữ liệu</a></li>
+            <li><a href="/pages/admin_pages/data_manager.html">Cơ sở dữ liệu</a></li>
             <li><a href="#" id="logout_btn">Đăng xuất</a></li>
             </ul>
             </div>

@@ -1,5 +1,5 @@
 //Class set INT
-import { initLocalDB, checkLogin, logoutUser, rederLoginUI, showAlertPopup, hideAlertPopup } from "./database/commont.js";
+import { initLocalDB, checkLogin, logoutUser, rederLoginUI, showAlertPopup, hideAlertPopup, } from "./database/commont.js";
 import { UserInfo } from "./database/commont.js";
 
 initLocalDB();
@@ -31,8 +31,7 @@ function sendResetCode() {
             }).then(
                 message => alert("Đã gửi mail khôi phuc thành công")
             );
-            window.location.href = '/pages/user_pages/resetpassword.html'
-            return true;
+            setTimeout(directToReset, 2000)
         }
         else if (i == listUserPassword.length - 1) {
             showAlertPopup();
@@ -41,6 +40,11 @@ function sendResetCode() {
             setTimeout(hideAlertPopup, 1000)
         }
     }
+}
+
+
+function directToReset() {
+    window.location.href = `/pages/user_pages/resetpassword.html`
 }
 
 

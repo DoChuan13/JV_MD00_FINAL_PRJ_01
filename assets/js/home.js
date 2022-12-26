@@ -1,5 +1,5 @@
 //Class set INT
-import { initLocalDB, checkLogin, logoutUser, rederLoginUI } from "./database/commont.js";
+import { initLocalDB, checkLogin, logoutUser, rederLoginUI, showAlertPopup, hideAlertPopup } from "./database/commont.js";
 import { UserInfo } from "./database/commont.js";
 
 import { initCourseDB, renderAllCourse, renderComboCourse, } from "./database/db_course.js";
@@ -23,7 +23,7 @@ for (let i = 0; i < detail_course_event.length; i++) {
 if (checkLogin() == 'user_block')
     showAlertPopup();
 let popup_detail = document.querySelector('#pop_up_alert--detail p')
-popup_detail.innerHTML = `Tài khoản người dùng đang bị block. Vui lòng liên hệ với ban quản trị, hoặc sử dụng tài khoản khác`
+popup_detail.innerHTML = `Tài khoản người dùng đang bị block. Vui lòng liên hệ với quản trị viên, hoặc sử dụng tài khoản khác`
 setTimeout(hideAlertPopup, 1000)
 
 

@@ -1,15 +1,17 @@
 //Class set INT
-import { initLocalDB, checkLogin, logoutUser, rederLoginUI, showAlertPopup, hideAlertPopup } from "./database/commont.js";
+import { initLocalDB, checkLogin, logoutUser, rederLoginUI, showAlertPopup, hideAlertPopup, directToHome } from "./database/commont.js";
 import { UserInfo } from "./database/commont.js";
 
 import { initCourseDB, renderAllCourse, renderComboCourse } from "./database/db_course.js";
 
 initLocalDB();
 initCourseDB();
-renderUserTableList();
+
+
 
 //Render User Table List
 if (checkLogin() == 'admin') {
+    renderUserTableList();
     function renderUserTableList() {
         let listUserPassword = JSON.parse(localStorage.getItem('listUserPassword'));
         let result = document.querySelector('.user_table_list')
@@ -101,6 +103,6 @@ if (checkLogin() == 'admin') {
 else {
     showAlertPopup();
     let popup_detail = document.querySelector('#pop_up_alert--detail p')
-    popup_detail.innerHTML = `Để truy cập, vui lòng đăng nhập với quyền quản tri`
-    setTimeout(hideAlertPopup, 1000)
+    popup_detail.innerHTML = `Để truy cập, vui lòng đăng nhập với quyền quản trị`
+    setTimeout(directToHome, 1000);
 }

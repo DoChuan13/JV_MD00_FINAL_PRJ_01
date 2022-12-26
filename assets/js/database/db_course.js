@@ -80,7 +80,49 @@ initCourseArray[0] = {
             ]
         }
     ],
-    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`]
+    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`],
+    course_detail: [
+        {
+            sub: 1,
+            title: `Bảng chữ cái Hiragana`
+        },
+        {
+            sub: 2,
+            title: `Bảng chữ cái Katakana`
+        },
+        {
+            sub: 3,
+            title: `Buổi học số 1`
+        },
+        {
+            sub: 4,
+            title: `Buổi học số 2`
+        },
+        {
+            sub: 5,
+            title: `Buổi học số 3`
+        },
+        {
+            sub: 6,
+            title: `Buổi học số 4`
+        },
+        {
+            sub: 7,
+            title: `Buổi học số 5`
+        },
+        {
+            sub: 8,
+            title: `Buổi học số 6`
+        },
+        {
+            sub: 9,
+            title: `Buổi học số 7`
+        },
+        {
+            sub: 10,
+            title: `Buổi học số 8`
+        }
+    ]
 }
 
 initCourseArray[1] = {
@@ -135,7 +177,49 @@ initCourseArray[1] = {
             ]
         }
     ],
-    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`]
+    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`],
+    course_detail: [
+        {
+            sub: 1,
+            title: `Buổi học số 1`
+        },
+        {
+            sub: 2,
+            title: `Buổi học số 2`
+        },
+        {
+            sub: 3,
+            title: `Buổi học số 3`
+        },
+        {
+            sub: 4,
+            title: `Buổi học số 4`
+        },
+        {
+            sub: 5,
+            title: `Buổi học số 5`
+        },
+        {
+            sub: 6,
+            title: `Buổi học số 6`
+        },
+        {
+            sub: 7,
+            title: `Buổi học số 7`
+        },
+        {
+            sub: 8,
+            title: `Buổi học số 8`
+        },
+        {
+            sub: 9,
+            title: `Buổi học số 9`
+        },
+        {
+            sub: 10,
+            title: `Buổi học số 10`
+        }
+    ]
 }
 
 
@@ -192,7 +276,8 @@ initCourseArray[2] = {
             ]
         }
     ],
-    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`]
+    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`],
+    course_detail: []
 }
 
 initCourseArray[3] = {
@@ -248,7 +333,8 @@ initCourseArray[3] = {
             ]
         }
     ],
-    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`]
+    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`],
+    course_detail: []
 }
 
 initCourseArray[4] = {
@@ -304,7 +390,8 @@ initCourseArray[4] = {
             ]
         }
     ],
-    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`]
+    special_info: [`Cuối cùng, tất cả những kỹ năng bạn được học phía trên sẽ phục vụ cho bài kiểm tra kiến thức nhỏ ngay phía sau mỗi buổi học. Bài kiểm tra này sẽ tổng hợp lại tất cả những nội dung bạn đã được học, giúp củng cố lại và ghi nhớ kiến thức một cách lâu dài hơn.`],
+    course_detail: []
 }
 
 // localStorage.setItem('courseDataList', JSON.stringify(initCourseArray))
@@ -373,83 +460,3 @@ export function renderComboCourse() {
     course_list_combo.innerHTML = data;
 }
 
-
-//Render Detail Course
-// export function renderDetailCourse(index) {
-//     let removed_element = document.querySelectorAll('.content_main--advantage_group');
-
-//     let result = document.querySelector('.content_main--detail_course--info');
-//     let courseDataList = JSON.parse(localStorage.getItem('courseDataList'));
-//     let btn_group, user_option, course_info_group, course_info, about;
-//     btn_group = ``;
-//     user_option = ``;
-//     course_info = ``;
-//     about = ``;
-//     //render group select button
-//     btn_group += `
-//                 <div class="content_main--detail_course--info_01">
-//                     <div class="course--detail_btn">
-//                         <p class="font_ds3 xs-sm-title">Danh sách khóa học</p>
-//                         <ul class="content_main--detail_course--info_01__list_select">
-//                             <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N5</li>
-//                             <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N4</li>
-//                             <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N3</li>
-//                             <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N2</li>
-//                             <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N1</li>
-//                         </ul>
-//                     </div>
-//                 </div>
-//                 `;
-//     //render course info
-//     course_info += `
-//                 <div class="paragraph-md">
-//                     <h2 class="font_title font_sm_title line-weight-lg">Khóa học tiếng Nhật ${courseDataList[index].course}</h2>
-//                     <table>
-//                         <tr>
-//                             <td class="font_label tb-width-200">Số buổi:</td>
-//                             <td class="font_label">${courseDataList[index].subject} BUỔI</td>
-//                         </tr>
-//                         <tr>
-//                             <td class="font_label">Thời gian:</td>
-//                             <td class="font_label">${courseDataList[index].coursetime} NGÀY</td>
-//                         </tr>
-//                         <tr>
-//                             <td class="font_label">Đối tượng:</td>
-//                             <td class="font_label">${courseDataList[index].target}</td>
-//                         </tr>
-//                         <tr>
-//                             <td class="font_label">Học phí:</td>
-//                             <td class="font_label">${courseDataList[index].cost} VND</td>
-//                         </tr>
-//                     </table>
-//                 </div>
-//                 `;
-
-//     user_option += `
-//                     <div class="content_course_option">
-//                         <button class="style_button font_btn" type="button" id="buy_course">Mua khóa học</button>
-//                         <button class="style_button font_btn" type="button" id="try_course">Học thử</button>
-//                     </div>
-//                 `
-
-//     about += `<div>`
-//     for (let i = 0; i < courseDataList[index].course_info.length; i++) {
-//         about += `<div class="content_main--detail_course--intro">
-//                     <p class="font_cap line-weight-lg paragraph-md">${courseDataList[index].course_info[i].info}</p>`
-//         for (let j = 0; j < courseDataList[index].course_info[i].desc.length; j++) {
-//             about += `<p class="font_bd2 text-indent text-align-justify paragraph-md" > ${courseDataList[index].course_info[i].desc[j]}</p>`
-//         }
-//         about += `</div>`
-//     }
-
-//     about += `</div`;
-//     course_info_group = `<div class="content_main--detail_course--info_02">` + course_info + user_option + about + `</div>`
-
-//     result.innerHTML = btn_group + course_info_group;
-//     result.style.display = 'block';
-
-//     //Remove no need element
-//     for (let i = 0; i < removed_element.length; i++) {
-//         removed_element[i].remove();
-//     }
-// }

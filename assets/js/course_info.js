@@ -23,26 +23,25 @@ else {
     renderComboCourse();
 };
 
-// let buyOderPending = JSON.parse(localStorage.getItem('buyOderPending'));
-// if (buyOderPending.length != 0) {
-//     buyOderPending = [];
-//     localStorage.setItem('buyOderPending', JSON.stringify(buyOderPending))
-// }
 
+// renderDetailCourse(0)
 
 
 
 //Render Detail Course
 function renderDetailCourse(index) {
     let removed_element = document.querySelectorAll('.content_main--advantage_group');
+    let listUserPassword = JSON.parse(localStorage.getItem('listUserPassword'));
+
 
     let result = document.querySelector('.content_main--detail_course--info');
     let courseDataList = JSON.parse(localStorage.getItem('courseDataList'));
-    let btn_group, user_option, course_info_group, course_info, about;
+    let btn_group, user_option, course_info_group, course_info, about, review;
     btn_group = ``;
     user_option = ``;
     course_info = ``;
     about = ``;
+    review = ``;
     //render group select button
     btn_group += `
                 <div class="content_main--detail_course--info_01">
@@ -83,6 +82,7 @@ function renderDetailCourse(index) {
                 </div>
                 `;
 
+    //render user option button
     user_option += `
                     <div class="content_course_option">
                         <button class="style_button font_btn" type="button" id="buy_course">Mua khóa học</button>
@@ -90,6 +90,7 @@ function renderDetailCourse(index) {
                     </div>
                 `
 
+    //render detail about info
     about += `<div>`
     for (let i = 0; i < courseDataList[index].course_info.length; i++) {
         about += `<div class="content_main--detail_course--intro">
@@ -101,11 +102,48 @@ function renderDetailCourse(index) {
     }
 
     about += `</div`;
-    course_info_group = `<div class="content_main--detail_course--info_02">` + course_info + user_option + about + `</div>`
+
+
+    //Render review info
+    review += `
+                <div class="paragraph-md">
+                    <hr>
+                    <h2 class="font_title font_sm_title line-weight-lg">Đánh giá từ các học viên</h2>`
+    let count = 0;
+    for (let i = 0; i < listUserPassword.length; i++) {
+        let reviewCourseValue = listUserPassword[i].course[index];
+        if (reviewCourseValue != '' && reviewCourseValue != null && reviewCourseValue != undefined) {
+            let user = listUserPassword[i].first_name;
+            let reviewValue = listUserPassword[i].course[index].review;
+            if (reviewValue != '' && reviewValue != null && reviewValue != undefined) {
+
+                review += `<div class="review_render">
+                                <p class="user_review">${user}</p>
+                                <p class="user_value">${reviewValue}<p>
+                            </div>
+                            `
+                count++;
+            }
+        }
+
+    }
+    if (count == 0) {
+        review += `
+                <div class="review_render">
+                    <p class="user_value">Chưa có đánh giá về khóa học này</p>
+                <div>`
+    }
+    review += `</div>`
+
+
+    //compare all info
+    course_info_group = `<div class="content_main--detail_course--info_02">` + course_info + user_option + about + review + `</div>`
+
+
+
 
     result.innerHTML = btn_group + course_info_group;
     result.style.display = 'block';
-
     //Remove no need element
     for (let i = 0; i < removed_element.length; i++) {
         removed_element[i].remove();
@@ -150,7 +188,7 @@ function generateEventBuyBtn(index) {
         if (checkLogin() == 'user_block') {
             showAlertPopup();
             let popup_detail = document.querySelector('#pop_up_alert--detail p')
-            popup_detail.innerHTML = `Tài khoản người dùng đang bị block. Vui lòng liên hệ với ban quản trị`
+            popup_detail.innerHTML = `Tài khoản người dùng đang bị block. Vui lòng liên hệ với quản trị viên`
             setTimeout(hideAlertPopup, 1000);
         }
         else if (checkLogin() == 'user') {

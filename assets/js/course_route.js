@@ -1,173 +1,164 @@
 //Class set INT
-import { initLocalDB, checkLogin, logoutUser, rederLoginUI, showAlertPopup, hideAlertPopup } from "./database/commont.js";
+import { initLocalDB, checkLogin, logoutUser, rederLoginUI, showAlertPopup, hideAlertPopup, directToHome } from "./database/commont.js";
 import { UserInfo } from "./database/commont.js";
 
 import { initCourseDB, renderAllCourse, renderComboCourse } from "./database/db_course.js";
 
 initLocalDB();
 initCourseDB();
-renderAllCourse();
-renderComboCourse();
-
-let tokkenCourseInfo = JSON.parse(localStorage.getItem('tokkenCourseInfo'));
-if (tokkenCourseInfo.length != 0) {
-    // let tokkenCourseInfo = JSON.parse(localStorage.getItem('tokkenCourseInfo'));
-    let index_value = tokkenCourseInfo[0].id;
-    renderDetailCourse(index_value);
-    generateEventBtn();
-    tokkenCourseInfo = []
-    localStorage.setItem('tokkenCourseInfo', JSON.stringify(tokkenCourseInfo))
-}
-else {
-    renderAllCourse();
-    renderComboCourse();
-};
+generateCouserBought()
 
 
 
 
-renderDetailCourse(1)
-//Render Detail Course
-function renderDetailCourse(index) {
-    let removed_element = document.querySelectorAll('.content_main--advantage_group');
 
-    let result = document.querySelector('.content_main--detail_course--info');
-    let courseDataList = JSON.parse(localStorage.getItem('courseDataList'));
-    let btn_group, user_option, course_info_group, course_info, about;
-    btn_group = ``;
-    user_option = ``;
-    course_info = ``;
-    about = ``;
-    //render group select button
-    btn_group += `
-                <div class="content_main--detail_course--info_01">
-                    <div class="course--detail_btn">
-                        <p class="font_ds3 xs-sm-title">Danh sách khóa học</p>
-                        <ul class="content_main--detail_course--info_01__list_select">
-                            <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N5</li>
-                            <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N4</li>
-                            <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N3</li>
-                            <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N2</li>
-                            <li class="content_course--detail_btn col-xs-2 col-sm-2 col-md-2 group_4 hand_cursor">N1</li>
-                        </ul>
-                    </div>
-                </div>
-                `;
-    //render course info
-    course_info += `
-                <div class="paragraph-md">
-                    <h2 class="font_title font_sm_title line-weight-lg">Khóa học tiếng Nhật ${courseDataList[index].course}</h2>
-                    <table>
-                        <tr>
-                            <td class="font_label tb-width-200">Số buổi:</td>
-                            <td class="font_label">${courseDataList[index].subject} BUỔI</td>
-                        </tr>
-                        <tr>
-                            <td class="font_label">Thời gian:</td>
-                            <td class="font_label">${courseDataList[index].coursetime} NGÀY</td>
-                        </tr>
-                        <tr>
-                            <td class="font_label">Đối tượng:</td>
-                            <td class="font_label">${courseDataList[index].target}</td>
-                        </tr>
-                        <tr>
-                            <td class="font_label">Học phí:</td>
-                            <td class="font_label">${courseDataList[index].cost} VND</td>
-                        </tr>
-                    </table>
-                </div>
-                `;
+//Generate Course bought)
+function generateCouserBought() {
+    let result = document.querySelector('.content_course_manager--detail');
 
-    user_option += `
-                    <div class="content_course_option">
-                        <button class="style_button font_btn" type="button" id="buy_course">Mua khóa học</button>
-                        <button class="style_button font_btn" type="button" id="try_course">Học thử</button>
-                    </div>
-                `
+    let listUserPassword = JSON.parse(localStorage.getItem('listUserPassword'));
+    let courseDataList = JSON.parse(localStorage.getItem('courseDataList'))
+    let loginStatus = JSON.parse(localStorage.getItem('loginStatus'))
 
-    about += `<div>`
-    for (let i = 0; i < courseDataList[index].course_info.length; i++) {
-        about += `<div class="content_main--detail_course--intro">
-                    <p class="font_cap line-weight-lg paragraph-md">${courseDataList[index].course_info[i].info}</p>`
-        for (let j = 0; j < courseDataList[index].course_info[i].desc.length; j++) {
-            about += `<p class="font_bd2 text-indent text-align-justify paragraph-md" > ${courseDataList[index].course_info[i].desc[j]}</p>`
-        }
-        about += `</div>`
-    }
+    let data = '<h1 class="font_title col-xs-12 col-sm-12">Khóa học đã mua</h1>';
 
-    about += `</div`;
-    course_info_group = `<div class="content_main--detail_course--info_02">` + course_info + user_option + about + `</div>`
+    for (let i = 0; i < listUserPassword.length; i++) {
+        if (listUserPassword[i].email == loginStatus[0].email) {
+            // console.log(listUserPassword[i].course);
+            if (listUserPassword[i].course.length == 0) {
+                data += `
+                        <p>Bạn chưa mua khóa học nào. Click vào <a href="/pages/common_pages/course.html"><b>đây</b><a> để mua khóa học</p>
+                        `
+            }
+            else {
+                for (let j = 0; j < listUserPassword[i].course.length; j++) {
+                    let purchase = new Date(listUserPassword[i].course[j].purchase)
+                    let expire = new Date(listUserPassword[i].course[j].expire);
 
-    result.innerHTML = btn_group + course_info_group;
-    result.style.display = 'block';
-
-    //Remove no need element
-    for (let i = 0; i < removed_element.length; i++) {
-        removed_element[i].remove();
-    }
-}
-
-
-
-
-//Generate Event button for detail course button (default website)
-function generateEventBtn() {
-    let event_btn = document.querySelectorAll('.content_course--detail_btn');
-    for (let i = 0; i < event_btn.length; i++) {
-        event_btn[i].addEventListener('click', () => {
-            renderDetailCourse(i);
-            generateEventBtn();
-            generateEventBuyBtn(i);
-        })
-    }
-}
-
-
-
-//Generate Event button when click detail button
-let detail_course_event = document.querySelectorAll('.detail_course_ev_btn');
-// console.log(detail_course_event != null);
-if (detail_course_event) {
-    for (let i = 0; i < detail_course_event.length; i++) {
-        detail_course_event[i].addEventListener('click', () => {
-            renderDetailCourse(i);
-            generateEventBtn();
-            generateEventBuyBtn(i);
-        })
-    }
-}
-
-
-//Buy course button event
-function generateEventBuyBtn(index) {
-    let buy_course = document.querySelector('#buy_course');
-    buy_course.addEventListener('click', function () {
-        if (checkLogin() == 'user_block') {
-            showAlertPopup();
-            let popup_detail = document.querySelector('#pop_up_alert--detail p')
-            popup_detail.innerHTML = `Tài khoản người dùng đang bị block. Vui lòng liên hệ với ban quản trị`
-            setTimeout(hideAlertPopup, 1000);
-        }
-        else if (checkLogin() == 'user') {
-            let courseDataList = JSON.parse(localStorage.getItem('courseDataList'))
-            for (let i = 0; i < courseDataList.length; i++) {
-                if (courseDataList[i].id == index) {
-                    let buyOrder = [
-                        {
-                            id: index,
-                            course: courseDataList[i].course
-                        }]
-                    localStorage.setItem('buyOderPending', JSON.stringify(buyOrder))
-                    window.location.href = '/pages/common_pages/buy_course.html'
-                    break;
+                    data += `
+                            <div class="couser_bought_detail">
+                                <p class="font_cap" style="display:none">Mã ID:<span>${listUserPassword[i].course[j].id}</span></p>
+                                <p class="font_cap">Khóa học: ${listUserPassword[i].course[j].course}</p>
+                                <p class="font_bd2">Renew: ${listUserPassword[i].course[j].renew}</p>
+                                <p class="font_bd2">Ngày mua: ${purchase.getDate()}/${purchase.getMonth() + 1}/${purchase.getFullYear()}</p>
+                                <p class="font_bd2">Hết hạn: ${expire.getDate()}/${expire.getMonth() + 1}/${expire.getFullYear()}</p>
+                                <p class="font_bd2">Thời gian còn lại: ${parseInt((expire - purchase) / 86400000)}</p>
+                                <div class="action_btn_group">
+                                    <button type="button" class="content_view btn_main font_sm_btn group_2" style="width: 140px">Xem nội dung</button>
+                                </div>
+                            </div>
+                    `
                 }
             }
+
+            break;
         }
-        else {
-            showAlertPopup();
-            let popup_detail = document.querySelector('#pop_up_alert--detail p')
-            popup_detail.innerHTML = `Vui lòng đăng nhập bằng tài khoản người dùng`
-            setTimeout(hideAlertPopup, 1000);
-        }
+    }
+
+
+    result.innerHTML = data;
+}
+
+//Event for Detail Button click
+let content_view = document.querySelectorAll('.content_view');
+for (let i = 0; i < content_view.length; i++) {
+    content_view[i].addEventListener('click', function () {
+        let id = content_view[i].parentNode.parentNode.childNodes[1].childNodes[1].innerHTML;
+        generateCouserBoughtDetail(id);
+        // console.log(id);
     })
+}
+
+
+
+
+// generateCouserBoughtDetail(0)
+
+//Render Detail Bought Course Contents
+function generateCouserBoughtDetail(index) {
+    let result = document.querySelector('.content_course_manager--detail');
+    let courseDataList = JSON.parse(localStorage.getItem('courseDataList'))
+
+    let data = `<h1 class="font_title col-xs-12 col-sm-12">Danh mục bài học khóa: ${courseDataList[index].course}</h1>`;
+
+    if (courseDataList[index].course_detail.length == 0) {
+        data += `<div>
+                        Nội dung đang cập nhật vui lòng quay lại sau
+                    </div>
+                    `
+    }
+    else {
+        data += `<div class="list_subject">`
+        for (let i = 0; i < courseDataList[index].course_detail.length; i++) {
+            data += `
+            <div class="list_subject--detail hand_cursor">
+                <span>Bài ${courseDataList[index].course_detail[i].sub}.</span>
+                <span>${courseDataList[index].course_detail[i].title}</span>
+            </div>
+            `
+        }
+        data += `</div>`;
+        data += `
+                <div class="review_btn_area">
+                    <textarea name="" class="review_course" placeholder="Vui lòng viết đánh giá về khóa học tại đây"></textarea>
+                    <button type="button" class="btn_main group_3 font_sm_btn submit_review">Gửi đánh giá</button>
+                </div>
+                `
+        result.style.display = `block`
+    }
+    result.innerHTML = data;
+    callAddReviewOpt(index)
+
+}
+
+
+//Review Submit Comment Button
+
+
+
+
+//Function update comment
+function callAddReviewOpt(index) {
+    let review_course = document.querySelector('.submit_review')
+    review_course.addEventListener('click', function () {
+        addReviewOpt(index)
+    })
+}
+function addReviewOpt(index) {
+    let review_course = document.querySelector('.review_course')
+    let listUserPassword = JSON.parse(localStorage.getItem('listUserPassword'));
+    let loginStatus = JSON.parse(localStorage.getItem('loginStatus'))
+    for (let i = 0; i < listUserPassword.length; i++) {
+        if (loginStatus[0].email == listUserPassword[i].email) {
+            listUserPassword[i].course[index].review = review_course.value;
+
+            localStorage.setItem('listUserPassword', JSON.stringify(listUserPassword))
+            review_course.value = ''
+        }
+    }
+}
+
+
+
+
+
+
+//Check Login/Logout event
+if (checkLogin() == 'user_block') {
+    showAlertPopup();
+    let popup_detail = document.querySelector('#pop_up_alert--detail p')
+    popup_detail.innerHTML = `Tài khoản người dùng đang bị block. Vui lòng liên hệ với quản trị viên`
+    setTimeout(directToHome, 2000)
+}
+if (checkLogin() == 'admin') {
+    showAlertPopup();
+    let popup_detail = document.querySelector('#pop_up_alert--detail p')
+    popup_detail.innerHTML = `Để truy cập, vui lòng đăng nhập với tài khoản người dùng`
+    setTimeout(directToHome, 2000)
+}
+else if (checkLogin() == 'none') {
+    showAlertPopup();
+    let popup_detail = document.querySelector('#pop_up_alert--detail p')
+    popup_detail.innerHTML = `Để truy cập vui lòng liên hệ với tài khoản người dùng`
+    setTimeout(directToHome, 2000)
 }

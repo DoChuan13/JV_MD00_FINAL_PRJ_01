@@ -78,7 +78,7 @@ function registerUser() {
         let re_password = document.querySelector('#re_password').value;
         let id;
         if (listUserPassword.length == 0) {
-            id = 1;
+            id = 0;
         }
         else {
             id = listUserPassword[listUserPassword.length - 1].id + 1;

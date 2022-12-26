@@ -28,39 +28,40 @@ if (checkLogin() == 'user') {
                 if (listUserPassword[i].course.length == 0) {
                     // console.log(listUserPassword[i].course);
                     let courseValue = {
+                        id: id,
                         renew: 1,
                         course: courseDataList[id].course,
                         purchase: purchaseDate,
                         expire: expire.setDate(purchaseDate.getDate() + courseDataList[id].coursetime),
-                        remain: parseInt((expire - currentDate) / 86400000),
                     }
-                    listUserPassword[i].course.push(courseValue)
+                    listUserPassword[i].course.push(courseValue);
+                    break;
                 }
                 else {
                     for (let j = 0; j < listUserPassword[i].course.length; j++) {
                         if (listUserPassword[i].course[j].course == buyOderPending[0].course) {
                             listUserPassword[i].course[j].renew += 1;
                             listUserPassword[i].course[j].expire = expire.setDate(purchaseDate.getDate() + (courseDataList[id].coursetime) * (listUserPassword[i].course[j].renew));
-                            listUserPassword[i].course[j].remain = parseInt((expire - currentDate) / 86400000)
                             // console.log(listUserPassword[i].course[j].expire.getDate());
+                            break;
                         }
                         else if (j == listUserPassword[i].course.length - 1) {
                             let courseValue = {
+                                id: id,
                                 renew: 1,
                                 course: courseDataList[id].course,
                                 purchase: purchaseDate,
                                 expire: expire.setDate(purchaseDate.getDate() + courseDataList[id].coursetime),
-                                remain: parseInt((expire - currentDate) / 86400000),
                             }
                             listUserPassword[i].course.push(courseValue)
+                            break;
                         }
                     }
                 }
-                console.log(listUserPassword[i].course);
-                localStorage.setItem('listUserPassword', JSON.stringify(listUserPassword))
-                break;
             }
         }
+        // console.log(listUserPassword[i].course);
+        localStorage.setItem('listUserPassword', JSON.stringify(listUserPassword))
         buyOderPending = [];
         localStorage.setItem('buyOderPending', JSON.stringify(buyOderPending));
     }

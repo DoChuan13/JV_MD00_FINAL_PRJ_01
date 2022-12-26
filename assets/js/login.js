@@ -71,7 +71,7 @@ function loginAccount() {
 
                     showAlertPopup();
                     let popup_detail = document.querySelector('#pop_up_alert--detail p')
-                    popup_detail.innerHTML = `Tài khoản người dùng đang bị block. Vui lòng liên hệ với ban quản trị`
+                    popup_detail.innerHTML = `Tài khoản người dùng đang bị block. Vui lòng liên hệ với quản trị viên`
                     setTimeout(hideAlertPopup, 1000);
                     return false;
                 }
