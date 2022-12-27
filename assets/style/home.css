@@ -1261,7 +1261,7 @@ td {
 /*0000:  Login, Register, Fogot Password CSS*/
 .login_form_input {
     position: relative;
-    background-color: #fff;
+    background-color: inherit;
 }
 
 .togglePassword {
@@ -1286,7 +1286,7 @@ td {
     width: 480px;
     padding: 41px 59px;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: rgb(244, 244, 244);
     border-radius: 25px;
 }
 

@@ -242,7 +242,7 @@ function checkmatchCurrentPassInfo() {
             current_password.style.border = '3px solid green';
             return true;
         }
-        else {
+        else if (i == listUserPassword.length - 1) {
             console.log('Passwords do NOT match!');
             current_password.style.border = '3px solid red';
             return false;
@@ -254,7 +254,7 @@ function checkmatchCurrentPassInfo() {
 //Check Password's length and curent pass
 function checkValidateNewPassword() {
     let current_password = document.querySelector('#current_password');
-    let password = document.querySelector('.password');
+    let password = document.querySelector('#password');
     if (checkPassword() && current_password.value != password.value) {
         console.log('New password is Match & diffrence with current pass');
         password.style.border = '3px solid green'

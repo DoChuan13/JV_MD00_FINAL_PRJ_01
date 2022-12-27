@@ -96,7 +96,7 @@ function viewContent(id_course, sub) {
 function deleteContent(id_course, sub) {
     let courseDataList = JSON.parse(localStorage.getItem('courseDataList'));
     let btn_act_log = document.querySelector(`.delete_content_${sub}`)
-    let checkconfirm = alert("Bạn có chắc chắn muốn xóa không?")
+    let checkconfirm = confirm("Bạn có chắc chắn muốn xóa không?")
     if (checkconfirm) {
         for (let i = 0; i < courseDataList[id_course].course_detail.length; i++) {
             if (sub == courseDataList[id_course].course_detail[i].sub) {
@@ -125,31 +125,69 @@ function saveNewContent(id_course) {
 
     let subj = btn_act_log.parentNode.parentNode.childNodes[0].childNodes[0];
     let content = btn_act_log.parentNode.parentNode.childNodes[2].childNodes[0];
-    console.log(subj.value);
+    // console.log(subj.value);
     if (subj.value == `` || content.value == ``) {
         alert('Vui lòng nhập mã bài học, và nội dung bài học')
+    }
+    else if (parseInt(subj.value) <= 0) {
+        alert('Mã khóa học không hợp lệ, vui lòng nhập mã khác')
     }
     else {
         if (courseDataList[id_course].course_detail.length == 0) {
             courseDataList[id_course].course_detail.push({ sub: subj.value, title: content.value })
             localStorage.setItem('courseDataList', JSON.stringify(courseDataList));
+            renderDetailContent(id_course)
+
+        }
+        else if (courseDataList[id_course].course_detail.length == 1) {
+            let preValue = parseInt(courseDataList[id_course].course_detail[0].sub);
+            let curValue = parseInt(subj.value);
+            if (preValue < curValue) {
+                courseDataList[id_course].course_detail.push({ sub: parseInt(subj.value), title: content.value })
+                localStorage.setItem('courseDataList', JSON.stringify(courseDataList));
+                renderDetailContent(id_course)
+            }
+            else {
+                courseDataList[id_course].course_detail.splice(0, 0, { sub: parseInt(subj.value), title: content.value })
+                localStorage.setItem('courseDataList', JSON.stringify(courseDataList));
+                renderDetailContent(id_course)
+            }
         }
         else {
-            for (let i = 0; i < courseDataList[id_course].course_detail.length; i++) {
-                if (subj.value == courseDataList[id_course].course_detail[i].sub) {
+            for (let i = 0; i < courseDataList[id_course].course_detail.length - 1; i++) {
+                // console.log('so sánh', parseInt(courseDataList[id_course].course_detail[i].sub) < parseInt(subj.value) && parseInt(subj.value) < parseInt(courseDataList[id_course].course_detail[i + 1].sub));
+                let preValue = parseInt(courseDataList[id_course].course_detail[i].sub);
+                let curValue = parseInt(subj.value);
+                let nextValue = parseInt(courseDataList[id_course].course_detail[i + 1].sub);
+                if (preValue == curValue || curValue == nextValue) {
                     alert('Mã khóa học đã tồn tại, vui lòng nhập mã khác')
+                    break;
                 }
-                else if (i == courseDataList[id_course].course_detail.length - 1) {
+                else if (preValue > curValue) {
+                    courseDataList[id_course].course_detail.splice(i, 0, { sub: parseInt(subj.value), title: content.value })
+                    localStorage.setItem('courseDataList', JSON.stringify(courseDataList));
+                    renderDetailContent(id_course)
+                    break;
+                }
+                else if ((preValue < curValue && curValue < nextValue)) {
+                    // console.log(121212);
+                    courseDataList[id_course].course_detail.splice(i + 1, 0, { sub: parseInt(subj.value), title: content.value })
+                    localStorage.setItem('courseDataList', JSON.stringify(courseDataList));
+                    renderDetailContent(id_course)
+                    break;
+                }
+                else if (i == courseDataList[id_course].course_detail.length - 2) {
                     courseDataList[id_course].course_detail.push({ sub: parseInt(subj.value), title: content.value })
                     localStorage.setItem('courseDataList', JSON.stringify(courseDataList));
+                    renderDetailContent(id_course)
                     break;
                 }
             }
         }
     }
-    renderDetailContent(id_course)
 }
 
-let courseDataList = JSON.parse(localStorage.getItem('courseDataList'));
 
-console.log(courseDataList[0].course_detail);
+// let courseDataList = JSON.parse(localStorage.getItem('courseDataList'));
+
+// console.log(courseDataList[0].course_detail);
