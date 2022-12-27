@@ -92,35 +92,35 @@ initCourseArray[0] = {
         },
         {
             sub: 3,
-            title: `Buổi học số 1`
+            title: `Bài học số 1`
         },
         {
             sub: 4,
-            title: `Buổi học số 2`
+            title: `Bài học số 2`
         },
         {
             sub: 5,
-            title: `Buổi học số 3`
+            title: `Bài học số 3`
         },
         {
             sub: 6,
-            title: `Buổi học số 4`
+            title: `Bài học số 4`
         },
         {
             sub: 7,
-            title: `Buổi học số 5`
+            title: `Bài học số 5`
         },
         {
             sub: 8,
-            title: `Buổi học số 6`
+            title: `Bài học số 6`
         },
         {
             sub: 9,
-            title: `Buổi học số 7`
+            title: `Bài học số 7`
         },
         {
             sub: 10,
-            title: `Buổi học số 8`
+            title: `Bài học số 8`
         }
     ]
 }
@@ -181,43 +181,43 @@ initCourseArray[1] = {
     course_detail: [
         {
             sub: 1,
-            title: `Buổi học số 1`
+            title: `Bài học số 1`
         },
         {
             sub: 2,
-            title: `Buổi học số 2`
+            title: `Bài học số 2`
         },
         {
             sub: 3,
-            title: `Buổi học số 3`
+            title: `Bài học số 3`
         },
         {
             sub: 4,
-            title: `Buổi học số 4`
+            title: `Bài học số 4`
         },
         {
             sub: 5,
-            title: `Buổi học số 5`
+            title: `Bài học số 5`
         },
         {
             sub: 6,
-            title: `Buổi học số 6`
+            title: `Bài học số 6`
         },
         {
             sub: 7,
-            title: `Buổi học số 7`
+            title: `Bài học số 7`
         },
         {
             sub: 8,
-            title: `Buổi học số 8`
+            title: `Bài học số 8`
         },
         {
             sub: 9,
-            title: `Buổi học số 9`
+            title: `Bài học số 9`
         },
         {
             sub: 10,
-            title: `Buổi học số 10`
+            title: `Bài học số 10`
         }
     ]
 }
@@ -412,7 +412,6 @@ export function initCourseDB() {
 export function renderAllCourse() {
     let course_list = document.querySelector('.course_list');
     let courseDataList = JSON.parse(localStorage.getItem('courseDataList'))
-
     let data = '';
     for (let i = 0; i < courseDataList.length; i++) {
         data += `

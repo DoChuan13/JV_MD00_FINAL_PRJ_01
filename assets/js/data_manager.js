@@ -6,6 +6,7 @@ import { initCourseDB, renderAllCourse, renderComboCourse } from "./database/db_
 
 initLocalDB();
 initCourseDB();
+// renderAllCourse();
 
 if (checkLogin() != 'admin') {
     showAlertPopup();

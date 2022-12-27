@@ -5,6 +5,7 @@ import { UserInfo } from "./database/commont.js";
 import { initCourseDB, renderAllCourse, renderComboCourse, } from "./database/db_course.js";
 
 initLocalDB();
+initCourseDB();
 renderAllCourse();
 renderComboCourse();
 

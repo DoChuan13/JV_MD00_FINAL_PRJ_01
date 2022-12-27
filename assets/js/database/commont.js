@@ -143,7 +143,7 @@ export function initLocalDB() {
         let color_hidden_menu = this.document.querySelector('.header--user--opt_inf');
         let navbar_hidden = document.querySelector('.header--bar_hidden_list');
         let navbar_hidden_user = document.querySelector('.header--user--signin');
-
+        console.log(navbar_hidden_user);
         if (navbar_hidden != null && window.innerWidth >= 768) {
             let check01 = navbar_hidden.childNodes[3].classList.contains('header--navbar_hidden');
             if (check01 != true) {
@@ -151,7 +151,7 @@ export function initLocalDB() {
                 // color_hidden_menu.style.background = 'rgb(245, 211, 211)'
             }
         }
-        if (navbar_hidden != null && window.innerWidth <= 768) {
+        if (navbar_hidden_user != null && window.innerWidth <= 768) {
             let check02 = navbar_hidden_user.childNodes[3].classList.contains('md_visible');
             if (check02 != true) {
                 navbar_hidden_user.childNodes[3].classList.add('md_visible')
@@ -231,7 +231,7 @@ export function rederLoginUI() {
             `
             //<img src="/assets/images/icon_private.png" alt="">
 
-            window.document.childNodes[1].childNodes[2].childNodes[1].childNodes[1].style.background = '#EC56F1'//linear-gradient(rgb(250, 205, 42), rgb(246, 156, 44))';
+            window.document.childNodes[1].childNodes[2].childNodes[1].childNodes[1].style.background = '#A9A9A9'//linear-gradient(rgb(250, 205, 42), rgb(246, 156, 44))';
             let logout_btn = document.getElementById("logout_btn");;
             logout_btn.addEventListener('click', logoutUser)
         }

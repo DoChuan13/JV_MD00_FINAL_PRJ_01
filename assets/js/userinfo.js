@@ -156,6 +156,7 @@ function updateUserInfo() {
 
 
                 statusEdit = false;
+                initLocalDB()
                 break;
             }
         }
