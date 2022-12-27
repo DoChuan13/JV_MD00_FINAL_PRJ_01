@@ -147,6 +147,13 @@ function callAddReviewOpt(index) {
 }
 function addReviewOpt(index) {
     let review_course = document.querySelector('.review_course')
+    if (review_course.value == '') {
+        showAlertPopup();
+        let popup_detail = document.querySelector('#pop_up_alert--detail p')
+        popup_detail.innerHTML = `Vui lòng viết đánh giá trước khi gửi đi`
+        setTimeout(hideAlertPopup, 2000)
+        return;
+    }
     let listUserPassword = JSON.parse(localStorage.getItem('listUserPassword'));
     let loginStatus = JSON.parse(localStorage.getItem('loginStatus'))
     for (let i = 0; i < listUserPassword.length; i++) {
