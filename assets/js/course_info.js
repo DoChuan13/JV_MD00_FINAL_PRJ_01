@@ -111,21 +111,26 @@ function renderDetailCourse(index) {
                     <h2 class="font_title font_sm_title line-weight-lg">Đánh giá từ các học viên</h2>`
     let count = 0;
     for (let i = 0; i < listUserPassword.length; i++) {
-        let reviewCourseValue = listUserPassword[i].course[index];
-        if (reviewCourseValue != '' && reviewCourseValue != null && reviewCourseValue != undefined) {
-            let user = listUserPassword[i].first_name;
-            let reviewValue = listUserPassword[i].course[index].review;
-            if (reviewValue != '' && reviewValue != null && reviewValue != undefined) {
+        for (let j = 0; j < listUserPassword[i].course.length; j++) {
+            if (listUserPassword[i].course[j].id == index) {
+                // console.log(listUserPassword[i].course);
+                let reviewCourseValue = listUserPassword[i].course[j];
+                if (reviewCourseValue != '' && reviewCourseValue != null && reviewCourseValue != undefined) {
+                    let user = listUserPassword[i].first_name;
+                    let reviewValue = listUserPassword[i].course[j].review;
+                    if (reviewValue != '' && reviewValue != null && reviewValue != undefined) {
 
-                review += `<div class="review_render">
+                        review += `<div class="review_render">
                                 <p class="user_review">${user}</p>
                                 <p class="user_value">${reviewValue}<p>
                             </div>
                             `
-                count++;
+                        count++;
+                    }
+                }
+
             }
         }
-
     }
     if (count == 0) {
         review += `
@@ -133,6 +138,7 @@ function renderDetailCourse(index) {
                     <p class="user_value">Chưa có đánh giá về khóa học này</p>
                 <div>`
     }
+
     review += `</div>`
 
 

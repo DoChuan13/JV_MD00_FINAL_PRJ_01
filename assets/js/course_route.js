@@ -78,6 +78,27 @@ for (let i = 0; i < content_view.length; i++) {
 function generateCouserBoughtDetail(index) {
     let result = document.querySelector('.content_course_manager--detail');
     let courseDataList = JSON.parse(localStorage.getItem('courseDataList'))
+    let listUserPassword = JSON.parse(localStorage.getItem('listUserPassword'));
+    let id = checkLoginIdUser();
+
+    let review = '';
+    //Find Review
+
+    for (let i = 0; i < listUserPassword[id].course.length; i++) {
+        if (listUserPassword[id].course[i].id == index) {
+            if (listUserPassword[id].course[i].review == ``) {
+                review = `Chưa có đánh giá, vui lòng viết đánh giá về khóa học tại đây`
+            }
+            else {
+                review = listUserPassword[id].course[i].review;
+            }
+            break;
+        }
+
+    }
+
+
+
 
     let data = `<h1 class="font_title col-xs-12 col-sm-12">Danh mục bài học khóa: ${courseDataList[index].course}</h1>`;
 
@@ -100,7 +121,7 @@ function generateCouserBoughtDetail(index) {
         data += `</div>`;
         data += `
                 <div class="review_btn_area">
-                    <textarea name="" class="review_course" placeholder="Vui lòng viết đánh giá về khóa học tại đây"></textarea>
+                    <textarea name="" class="review_course" placeholder="${review}"></textarea>
                     <button type="button" class="btn_main group_3 font_sm_btn submit_review">Gửi đánh giá</button>
                 </div>
                 `
@@ -130,16 +151,36 @@ function addReviewOpt(index) {
     let loginStatus = JSON.parse(localStorage.getItem('loginStatus'))
     for (let i = 0; i < listUserPassword.length; i++) {
         if (loginStatus[0].email == listUserPassword[i].email) {
-            listUserPassword[i].course[index].review = review_course.value;
+            for (let j = 0; j < listUserPassword[i].course.length; j++) {
+                if (listUserPassword[i].course[j].id == index) {
+                    listUserPassword[i].course[j].review = review_course.value;
+                    localStorage.setItem('listUserPassword', JSON.stringify(listUserPassword))
+                    // console.log(listUserPassword[i].course[j]);
 
-            localStorage.setItem('listUserPassword', JSON.stringify(listUserPassword))
-            review_course.value = ''
+                    showAlertPopup();
+                    let popup_detail = document.querySelector('#pop_up_alert--detail p')
+                    popup_detail.innerHTML = `Gửi đánh giá thành công`
+                    setTimeout(hideAlertPopup, 2000)
+                    break;
+                }
+            }
+            generateCouserBoughtDetail(index)
         }
     }
 }
 
 
-
+function checkLoginIdUser() {
+    let listUserPassword = JSON.parse(localStorage.getItem('listUserPassword'));
+    let loginStatus = JSON.parse(localStorage.getItem('loginStatus'))
+    let idUser;
+    for (let i = 0; i < listUserPassword.length; i++) {
+        if (loginStatus[0].email == listUserPassword[i].email) {
+            idUser = i;
+        }
+    }
+    return idUser;
+}
 
 
 

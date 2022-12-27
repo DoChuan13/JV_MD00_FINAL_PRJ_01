@@ -129,7 +129,7 @@ function saveNewContent(id_course) {
     if (subj.value == `` || content.value == ``) {
         alert('Vui lòng nhập mã bài học, và nội dung bài học')
     }
-    else if (parseInt(subj.value) <= 0) {
+    else if (parseInt(subj.value) <= 0 || isNaN(parseInt(subj.value))) {
         alert('Mã khóa học không hợp lệ, vui lòng nhập mã khác')
     }
     else {
