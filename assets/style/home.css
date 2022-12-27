@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
     font-family: 'Muli', sans-serif;
-    background-color: rgb243, 245, 248;
+    /* background-color: rgb(243, 245, 248); */
     /* background-color: rgb(243, 245, 248); */
     margin: 0;
     padding: 0;
@@ -189,6 +189,18 @@ td {
 .paragraph-md {
     margin-bottom: 10px;
 }
+
+
+.back_img {
+    position: absolute;
+    background-image: url("/assets/images/background_main.jpeg");
+    width: 100%;
+    top: 0;
+    bottom: 0px;
+    z-index: -1;
+}
+
+
 
 
 /*Background Color*/
@@ -1314,7 +1326,7 @@ form {
 }
 
 .login_back span {
-    background-color: rgb(243, 245, 248);
+    background-color: none;
     margin: 0;
 }
 
