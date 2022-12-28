@@ -565,7 +565,7 @@ td {
 
 .content_main--resson_select--img img {
     background: none;
-    width: 420px;
+    max-width: 370px;
 }
 
 .content_main--resson_select--detail h3 {

@@ -288,7 +288,6 @@ function updatePassInfo() {
                 loginStatus[0].password = password.value;
                 localStorage.setItem('loginStatus', JSON.stringify(loginStatus))
 
-
                 current_password.value = "";
                 password.value = "";
                 re_password.value = "";
