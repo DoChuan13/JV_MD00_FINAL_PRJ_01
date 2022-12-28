@@ -1087,7 +1087,7 @@ td {
     background: #ffffff;
     max-width: 1200px;
     /* height: 1000px; */
-    margin: 130px 30px 30px;
+    margin: 130px auto;
     border-radius: 30px;
     padding: 30px;
 }
