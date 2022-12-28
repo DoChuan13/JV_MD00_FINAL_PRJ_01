@@ -144,7 +144,14 @@ function registerUser() {
         else if (!checkPassword()) {
             showAlertPopup();
             let popup_detail = document.querySelector('#pop_up_alert--detail p')
-            popup_detail.innerHTML = `Mật khẩu không hợp lệ. Yêu cầu có a-z, A-Z, 0-9, ký tự đặc biệt và dài 8-20`
+            popup_detail.innerHTML = `Mật khẩu không hợp lệ.
+                                    Yêu cầu có a-z, A-Z, 0-9, ký tự đặc biệt và dài 8-20`
+            setTimeout(hideAlertPopup, 1000)
+        }
+        else if (!checkRepassword()) {
+            showAlertPopup();
+            let popup_detail = document.querySelector('#pop_up_alert--detail p')
+            popup_detail.innerHTML = `Mật khẩu không trùng khớp. Vui lòng thử lại`
             setTimeout(hideAlertPopup, 1000)
         }
     }
