@@ -86,7 +86,7 @@ function generateCouserBoughtDetail(index) {
 
     for (let i = 0; i < listUserPassword[id].course.length; i++) {
         if (listUserPassword[id].course[i].id == index) {
-            if (listUserPassword[id].course[i].review == ``) {
+            if (listUserPassword[id].course[i].review == undefined || listUserPassword[id].course[i].review == ``) {
                 review = `Chưa có đánh giá, vui lòng viết đánh giá về khóa học tại đây`
             }
             else {
