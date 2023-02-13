@@ -1,0 +1,17 @@
+.admin_section {
+  // min-width: 1300px;
+  overflow: scroll !important;
+  th,
+  td {
+    text-align: center !important;
+  }
+  .admin_index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 550px;
+    font-size: 80px;
+    font-family: "Times New Roman", Times, serif;
+  }
+}

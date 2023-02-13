@@ -1,0 +1,85 @@
+main {
+  .contact_section {
+    width: 100%;
+    float: left;
+
+    .contact_taital {
+      width: 100%;
+      float: left;
+      color: #1a1c1b;
+      font-weight: bold;
+      font-size: 40px;
+      text-transform: uppercase;
+    }
+
+    .contact_text {
+      width: 100%;
+      float: left;
+      color: #252525;
+      margin: 0px;
+      font-size: 16px;
+    }
+
+    .contact_main {
+      width: 100%;
+      display: flex;
+      margin-top: 45px;
+    }
+
+    .contact_bt {
+      width: 200px;
+    }
+
+    .contact_bt a {
+      width: 100%;
+      float: left;
+      font-size: 16px;
+      color: #ffffff;
+      padding: 10px 30px;
+      background-color: #252525;
+      text-transform: uppercase;
+      margin-right: 15px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .contact_bt a:hover {
+      background-color: #252525;
+      color: #ffffff;
+    }
+
+    .newletter_bt {
+      width: 200px;
+      margin-left: 20px;
+    }
+
+    .newletter_bt a {
+      width: 100%;
+      float: left;
+      font-size: 16px;
+      color: #252525;
+      padding: 10px 30px;
+      background-color: #fef4ec;
+      text-transform: uppercase;
+      margin-right: 15px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .newletter_bt a:hover {
+      background-color: #252525;
+      color: #ffffff;
+    }
+
+    .map_main {
+      width: 100%;
+      float: left;
+      margin-top: 90px;
+    }
+
+    .contact_section_2 {
+      width: 100%;
+      float: left;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+main {
+  .about_section {
+    width: 100%;
+    float: left;
+    background-color: #fef4ec;
+    height: auto;
+    padding-bottom: 90px;
+
+    .about_section_main {
+      width: 100%;
+      float: left;
+    }
+
+    .about_taital_main {
+      width: 100%;
+      float: left;
+      padding-top: 20px;
+      padding-left: 100px;
+    }
+
+    .about_taital {
+      width: 100%;
+      float: left;
+      font-size: 44px;
+      color: #252525;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .about_text {
+      width: 100%;
+      float: left;
+      font-size: 14px;
+      color: #252525;
+      margin: 0px;
+    }
+
+    .image_3 {
+      width: 100%;
+      float: left;
+      height: 430px;
+    }
+
+    .readmore_bt {
+      width: 170px;
+      float: left;
+      padding-top: 30px;
+    }
+
+    .readmore_bt a {
+      width: 100%;
+      float: left;
+      font-size: 16px;
+      color: #ffffff;
+      background-color: #363636;
+      text-align: center;
+      padding: 10px 0px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .readmore_bt a:hover {
+      color: #50504f;
+      background-color: #ffffff;
+    }
+  }
+}

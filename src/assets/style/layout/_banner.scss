@@ -1,0 +1,60 @@
+main {
+  .banner_section {
+    width: 100%;
+    float: left;
+    background-image: url(../../images//imageFiles/banner/banner-bg.png);
+    height: auto;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    .banner_taital {
+      width: 100%;
+      margin: 0 auto;
+      font-size: 100px;
+      color: #000;
+      line-height: 90px;
+      padding-top: 20px;
+      font-family: "Great Vibes", cursive;
+    }
+
+    .banner_text {
+      width: 100%;
+      float: left;
+      font-size: 16px;
+      color: #000;
+      margin: 20px 0px;
+    }
+
+    .read_bt {
+      width: 170px;
+      float: left;
+      padding-top: 30px;
+    }
+
+    .read_bt a {
+      width: 100%;
+      float: left;
+      font-size: 16px;
+      color: #ffffff;
+      background-color: #252525;
+      text-align: center;
+      padding: 10px 0px;
+      border-radius: 5px;
+      text-transform: uppercase;
+    }
+
+    .read_bt a:hover {
+      color: #ffffff;
+      background-color: #f5ddb6;
+    }
+
+    // .active {
+    //   background-color: red !important;
+    //   transition: all 1s;
+    // }
+    // .fade {
+    //   animation-name: fade;
+    //   animation-duration: 1.5s;
+    // }
+  }
+}

@@ -1,0 +1,80 @@
+/*Nested for Header*/
+
+header {
+  .active {
+    background: #fef4dd;
+    color: black !important;
+    border-radius: 5px;
+  }
+
+  .header_main_section {
+    .navbar-brand {
+      font-family: "Great Vibes", cursive;
+    }
+
+    a {
+      color: #fff;
+    }
+    hr {
+      border-top: 2px solid #fff;
+    }
+
+    .header_navbar_center {
+      text-align: center;
+      gap: 10px;
+      margin: 0 auto;
+
+      a {
+        padding: 8px;
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .navbar-nav {
+      text-align: center;
+      gap: 10px;
+      margin: 0;
+
+      a {
+        padding: 8px;
+
+        &:hover {
+          background: #f6e6c2;
+          color: black !important;
+        }
+      }
+    }
+
+    .navbar-collapse a {
+      padding: 8px !important;
+      display: block;
+      text-align: center;
+    }
+
+    .dropdown-toggle {
+      transition: ease all 0.5s;
+      &:hover {
+        background: #f6e6c2;
+        color: black !important;
+      }
+    }
+
+    .dropdown-menu {
+      background-color: rgb(33, 37, 41);
+    }
+
+    .dropdown-item-text {
+      padding: 0px;
+    }
+
+    //
+    .nav-link:hover {
+      background: #f6e6c2;
+    }
+    .nav-link:hover a {
+      color: black;
+    }
+  }
+}

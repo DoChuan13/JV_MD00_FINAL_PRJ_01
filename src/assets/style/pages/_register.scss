@@ -1,0 +1,102 @@
+.register_section {
+  position: absolute;
+  background-image: url(../../images/imageFiles/background/background_main.jpeg);
+  width: 100%;
+  top: 0;
+  bottom: 0px;
+  z-index: -1;
+
+  .register_section--maxsize {
+    margin: 0 auto;
+    position: relative;
+    max-width: 1500px;
+    height: 100%;
+  }
+
+  img {
+    position: absolute;
+    background: none;
+    width: 500px;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+  }
+  .register_group {
+    position: absolute;
+
+    left: 70%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 40px;
+    padding-top: 0;
+    border-radius: $radius-Type-01;
+    min-width: 360px;
+    // max-height: 1200px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    .register_group--title {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-family: "Times New Roman", Times, serif;
+      margin-bottom: 20px;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      margin-left: -40px;
+      margin-right: -40px;
+      text-align: center;
+      background-color: rgba(148, 47, 242, 0.4);
+      border-top-right-radius: $radius-Type-01;
+      border-top-left-radius: $radius-Type-01;
+
+      svg:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+@media (max-width: 567.98px) {
+  .register_section {
+    min-height: 750px;
+  }
+  .register_group--title {
+    font-size: $font-sub-headline-mb;
+  }
+}
+@media (min-width: 568px) {
+  .register_section {
+    min-height: 750px;
+
+    img {
+      width: 0;
+      top: 50%;
+      left: 30%;
+    }
+
+    .register_group {
+      left: 50%;
+    }
+  }
+  .register_group--title {
+    font-size: $font-sub-headline-mb;
+  }
+}
+
+@media (min-width: 768px) {
+  .register_section {
+    min-height: auto;
+
+    img {
+      width: 550px;
+      left: 30%;
+    }
+
+    .register_group {
+      left: 70%;
+    }
+  }
+  .register_group--title {
+    font-size: $font-sub-headline-pc;
+  }
+}

@@ -1,0 +1,136 @@
+main {
+  .product_section {
+    width: 100%;
+    float: left;
+    padding-bottom: 90px;
+
+    .product_taital {
+      width: 100%;
+      float: left;
+      font-size: 40px;
+      text-transform: uppercase;
+      text-align: center;
+      color: #232322;
+      font-weight: bold;
+    }
+
+    .product_text {
+      width: 100%;
+      float: left;
+      font-size: 16px;
+      text-align: center;
+      color: #50504f;
+      margin: 0px;
+    }
+
+    .product_section_2 {
+      width: 100%;
+      float: left;
+      padding-top: 30px;
+    }
+
+    .product_box {
+      width: 100%;
+      background-color: #ffffff;
+      height: auto;
+      border: 1px solid #7d7d7c;
+      padding: 20px 0px 0px 0px;
+      margin-top: 30px;
+    }
+
+    .bursh_text {
+      width: 100%;
+      font-size: 20px;
+      text-align: center;
+      color: #1a1c1b;
+      font-weight: 600;
+    }
+
+    .lorem_text {
+      width: 100%;
+      font-size: 14px;
+      text-align: center;
+      color: #50504f;
+      margin: 0px;
+    }
+
+    .image_1 {
+      width: 100%;
+      text-align: center;
+      margin: 20px 0px;
+      padding: 0px 20px;
+      height: 200px;
+    }
+
+    .btn_main {
+      width: 100%;
+      display: flex;
+      background-color: #000;
+      height: auto;
+      padding: 20px 10px 13px 10px;
+    }
+
+    .buy_bt {
+      float: left;
+      width: 100%;
+    }
+
+    .buy_bt ul {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .buy_bt li a {
+      float: left;
+      font-size: 12px;
+      color: #252525;
+      padding: 5px 10px;
+      background-color: #ffffff;
+      text-transform: uppercase;
+      margin-right: 5px;
+      border-radius: 40px;
+    }
+
+    .buy_bt li a:hover {
+      background-color: #f5ddb6;
+      color: #ffffff;
+    }
+
+    .buy_bt li.active a {
+      background-color: #f5ddb6;
+      color: #fff;
+    }
+
+    .price_text {
+      font-size: 16px;
+      color: #fefefd;
+      width: 42%;
+      padding-top: 5px;
+      text-align: right;
+    }
+
+    .seemore_bt {
+      width: 170px;
+      margin: 0 auto;
+      padding-top: 60px;
+    }
+
+    .seemore_bt a {
+      width: 100%;
+      float: left;
+      font-size: 16px;
+      color: #ffffff;
+      background-color: #252525;
+      text-align: center;
+      padding: 10px 0px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .seemore_bt a:hover {
+      color: #ffffff;
+      background-color: #f5ddb6;
+    }
+  }
+}
