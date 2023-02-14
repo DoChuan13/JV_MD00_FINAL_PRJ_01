@@ -28,9 +28,15 @@ function Header() {
 
     let loginStatus = checkLoginStatus();
     usState.forEach((user) => {
+      // console.log(
+      //   user.email === loginStatus.email,
+      //   user.password === loginStatus.password,
+      //   user.statusUser
+      // );
       if (
         user.email === loginStatus.email &&
-        user.password === loginStatus.password
+        user.password === loginStatus.password &&
+        user.statusUser
       ) {
         userName.current = user.userName;
         setPermission(user.typeUser);
@@ -72,7 +78,7 @@ function Header() {
           <NavLink to={routerLink.favorite.path}>Yêu thích</NavLink>
         </NavDropdown.ItemText>
         <NavDropdown.ItemText>
-          <Link to={"#"} onClick={logOutAcc}>
+          <Link to={"/"} onClick={logOutAcc}>
             Đăng xuất
           </Link>
         </NavDropdown.ItemText>
@@ -100,7 +106,7 @@ function Header() {
             <NavLink to={routerLink.favorite.path}>Yêu thích</NavLink>
           </NavDropdown.ItemText>
           <NavDropdown.ItemText>
-            <Link to={"#"} onClick={logOutAcc}>
+            <Link to={"/"} onClick={logOutAcc}>
               Đăng xuất
             </Link>
           </NavDropdown.ItemText>
@@ -137,7 +143,7 @@ function Header() {
             <NavLink to={routerLink.admin.path}>Quản trị</NavLink>
           </NavDropdown.ItemText>
           <NavDropdown.ItemText>
-            <Link to={"#"} onClick={logOutAcc}>
+            <Link to={"/"} onClick={logOutAcc}>
               Đăng xuất
             </Link>
           </NavDropdown.ItemText>

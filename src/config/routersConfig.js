@@ -64,14 +64,14 @@ export const user = {
   page: <UserPage />,
 };
 
-export const favorite = {
-  path: "/favorite",
-  page: <FavoritePage />,
-};
-
 export const cart = {
   path: "/cart",
   page: <CartPage />,
+};
+
+export const favorite = {
+  path: "/favorite",
+  page: <FavoritePage />,
 };
 
 //Protected Router

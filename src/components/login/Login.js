@@ -55,9 +55,9 @@ function Login() {
       setSessionStorage("loginStatus", userInfo);
     }
     Success("Đăng nhập thành công");
-    // setTimeout(() => {
-    //   navigate(routerLink.index.path);
-    // }, 3000);
+    setTimeout(() => {
+      navigate(routerLink.index.path);
+    }, 1500);
   };
   return (
     <div className="login_section">

@@ -17,8 +17,7 @@ export const checkLoginStatus = () => {
   let noneLogin = { email: "", password: "", remember: false, typeUser: "" };
   let localValue = getLocalStorage("loginStatus");
   let sessionValue = getSessionStorage("loginStatus");
-  // console.log(localValue, localValue != null, sessionValue);
-
+  // console.log(localValue, localValue != null, sessionValue != null);
   if (localValue != null) return localValue;
   else if (sessionValue != null) return sessionValue;
   else return noneLogin;
