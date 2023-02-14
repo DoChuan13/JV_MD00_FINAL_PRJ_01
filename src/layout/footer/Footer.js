@@ -53,15 +53,11 @@ function Footer() {
                     <img src="images/footer-logo.png" alt="Logo Icon" />
                   </Link>
                 </div>
-                <p className="dummy_text">
-                  commodo consequat. Duis aute irure dolor in reprehenderit in
-                  voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                  Excepteur sint occaecat cupidatat non
-                </p>
+                {/* <p className="dummy_text">Nâng cao giá trị cuộc sống</p> */}
               </div>
               <div className="col-sm-4">
                 <div className="main">
-                  <h3 className="address_text">Best Products</h3>
+                  <h3 className="address_text">Tốt nhất</h3>
                   <p className="ipsum_text">
                     dolore eu fugiat nulla pariatur. Excepteur sint occaecat
                     cupidatat non

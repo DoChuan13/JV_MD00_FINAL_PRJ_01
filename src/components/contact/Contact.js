@@ -9,20 +9,19 @@ function Contact() {
         <div className="container">
           <div className="row">
             <div className="col-md-6">
-              <h1 className="contact_taital">Get In Touch</h1>
+              <h1 className="contact_taital">Liên lạc</h1>
               <p className="contact_text">
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation eu{" "}
+                Nếu có bất kỳ phản hồi hay thắc mắc nào, xin vui lòng liên hệ
+                với chúng tôi.
               </p>
             </div>
             <div className="col-md-6">
               <div className="contact_main">
                 <div className="contact_bt">
-                  <Link to="#">Contact Form</Link>
+                  <Link to="#">Mẫu Liên lạc</Link>
                 </div>
                 <div className="newletter_bt">
-                  <Link to="#">Newletter</Link>
+                  <Link to="#">Nhận tin mới</Link>
                 </div>
               </div>
             </div>

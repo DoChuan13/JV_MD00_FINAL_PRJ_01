@@ -9,7 +9,7 @@ function Client() {
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
-              <h1 className="customer_taital">What says customers</h1>
+              <h1 className="customer_taital">Cảm nhận của khách hàng</h1>
             </div>
           </div>
           <div id="main_slider" className="carousel slide" data-ride="carousel">
@@ -79,7 +79,6 @@ function Client() {
               data-slide="prev"
             >
               <Fa.FaAngleLeft size={30} />
-              {/* <i className="fa fa-angle-left" /> */}
             </a>
             <a
               className="carousel-control-next"
@@ -88,7 +87,6 @@ function Client() {
               data-slide="next"
             >
               <Fa.FaAngleRight size={30} />
-              {/* <i className="fa fa-angle-right" /> */}
             </a>
           </div>
         </div>

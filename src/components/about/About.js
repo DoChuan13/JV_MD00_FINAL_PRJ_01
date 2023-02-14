@@ -11,18 +11,25 @@ function About() {
             <div className="row">
               <div className="col-md-6">
                 <div className="about_taital_main">
-                  <h1 className="about_taital">About Our beauty sotore</h1>
+                  <h1 className="about_taital">Về Shoes Shop</h1>
+                  <h6>Bước Chân Không Mỏi</h6>
                   <p className="about_text">
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequatlabore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequatlabore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    Với trọng tâm lấy khách hàng làm trung tâm SHOES SHOP luôn
+                    cải tiến nhằm đưa ra những mẫu mã mới, phù hợp với xu thế.
+                  </p>
+                  <h6>Quy Mô Rộng Khắp</h6>
+                  <p className="about_text">
+                    Hệ thống phân phối sản phẩm của SHOES SHOP trải dài từ bắc
+                    tới nam, chiếm lĩnh thị trường không chỉ trong nước mà còn
+                    cả quốc tế.
+                  </p>
+                  <h6>BỨT PHÁ ĐỂ THÀNH CÔNG</h6>
+                  <p className="about_text">
+                    Luôn luôn đổi mới, luôn luôn phát triển là tôn chỉ hàng đầu
+                    của SHOES SHOP.
                   </p>
                   <div className="readmore_bt">
-                    <Link to="#">Read More</Link>
+                    <Link to="#">Đọc thêm</Link>
                   </div>
                 </div>
               </div>
