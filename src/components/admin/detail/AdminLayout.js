@@ -93,6 +93,7 @@ function AdminLayout() {
 
   return (
     <div className="admin_section">
+      {/* <div style={{ backgroundColor: "red" }}>Test thử</div> */}
       <Layout>
         <Header className="header">
           <div className="logo" />
