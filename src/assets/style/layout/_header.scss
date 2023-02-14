@@ -12,6 +12,10 @@ header {
       font-family: "Great Vibes", cursive;
     }
 
+    .navbar-brand:hover {
+      color: #fff !important;
+    }
+
     a {
       color: #fff;
     }
@@ -20,9 +24,10 @@ header {
     }
 
     .header_navbar_center {
+      justify-content: center;
       text-align: center;
       gap: 10px;
-      margin: 0 auto;
+      margin: 0 auto !important;
 
       a {
         padding: 8px;
@@ -43,6 +48,7 @@ header {
         &:hover {
           background: #f6e6c2;
           color: black !important;
+          border-radius: 5px;
         }
       }
     }
@@ -58,11 +64,13 @@ header {
       &:hover {
         background: #f6e6c2;
         color: black !important;
+        border-radius: 5px;
       }
     }
 
     .dropdown-menu {
       background-color: rgb(33, 37, 41);
+      left: -55px !important;
     }
 
     .dropdown-item-text {
@@ -72,6 +80,7 @@ header {
     //
     .nav-link:hover {
       background: #f6e6c2;
+      border-radius: 5px;
     }
     .nav-link:hover a {
       color: black;

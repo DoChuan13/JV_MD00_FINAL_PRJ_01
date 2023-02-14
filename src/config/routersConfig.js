@@ -8,6 +8,8 @@ import RegisterPage from "../pages/registerPage/RegisterPage";
 
 /*Private Router*/
 import UserPage from "../pages/dashboard/userPage/UserPage";
+import FavoritePage from "../pages/dashboard/favoritePage/FavoritePage";
+import CartPage from "../pages/dashboard/cartPage/CartPage";
 
 /*Protected Router*/
 import AdminPage from "../pages/adminPage/AdminPage";
@@ -60,6 +62,16 @@ export const register = {
 export const user = {
   path: "/user",
   page: <UserPage />,
+};
+
+export const favorite = {
+  path: "/favorite",
+  page: <FavoritePage />,
+};
+
+export const cart = {
+  path: "/cart",
+  page: <CartPage />,
 };
 
 //Protected Router

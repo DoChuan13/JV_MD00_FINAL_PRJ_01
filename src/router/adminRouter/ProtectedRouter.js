@@ -15,7 +15,6 @@ function ProtectedRouter() {
       navigate(routerLink.error403.path, { replace: true });
     }
   }, [navigate]);
-  console.log(permission);
 
   return !permission ? <></> : <Outlet />;
 }

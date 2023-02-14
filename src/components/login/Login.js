@@ -9,16 +9,19 @@ import * as picture from "../../assets/images/images";
 import { setLocalStorage } from "../../services/Storage/localStorage";
 import { setSessionStorage } from "../../services/Storage/sessionStorage";
 import { usersState } from "../../services/redux/selectors/selectors";
+import Toast from "../toast/Toast";
+import { Success, Error } from "../toast/Toast";
 
 function Login() {
   let navigate = useNavigate();
   let usState = useSelector(usersState);
-  console.log(usState);
+
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
     let emailCheck = false,
       passwordCheck = false,
-      typeUser = "user";
+      typeUser = "user",
+      statusUser = false;
     for (let i = 0; i < usState.length; i++) {
       if (values.email.toLowerCase() === usState[i].email.toLowerCase()) {
         emailCheck = true;
@@ -28,14 +31,21 @@ function Login() {
         if (usState[i].typeUser === "admin") {
           typeUser = "admin";
         }
+        statusUser = usState[i].statusUser;
       }
     }
     if (!emailCheck) {
-      window.alert("Email không tồn tai");
+      // window.alert("Email không tồn tại");
+      Error("Email không tồn tại!!!");
       return;
     }
     if (!passwordCheck) {
-      window.alert("Sai mật khẩu");
+      // window.alert("Sai mật khẩu");
+      Error("Sai mật khẩu!!!");
+      return;
+    }
+    if (!statusUser) {
+      Error("Tài khoản đã bị khóa!!!");
       return;
     }
     let userInfo = { ...values, typeUser: typeUser };
@@ -44,7 +54,10 @@ function Login() {
     } else {
       setSessionStorage("loginStatus", userInfo);
     }
-    navigate(routerLink.index.path);
+    Success("Đăng nhập thành công");
+    // setTimeout(() => {
+    //   navigate(routerLink.index.path);
+    // }, 3000);
   };
   return (
     <div className="login_section">
@@ -124,6 +137,7 @@ function Login() {
           </Form>
         </div>
       </div>
+      <Toast />
     </div>
   );
 }

@@ -6,4 +6,8 @@ const setSessionStorage = (localKey, value) => {
   return sessionStorage.setItem(localKey, JSON.stringify(value));
 };
 
-export { getSessionStorage, setSessionStorage };
+const removeSessionStorage = (localKey) => {
+  sessionStorage.removeItem(localKey);
+};
+
+export { getSessionStorage, setSessionStorage, removeSessionStorage };
