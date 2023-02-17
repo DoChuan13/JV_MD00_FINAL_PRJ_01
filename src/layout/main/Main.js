@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function Main() {
   return (
-    <main>
+    <main className="main_section">
       {/* main section start */}
       <Outlet />
       {/* main section end */}

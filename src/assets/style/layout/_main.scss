@@ -1,9 +1,5 @@
 /*Nested for Main*/
-main {
-  div {
-    ul {
-      li {
-      }
-    }
-  }
+main.main_section {
+  min-height: 400px;
+  padding-top: 72px;
 }

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 // import axios from "axios";
 import * as axios from "../middleware/api/methods/methodAxios";
-import * as firstload from "../services/redux/actions/firstLoadAction";
+import * as saga from "../services/redux/actions/sagaAction";
 import * as resource from "../config/resourcesAxiosConfig";
 
 //Router Link Config
@@ -22,29 +22,14 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import PrivateRouter from "./privateRouter/PrivateRouter";
 /*Protected Router*/
 import ProtectedRouter from "./adminRouter/ProtectedRouter";
-import FavoritePage from "../pages/dashboard/favoritePage/FavoritePage";
-import CartPage from "../pages/dashboard/cartPage/CartPage";
 
 function Router() {
   let dispatch = useDispatch();
 
-  axios
-    .getDatabase(resource.products, "")
-    .then((res) => {
-      dispatch(firstload.prFirstLoad(res.data));
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-
-  axios
-    .getDatabase(resource.users, "")
-    .then((res) => {
-      dispatch(firstload.usFirstLoad(res.data));
-    })
-    .catch((err) => {
-      console.log(err.message, "Có lỗi");
-    });
+  useEffect(() => {
+    dispatch(saga.get_AllProdAct());
+    dispatch(saga.get_AllUserAct());
+  }, []);
 
   return (
     <>

@@ -20,8 +20,6 @@ import CenteredModal from "../../../modal/CenteredModal";
 export const productManager = createContext();
 function ManagerProductTable() {
   let params = useParams();
-  // console.log("Parasm", params);
-
   let prState = useSelector(productsState);
   let dispatch = useDispatch();
 
@@ -60,15 +58,15 @@ function ManagerProductTable() {
   const handleAdminAction = (product, action) => {
     let viewSt = true;
     if (
-      action === stateConst.VIEW_ACTION_TYPE ||
-      action === stateConst.EDIT_ACTION_TYPE
+      action === stateConst.VIEW_PROD_ACTION_TYPE ||
+      action === stateConst.EDIT_PRD_ACTION_TYPE
     ) {
-      if (action === stateConst.EDIT_ACTION_TYPE) {
+      if (action === stateConst.EDIT_PRD_ACTION_TYPE) {
         viewSt = false;
       }
       setShowDrawer({ data: product, show: true, viewSt: viewSt, new: false });
     }
-    if (action === stateConst.DELETE_ACTION_TYPE) {
+    if (action === stateConst.DELETE_PROD_ACTION_TYPE) {
       console.log(product, action);
       dispatch(notifyAction.deleteProduct(product));
     }
@@ -195,7 +193,7 @@ function ManagerProductTable() {
               ghost
               size={size}
               onClick={() => {
-                handleAdminAction(data, stateConst.VIEW_ACTION_TYPE);
+                handleAdminAction(data, stateConst.VIEW_PROD_ACTION_TYPE);
               }}
             >
               Xem
@@ -205,7 +203,7 @@ function ManagerProductTable() {
               // ghost
               size={size}
               onClick={() => {
-                handleAdminAction(data, stateConst.EDIT_ACTION_TYPE);
+                handleAdminAction(data, stateConst.EDIT_PRD_ACTION_TYPE);
               }}
             >
               Sửa
@@ -215,7 +213,7 @@ function ManagerProductTable() {
               danger
               size={size}
               onClick={() => {
-                handleAdminAction(data, stateConst.DELETE_ACTION_TYPE);
+                handleAdminAction(data, stateConst.DELETE_PROD_ACTION_TYPE);
               }}
             >
               Xoá

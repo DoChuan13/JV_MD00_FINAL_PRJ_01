@@ -2,7 +2,7 @@ class Cart {
   constructor(id, buyQuantity, orderId, orderDate) {
     this.id = id;
     this.buyQuantity = buyQuantity;
-    this.orderDate = orderId;
+    this.orderId = orderId;
     this.orderDate = orderDate;
   }
   //

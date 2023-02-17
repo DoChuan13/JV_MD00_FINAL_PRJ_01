@@ -29,7 +29,6 @@ function PrivateRouter() {
         navigate(routerLink.error403.path, { replace: true });
       }
     });
-    console.log(12313123123123123123);
   }, [navigate]);
 
   return !permission ? <></> : <Outlet />;

@@ -1,8 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ProductRow from "./ProductRow";
+import React, { Fragment, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ProductItem from "./ProductItem";
+import { useSelector } from "react-redux";
+import { productsState } from "../../services/redux/selectors/selectors";
+import * as routerLink from "../../config/routersConfig";
 
 function Products() {
+  // let location = useLocation();
+  let navigate = useNavigate();
+  const [productLoad, setProductLoad] = useState(12);
+  let prState = useSelector(productsState);
+  let productsElement = <></>;
+
+  productsElement = prState.map((product, index) => {
+    if (index < productLoad) {
+      return <ProductItem key={product.id} product={product} />;
+    } else return <Fragment key={product.id}></Fragment>;
+  });
+
+  const seeMoreProduct = () => {
+    setProductLoad(productLoad + 8);
+    navigate(routerLink.products.path);
+    console.log("See More");
+  };
+
   return (
     <>
       {/* product section start */}
@@ -17,12 +38,16 @@ function Products() {
               </p>
             </div>
           </div>
-          <div className="product_section_2 layout_padding">
-            <ProductRow />
-            <ProductRow />
-            <ProductRow />
+          <div className="product_section_2 layout_padding row">
+            {productsElement}
             <div className="seemore_bt">
-              <Link to="#">Xem thêm</Link>
+              <button
+                onClick={() => {
+                  seeMoreProduct();
+                }}
+              >
+                Xem thêm
+              </button>
             </div>
           </div>
         </div>

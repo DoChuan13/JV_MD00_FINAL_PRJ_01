@@ -36,7 +36,7 @@ function Contact() {
               height={400}
               frameBorder={0}
               style={{ border: 0, width: "100%" }}
-              allowFullScreen=""
+              allowFullScreen={true}
               loading="lazy"
               title="Hanoi"
             />

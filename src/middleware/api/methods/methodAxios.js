@@ -9,22 +9,37 @@ import axios from "../axios/instanceAxios";
 
 //Get DB (URL = (not contain localhost:5555/)
 const getDatabase = async (resource, locate) => {
-  return await axios.get(`${resource}/${locate}`);
+  try {
+    let response = await axios.get(`${resource}/${locate}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 //Post DB (URL = not contain localhost:5555/)
 const postDatabase = async (resource, locate, value) => {
-  return axios.post(`${resource}/${locate}`, value);
+  await axios.post(`${resource}/${locate}`, value).data;
 };
 
 //Put DB (URL = not contain localhost:5555/)
 const putDatabase = async (resources, locate, value) => {
-  return await axios.put(`${resources}/${locate}`, value);
+  await axios.put(`${resources}/${locate}`, value).data;
 };
 
 //Delete DB (URL = not contain localhost:5555/)
-const deleteDatabase = async (resource, locate) => {
-  return await axios.delete(`${resource}/${locate}`);
+const deleteDatabase = async (resource, locate, value) => {
+  await axios.delete(`${resource}/${locate}`);
 };
 
-export { getDatabase, postDatabase, putDatabase, deleteDatabase };
+const patchDatabase = async (resource, locate, value) => {
+  return await axios.patch(`${resource}/${locate}`, value);
+};
+
+export {
+  getDatabase,
+  postDatabase,
+  putDatabase,
+  deleteDatabase,
+  patchDatabase,
+};

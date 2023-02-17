@@ -18,13 +18,15 @@ function Login() {
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
-    let emailCheck = false,
+    let id = "",
+      emailCheck = false,
       passwordCheck = false,
       typeUser = "user",
       statusUser = false;
     for (let i = 0; i < usState.length; i++) {
       if (values.email.toLowerCase() === usState[i].email.toLowerCase()) {
         emailCheck = true;
+        id = usState[i].id;
         if (values.password === usState[i].password) {
           passwordCheck = true;
         }
@@ -48,7 +50,7 @@ function Login() {
       Error("Tài khoản đã bị khóa!!!");
       return;
     }
-    let userInfo = { ...values, typeUser: typeUser };
+    let userInfo = { ...values, typeUser: typeUser, id: id };
     if (values.remember) {
       setLocalStorage("loginStatus", userInfo);
     } else {

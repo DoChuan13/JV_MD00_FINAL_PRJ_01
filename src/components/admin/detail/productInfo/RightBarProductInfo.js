@@ -12,7 +12,6 @@ import {
 import { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productsState } from "../../../../services/redux/selectors/selectors";
-import * as stateAction from "../../../../services/redux/actions/stateActions";
 
 import * as Ai from "react-icons/ai";
 import { productManager } from "./ManagerProductTable";
@@ -21,6 +20,7 @@ import * as valueConfig from "../../../../config/valueConfig";
 import * as axios from "../../../../middleware/api/methods/methodAxios";
 import UploadProductImage from "./UploadProductImage";
 import * as resource from "../../../../config/resourcesAxiosConfig";
+import * as saga from "../../../../services/redux/actions/sagaAction";
 
 function RightBarProductInfo() {
   let dispatch = useDispatch();
@@ -80,9 +80,8 @@ function RightBarProductInfo() {
     }
     let pictureName = getImageInfo();
     let productValue = { ...productInfo, productImage: pictureName };
-    axios.putDatabase(resource.products, productInfo.id, productValue);
     setTimeout(() => {
-      dispatch(stateAction.updateProductInfo(productValue));
+      dispatch(saga.update_ProdInfoAct(productValue));
     }, 200);
     closeDrawer();
     console.log("%cUpdate thành công", "color: green");
@@ -99,7 +98,7 @@ function RightBarProductInfo() {
     console.log(productValue);
     axios.postDatabase(resource.products, "", productValue);
     setTimeout(() => {
-      dispatch(stateAction.addNewProduct(productValue));
+      dispatch(saga.add_NewProductAct(productValue));
     }, 200);
     closeDrawer();
     console.log("%cThêm sản phẩm mới thành công", "color: green");
@@ -127,8 +126,6 @@ function RightBarProductInfo() {
       setProductInfo({ ...productInfo, [name]: newValue });
     }
   };
-
-  // console.log("Thong tin san pham", productInfo);
 
   //==========Switch Element Title and Button==========//
   let elementBtnCtrl;

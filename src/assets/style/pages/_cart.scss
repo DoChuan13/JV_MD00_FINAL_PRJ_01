@@ -1,0 +1,44 @@
+main {
+  .cart_section {
+    max-width: 1440px;
+    margin: 0 auto;
+
+    table {
+      text-align: center;
+
+      th,
+      td {
+        margin: auto;
+      }
+    }
+
+    .blank_alert {
+      text-align: center;
+    }
+
+    @mixin btnTemplate {
+      font-size: 12px;
+      padding: 5px 10px;
+      text-transform: uppercase;
+      margin: 2px;
+      border-radius: 20px;
+    }
+
+    .delete_product {
+      @include btnTemplate();
+      color: #fff;
+      background-color: #ff4f4f;
+    }
+
+    .buy_confirm {
+      @include btnTemplate();
+      color: #252525;
+      background-color: #7aff52;
+    }
+
+    button:hover {
+      background-color: #f5ddb6;
+      color: #252525;
+    }
+  }
+}

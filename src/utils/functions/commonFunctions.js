@@ -14,7 +14,13 @@ export const enableScroll = () => {
 };
 
 export const checkLoginStatus = () => {
-  let noneLogin = { email: "", password: "", remember: false, typeUser: "" };
+  let noneLogin = {
+    id: "",
+    email: "",
+    password: "",
+    remember: false,
+    typeUser: "",
+  };
   let localValue = getLocalStorage("loginStatus");
   let sessionValue = getSessionStorage("loginStatus");
   // console.log(localValue, localValue != null, sessionValue != null);

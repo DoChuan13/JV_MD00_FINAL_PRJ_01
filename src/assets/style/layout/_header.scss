@@ -1,6 +1,10 @@
 /*Nested for Header*/
 
-header {
+header.header_main_section {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+
   .active {
     background: #fef4dd;
     color: black !important;

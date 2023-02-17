@@ -5,8 +5,8 @@ const initState = [];
 const userReducer = (state = initState, action) => {
   let modifedUser = action.payload;
   switch (action.type) {
-    case stateConst.US_FIRST_RELOAD_TYPE:
-      state = modifedUser;
+    case stateConst.GET_USER_SUCC_TYPE:
+      state = [...action.payload];
       return state;
 
     case stateConst.BLOCK_USER_ACTION_TYPE:

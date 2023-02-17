@@ -33,9 +33,34 @@ main {
       width: 100%;
       background-color: #ffffff;
       height: auto;
-      border: 1px solid #7d7d7c;
+      border: 1px solid #7d7d7cb1;
       padding: 20px 0px 0px 0px;
       margin-top: 30px;
+
+      .product_heart {
+        z-index: 2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate((-50%, -50%));
+        color: rgb(254, 152, 169);
+        filter: drop-shadow(rgba(99, 99, 99, 0.2) 0px 2px 8px 0px);
+        height: 100px;
+        width: 100px;
+        display: none;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        background: rgba(224, 255, 217, 0.729);
+        transition: ease all 0.5s;
+      }
+
+      &:hover .product_heart {
+        display: block;
+        animation: showHeart 0.2s linear 0s 1 alternate both;
+        transition: ease all 0.5s;
+      }
     }
 
     .bursh_text {
@@ -59,13 +84,13 @@ main {
       text-align: center;
       margin: 20px 0px;
       padding: 0px 20px;
-      height: 200px;
+      // height: 200px;
     }
 
     .btn_main {
       width: 100%;
       display: flex;
-      background-color: #000;
+      background-color: rgb(33, 37, 41);
       height: auto;
       padding: 20px 10px 13px 10px;
     }
@@ -80,31 +105,31 @@ main {
       padding: 0px;
     }
 
-    .buy_bt li a {
+    .buy_bt li button {
       float: left;
       font-size: 12px;
       color: #252525;
       padding: 5px 10px;
       background-color: #ffffff;
       text-transform: uppercase;
-      margin-right: 5px;
-      border-radius: 40px;
+      margin: 2px;
+      border-radius: 20px;
     }
 
-    .buy_bt li a:hover {
+    .buy_bt li button:hover {
       background-color: #f5ddb6;
-      color: #ffffff;
+      color: #252525;
     }
 
-    .buy_bt li.active a {
+    .buy_bt li.active button {
       background-color: #f5ddb6;
-      color: #fff;
+      color: #252525;
     }
 
     .price_text {
       font-size: 16px;
       color: #fefefd;
-      width: 42%;
+      width: 50%;
       padding-top: 5px;
       text-align: right;
     }
@@ -115,12 +140,12 @@ main {
       padding-top: 60px;
     }
 
-    .seemore_bt a {
+    .seemore_bt button {
       width: 100%;
       float: left;
       font-size: 16px;
       color: #ffffff;
-      background-color: #252525;
+      background-color: rgb(33, 37, 41);
       text-align: center;
       padding: 10px 0px;
       border-radius: 5px;
@@ -132,5 +157,16 @@ main {
       color: #ffffff;
       background-color: #f5ddb6;
     }
+  }
+}
+
+@keyframes showHeart {
+  from {
+    width: 80px;
+    height: 80px;
+  }
+  to {
+    width: 100px;
+    height: 100px;
   }
 }

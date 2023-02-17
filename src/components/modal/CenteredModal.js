@@ -9,17 +9,19 @@ import { cancelAction } from "../../services/redux/actions/notifyActions";
 import * as stateConst from "../../services/redux/actions/stateActions";
 import * as axios from "../../middleware/api/methods/methodAxios";
 import * as resource from "../../config/resourcesAxiosConfig";
+import * as saga from "../../services/redux/actions/sagaAction";
 
 import {
   disableScroll,
   enableScroll,
 } from "../../utils/functions/commonFunctions";
+import { useNavigate } from "react-router-dom";
 
 function MyVerticallyCenteredModal(props) {
+  let navigate = useNavigate();
   let dispatch = useDispatch();
   let modalData = props.data;
   let itemInfo = props.data.value;
-  // console.log(modalData, itemInfo, "Du lieu vao");
 
   const cancelAction = () => {
     props.onHide();
@@ -28,15 +30,15 @@ function MyVerticallyCenteredModal(props) {
   const confirmAction = () => {
     props.onHide();
     if (modalData.status === notifyConst.DELETE_PRODUCT_NOTIFY_TYPE) {
-      dispatch(stateConst.deleteProduct(itemInfo));
-      // axios.deleteDatabase(resource.products, itemInfo.id);
+      dispatch(saga.delete_ProdAct(itemInfo));
+      navigate("/admin/product_detail/1", { state: "Deleted" });
     } else if (modalData.status === notifyConst.BLOCK_USER_NOTIFY_TYPE) {
       let newValue = {
         ...itemInfo,
         statusUser: itemInfo.statusUser ? false : true,
       };
       delete newValue.key;
-      dispatch(stateConst.blockUser(newValue));
+      dispatch(stateConst.blockUserReducer(newValue));
       axios.putDatabase(resource.users, newValue.id, newValue);
     }
   };

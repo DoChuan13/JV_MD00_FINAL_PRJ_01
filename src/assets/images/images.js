@@ -203,6 +203,8 @@ import product_199 from "../images/imageFiles/products/product_199.jpg";
 //==============================Banner================================//
 import banner from "../images/imageFiles/banner/banner-bg.png";
 import register_banner from "../images/imageFiles/banner/register_banner.png";
+import banner_03 from "../images/imageFiles/banner/banner_03.jpg";
+import banner_04 from "../images/imageFiles/banner/banner_04.jpg";
 
 // Picture Group
 export {
@@ -409,4 +411,4 @@ export {
 };
 
 // Picture Banner group
-export { banner, register_banner };
+export { banner, banner_03, banner_04, register_banner };
