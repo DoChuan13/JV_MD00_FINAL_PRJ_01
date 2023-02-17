@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Image } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   formatCurrency,
   formatNumber,
@@ -8,15 +8,11 @@ import {
 import { languageCode } from "../../config/valueConfig";
 import { currencyCode } from "../../config/valueConfig";
 import * as picture from "../../assets/images/images";
-import * as axios from "../../middleware/api/methods/methodAxios";
 import * as selector from "../../services/redux/selectors/selectors";
-import * as reload from "../../services/redux/actions/sagaAction";
-import * as resource from "../../config/resourcesAxiosConfig";
 import { deleteDatabase } from "../../middleware/api/methods/methodAxios";
 
 function Item(props) {
   let prState = useSelector(selector.productsState);
-  let dispatch = useDispatch();
 
   let { cart } = props;
   let { stt } = props;
@@ -26,18 +22,8 @@ function Item(props) {
 
   let { buyQuantity } = cart;
   let { productPrice } = item;
+  let { productName } = item;
   let subTotal = buyQuantity * productPrice;
-
-  // useEffect(() => {
-  //   axios
-  //     .getDatabase(resource.products, "")
-  //     .then((res) => {
-  //       dispatch(reload.prReload(res.data));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // }, [dispatch]);
 
   const deleteItem = (cart) => {
     console.log("Xoa san pham", cart);
@@ -50,11 +36,9 @@ function Item(props) {
         <td>
           <Image width={80} src={picture[item.productImage]} />
         </td>
-        <td>Nike</td>
-        <td>
-          <div>{formatCurrency(buyQuantity, languageCode, currencyCode)}</div>
-        </td>
-        <td>{formatNumber(productPrice, languageCode)}</td>
+        <td>{productName}</td>
+        <td>{formatCurrency(productPrice, languageCode, currencyCode)}</td>
+        <td>{formatNumber(buyQuantity, languageCode)}</td>
         <td>{formatCurrency(subTotal, languageCode, currencyCode)}</td>
         <td>
           <button

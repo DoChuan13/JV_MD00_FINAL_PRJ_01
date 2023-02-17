@@ -1,8 +1,8 @@
-class Cart {
-  constructor(id, buyQuantity, orderId, orderDate) {
+class CartItem {
+  constructor(id, buyQuantity, orderDate) {
     this.id = id;
     this.buyQuantity = buyQuantity;
-    this.orderId = orderId;
+    this.orderId = "";
     this.orderDate = orderDate;
   }
   //
@@ -26,4 +26,4 @@ class Cart {
   }
 }
 
-export default Cart;
+export default CartItem;

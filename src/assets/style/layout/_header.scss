@@ -1,10 +1,6 @@
 /*Nested for Header*/
 
-header.header_main_section {
-  position: fixed;
-  width: 100%;
-  z-index: 999;
-
+header {
   .active {
     background: #fef4dd;
     color: black !important;
@@ -12,6 +8,10 @@ header.header_main_section {
   }
 
   .header_main_section {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+
     .navbar-brand {
       font-family: "Great Vibes", cursive;
     }

@@ -6,15 +6,16 @@ export const GET_All_USR_ACT_TYPE = "Get All User";
 export const GET_ALL_PRD_ACT_TYPE = "Get All Product";
 
 //==========Other==========/
-// 01 //
+// 01 Product//
 export const VIEW_PROD_ACT_TYPE = "View Product";
 export const ADD_PROD_ACT_TYPE = "Add New Product";
 export const UPDATE_PROD_ACT_TYPE = "Update Info Product";
 export const EDIT_PRD_ACT_TYPE = "Edit Product";
 export const DELETE_PROD_ACT_TYPE = "Delete Product";
-// 02 //
+// 02 User//
 export const VIEW_USER_ACT_TYPE = "View User";
 export const BLOCK_USER_ACT_TYPE = "Block/Unblock User";
+export const ADD_TO_CART_ACT_TYPE = "Add Product To Cart";
 
 //==========Redux Reducer==========//
 export const GET_USER_SUCC_TYPE = "Get User Successful";

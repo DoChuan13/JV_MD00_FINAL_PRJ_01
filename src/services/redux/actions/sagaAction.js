@@ -15,6 +15,13 @@ export const block_UserAct = (value) => {
   };
 };
 
+export const add_PrdCartAct = (user, product) => {
+  return {
+    type: stateConst.ADD_TO_CART_ACT_TYPE,
+    payload: { user, product },
+  };
+};
+
 //==========Product Redux Action SAGA==========//
 
 export const get_AllProdAct = () => {
@@ -46,9 +53,9 @@ export const delete_ProdAct = (value) => {
 };
 
 //==========Product Redux Action SAGA==========//
-export const impLoginStatus = (value) => {
-  return {
-    type: stateConst.IMPORT_LOGIN_USER_TYPE,
-    payload: value,
-  };
-};
+// export const impLoginStatus = (value) => {
+//   return {
+//     type: stateConst.IMPORT_LOGIN_USER_TYPE,
+//     payload: value,
+//   };
+// };

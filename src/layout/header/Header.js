@@ -22,26 +22,24 @@ function Header() {
   let userBarElementMb = <></>;
   let userBarElementPc = <></>;
 
+  console.log("Header", usState);
   useEffect(() => {
     if (window.innerWidth >= 1006) setWebsiteSize("pc");
     else setWebsiteSize("mobile");
 
     let loginStatus = checkLoginStatus();
-    usState.forEach((user) => {
-      // console.log(
-      //   user.email === loginStatus.email,
-      //   user.password === loginStatus.password,
-      //   user.statusUser
-      // );
-      if (
-        user.email === loginStatus.email &&
-        user.password === loginStatus.password &&
-        user.statusUser
-      ) {
-        userName.current = user.userName;
-        setPermission(user.typeUser);
-      }
-    });
+    if (usState.length !== 0) {
+      usState.forEach((user) => {
+        if (
+          user.email === loginStatus.email &&
+          user.password === loginStatus.password &&
+          user.statusUser
+        ) {
+          userName.current = user.userName;
+          setPermission(user.typeUser);
+        }
+      });
+    }
   }, [usState]);
 
   const logOutAcc = (e) => {

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 import * as routerLink from "../../config/routersConfig";
 import { checkLoginStatus } from "../../utils/functions/commonFunctions";
-import { getDatabase } from "../../middleware/api/methods/methodAxios";
-import { users } from "../../config/resourcesAxiosConfig";
+import { usersState } from "../../services/redux/selectors/selectors";
 
 function PrivateRouter() {
   let navigate = useNavigate();
+  let usState = useSelector(usersState);
   const [permission, setPermission] = useState(false);
 
   useEffect(() => {
-    let data = getDatabase(users, "");
-    data.then((res) => {
+    if (usState.length !== 0) {
       let loginStatus = checkLoginStatus();
       let flag = false;
-      res.data.forEach((user) => {
+      usState.forEach((user) => {
         if (
           loginStatus.typeUser === "user" &&
           loginStatus.email === user.email &&
@@ -26,10 +26,11 @@ function PrivateRouter() {
       if (flag) {
         setPermission(true);
       } else {
+        console.log("Chuyen trang");
         navigate(routerLink.error403.path, { replace: true });
       }
-    });
-  }, [navigate]);
+    }
+  }, [usState, navigate]);
 
   return !permission ? <></> : <Outlet />;
 }

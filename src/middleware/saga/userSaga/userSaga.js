@@ -14,3 +14,11 @@ export function* blockUserSaga(action) {
   yield call(axios.putDatabase, users, id, value);
   yield getAllUserSata();
 }
+
+export function* addPrdToCart(action) {
+  console.log("Vao User Saga", action);
+  let user = action.payload.user;
+  let product = action.payload.product;
+  yield call(axios.patchDatabase, users, user.id, { cart: product });
+  yield getAllUserSata();
+}

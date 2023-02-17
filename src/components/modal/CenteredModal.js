@@ -6,9 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { notifyState } from "../../services/redux/selectors/selectors";
 import * as notifyConst from "../../services/constants/notifyConstants";
 import { cancelAction } from "../../services/redux/actions/notifyActions";
-import * as stateConst from "../../services/redux/actions/stateActions";
-import * as axios from "../../middleware/api/methods/methodAxios";
-import * as resource from "../../config/resourcesAxiosConfig";
 import * as saga from "../../services/redux/actions/sagaAction";
 
 import {

@@ -59,7 +59,7 @@ function Login() {
     Success("Đăng nhập thành công");
     setTimeout(() => {
       navigate(routerLink.index.path);
-    }, 1500);
+    }, 500);
   };
   return (
     <div className="login_section">
