@@ -38,8 +38,7 @@ function MyVerticallyCenteredModal(props) {
         statusUser: itemInfo.statusUser ? false : true,
       };
       delete newValue.key;
-      dispatch(stateConst.blockUserReducer(newValue));
-      axios.putDatabase(resource.users, newValue.id, newValue);
+      dispatch(saga.block_UserAct(newValue));
     }
   };
 

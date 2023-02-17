@@ -8,12 +8,13 @@ import * as productSaga from "./productSaga/productSaga";
 export const rootSaga = function* rootSaga() {
   yield all([
     //User
-    takeLatest(stateConst.GET_All_USR_TYPE, userSaga.getAllUserSata),
+    takeLatest(stateConst.GET_All_USR_ACT_TYPE, userSaga.getAllUserSata),
+    takeLatest(stateConst.BLOCK_USER_ACT_TYPE, userSaga.blockUserSaga),
 
     //Product
-    takeLatest(stateConst.GET_ALL_PRD_TYPE, productSaga.getAllPrdSaga),
-    takeLatest(stateConst.ADD_PRODUCT_TYPE, productSaga.addNewPrdSaga),
-    takeLatest(stateConst.UPDATE_PRODUCT_TYPE, productSaga.updatePrdInfoSaga),
-    takeLatest(stateConst.DELETE_PRODUCT_TYPE, productSaga.deletePrdSaga),
+    takeLatest(stateConst.GET_ALL_PRD_ACT_TYPE, productSaga.getAllPrdSaga),
+    takeLatest(stateConst.ADD_PROD_ACT_TYPE, productSaga.addNewPrdSaga),
+    takeLatest(stateConst.UPDATE_PROD_ACT_TYPE, productSaga.updatePrdInfoSaga),
+    takeLatest(stateConst.DELETE_PROD_ACT_TYPE, productSaga.deletePrdSaga),
   ]);
 };

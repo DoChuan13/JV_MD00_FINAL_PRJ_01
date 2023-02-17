@@ -51,7 +51,7 @@ function ManagerUserTable() {
   }, [usState, params]);
 
   const handleAdminAction = (product, action) => {
-    if (action === stateConst.VIEW_USER_ACTION_TYPE) {
+    if (action === stateConst.VIEW_USER_ACT_TYPE) {
       setShowDrawer({ data: product, show: true, viewSt: true });
     } else {
       dispatch(notifyAction.blockUser(product));
@@ -127,7 +127,7 @@ function ManagerUserTable() {
               ghost
               size={size}
               onClick={() => {
-                handleAdminAction(data, stateConst.VIEW_USER_ACTION_TYPE);
+                handleAdminAction(data, stateConst.VIEW_USER_ACT_TYPE);
               }}
             >
               Xem
@@ -140,7 +140,7 @@ function ManagerUserTable() {
                 danger
                 size={size}
                 onClick={() => {
-                  handleAdminAction(data, stateConst.BLOCK_USER_ACTION_TYPE);
+                  handleAdminAction(data, stateConst.BLOCK_USER_ACT_TYPE);
                 }}
               >
                 Chặn
@@ -151,7 +151,7 @@ function ManagerUserTable() {
                 // ghost
                 size={size}
                 onClick={() => {
-                  handleAdminAction(data, stateConst.BLOCK_USER_ACTION_TYPE);
+                  handleAdminAction(data, stateConst.BLOCK_USER_ACT_TYPE);
                 }}
               >
                 Cho phép

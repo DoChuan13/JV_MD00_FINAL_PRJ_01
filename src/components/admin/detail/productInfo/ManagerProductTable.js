@@ -58,20 +58,20 @@ function ManagerProductTable() {
   const handleAdminAction = (product, action) => {
     let viewSt = true;
     if (
-      action === stateConst.VIEW_PROD_ACTION_TYPE ||
-      action === stateConst.EDIT_PRD_ACTION_TYPE
+      action === stateConst.VIEW_PROD_ACT_TYPE ||
+      action === stateConst.EDIT_PRD_ACT_TYPE
     ) {
-      if (action === stateConst.EDIT_PRD_ACTION_TYPE) {
+      if (action === stateConst.EDIT_PRD_ACT_TYPE) {
         viewSt = false;
       }
       setShowDrawer({ data: product, show: true, viewSt: viewSt, new: false });
     }
-    if (action === stateConst.DELETE_PROD_ACTION_TYPE) {
+    if (action === stateConst.DELETE_PROD_ACT_TYPE) {
       console.log(product, action);
       dispatch(notifyAction.deleteProduct(product));
     }
 
-    if (action === stateConst.ADD_PRODUCT_TYPE) {
+    if (action === stateConst.ADD_PROD_ACT_TYPE) {
       let id;
       if (prState.length === 0) {
         id = 1;
@@ -193,7 +193,7 @@ function ManagerProductTable() {
               ghost
               size={size}
               onClick={() => {
-                handleAdminAction(data, stateConst.VIEW_PROD_ACTION_TYPE);
+                handleAdminAction(data, stateConst.VIEW_PROD_ACT_TYPE);
               }}
             >
               Xem
@@ -203,7 +203,7 @@ function ManagerProductTable() {
               // ghost
               size={size}
               onClick={() => {
-                handleAdminAction(data, stateConst.EDIT_PRD_ACTION_TYPE);
+                handleAdminAction(data, stateConst.EDIT_PRD_ACT_TYPE);
               }}
             >
               Sửa
@@ -213,7 +213,7 @@ function ManagerProductTable() {
               danger
               size={size}
               onClick={() => {
-                handleAdminAction(data, stateConst.DELETE_PROD_ACTION_TYPE);
+                handleAdminAction(data, stateConst.DELETE_PROD_ACT_TYPE);
               }}
             >
               Xoá
@@ -238,7 +238,7 @@ function ManagerProductTable() {
           <Button
             type="primary"
             onClick={() => {
-              handleAdminAction("", stateConst.ADD_PRODUCT_TYPE);
+              handleAdminAction("", stateConst.ADD_PROD_ACT_TYPE);
             }}
           >
             Thêm sản phẩm mới
