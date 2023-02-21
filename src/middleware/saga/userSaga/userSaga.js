@@ -5,6 +5,7 @@ import * as stateAct from "../../../services/redux/actions/stateActions";
 import { checkLoginStatus } from "../../../utils/functions/commonFunctions";
 import CartItem from "../../../services/class/users/Cart";
 import Purchased from "../../../services/class/users/Purchased";
+import { Success, Warning } from "../../../components/toast/SideToastify";
 
 export function* getAllUserSaga() {
   let userList = yield call(axios.getDatabase, users, "");
@@ -15,6 +16,40 @@ export function* blockUserSaga(action) {
   let value = action.payload;
   let id = value.id;
   yield call(axios.putDatabase, users, id, value);
+  yield getAllUserSaga();
+}
+
+export function* addToFavoriteSaga(action) {
+  let user = yield call(checkLoginStatus);
+  let userList = yield call(axios.getDatabase, users, "");
+  let product = action.payload;
+
+  let favoriteList = [];
+
+  for (let i = 0; i < userList.length; i++) {
+    if (userList[i].id === user.id) {
+      favoriteList = [...userList[i].favorite];
+      if (userList[i].favorite.length === 0) {
+        favoriteList.push(product);
+        Success("Đã thêm sản phẩm vào yêu thích");
+        break;
+      } else {
+        for (let j = 0; j < userList[i].favorite.length; j++) {
+          if (userList[i].favorite[j].id === product.id) {
+            favoriteList.splice(j, 1);
+            Warning("Đã xoá sản phẩm khỏi yêu thích");
+            break;
+          } else if (j === userList[i].favorite.length - 1) {
+            favoriteList.push(product);
+            Success("Đã thêm sản phẩm vào yêu thích");
+          }
+        }
+      }
+      break;
+    }
+  }
+
+  yield call(axios.patchDatabase, users, user.id, { favorite: favoriteList });
   yield getAllUserSaga();
 }
 

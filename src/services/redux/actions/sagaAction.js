@@ -16,6 +16,12 @@ export const block_UserAct = (value) => {
 };
 
 //==========Cart Redux Action SAGA==========//
+export const add_PrdFavoriteAct = (product) => {
+  return {
+    type: stateConst.ADD_TO_FAV_ACT_TYPE,
+    payload: product,
+  };
+};
 
 export const add_PrdCartAct = (product) => {
   return {

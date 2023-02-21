@@ -42,12 +42,13 @@ main {
         position: absolute;
         top: 50%;
         left: 50%;
+        // color: rgba(192, 98, 255, 0.819);
         transform: translate((-50%, -50%));
-        color: rgb(254, 152, 169);
         filter: drop-shadow(rgba(99, 99, 99, 0.2) 0px 2px 8px 0px);
-        height: 100px;
-        width: 100px;
+        height: 80px;
+        width: 80px;
         display: none;
+        cursor: pointer;
       }
 
       &:hover {

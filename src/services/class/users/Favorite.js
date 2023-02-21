@@ -1,8 +1,7 @@
 class Favorite {
-  constructor(id, productName, favoriteDate) {
+  constructor(id, productName) {
     this.id = id;
     this.productName = productName;
-    this.favoriteDate = favoriteDate;
   }
   //
   getIdProduct() {
@@ -14,10 +13,6 @@ class Favorite {
   }
   setProductName(productName) {
     this.productName = productName;
-  }
-  //
-  getFavoriteDate() {
-    return this.favoriteDate;
   }
 }
 

@@ -6,14 +6,11 @@ import * as picture from "../../assets/images/images";
 import { formatCurrency } from "../../utils/valueUtils/formatValue";
 import { languageCode } from "../../config/valueConfig";
 import { currencyCode } from "../../config/valueConfig";
-import {
-  FaHeart,
-  // FaRegHeart
-} from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { checkLoginStatus } from "../../utils/functions/commonFunctions";
 import { usersState } from "../../services/redux/selectors/selectors";
 import * as routerLink from "../../config/routersConfig";
-import { Success } from "../toast/SideToastify";
+import { Success, Warning } from "../toast/SideToastify";
 
 const checkValidUser = (usState) => {
   let loginStatus = checkLoginStatus();
@@ -33,8 +30,10 @@ const checkValidUser = (usState) => {
 function ProductItem(props) {
   let { product } = props;
   let navigate = useNavigate();
-  let usState = useSelector(usersState);
   let dispatch = useDispatch();
+  let usState = useSelector(usersState);
+  let checkValid = checkValidUser(usState);
+  let loginStatus = checkLoginStatus();
 
   let currency = formatCurrency(
     product["productPrice"],
@@ -43,20 +42,60 @@ function ProductItem(props) {
   );
 
   const addToCart = (product) => {
-    let checkValid = checkValidUser(usState);
     if (!checkValid) {
-      alert("Vui long dang nhap de mua hang");
-      navigate(routerLink.login.path);
+      Warning("Vui lòng đăng nhập để mua hàng");
+      setTimeout(() => {
+        navigate(routerLink.login.path);
+      }, 1500);
       return;
     }
     Success("Thêm vào giỏ hàng thành công");
     dispatch(saga.add_PrdCartAct(product));
   };
 
-  const buyProduct = () => {
+  const buyProduct = (product) => {
+    if (!checkValid) {
+      Warning("Vui lòng đăng nhập để mua hàng");
+      setTimeout(() => {
+        navigate(routerLink.login.path);
+      }, 1500);
+      return;
+    }
     addToCart(product);
     navigate(routerLink.cart.path);
   };
+
+  const addRemoveFavorite = (product, e) => {
+    dispatch(saga.add_PrdFavoriteAct(product));
+    e.preventDefault();
+  };
+
+  let currentUser = usState.find((user) => {
+    return user.id === loginStatus.id;
+  });
+  let formatHeart = { color: "rgba(192, 98, 255, 0.7)" };
+  let flagFormat = false;
+  if (checkValid) {
+    let favoriteList = currentUser.favorite;
+    for (let i = 0; i < favoriteList.length; i++) {
+      if (favoriteList[i].id === product.id) {
+        flagFormat = true;
+        break;
+      }
+    }
+  }
+
+  if (flagFormat) {
+    formatHeart = {
+      color: "rgba(254, 152, 169,0.7)",
+    };
+  } else {
+    formatHeart = {
+      color: "rgba(40, 54, 255,0.7)",
+    };
+  }
+
+  // console.log("Style", formatHeart, checkValid);
 
   return (
     <>
@@ -67,7 +106,10 @@ function ProductItem(props) {
           <div style={{ position: "relative" }}>
             <FaHeart
               className="product_heart"
-              // size={100}
+              style={formatHeart}
+              onClick={(e) => {
+                addRemoveFavorite(product, e);
+              }}
             />
             <img
               className="image_1"

@@ -9,6 +9,7 @@ import * as routerLink from "../../config/routersConfig";
 import * as picture from "../../assets/images/images";
 import User from "../../services/class/users/User";
 import { users } from "../../config/resourcesAxiosConfig";
+import Toast, { Error, Success } from "../toast/Toast";
 
 const { Option } = Select;
 const formItemLayout = {
@@ -62,16 +63,20 @@ function Register() {
       }
     }
     if (!checkEmail) {
-      window.alert("Email đã tồn tại, vui lòng thử lại email khác");
+      Error("Email đã tồn tại, vui lòng thử lại email khác");
+      // window.alert("Email đã tồn tại, vui lòng thử lại email khác");
       return;
     }
     if (!checkUseName) {
-      window.alert("Tên tài khoản đã tồn tại, vui lòng thử lại tên khác");
+      Error("Tên tài khoản đã tồn tại, vui lòng thử lại tên khác");
+      // window.alert("Tên tài khoản đã tồn tại, vui lòng thử lại tên khác");
       return;
     }
-
+    Success("Đăng ký thành công");
     axios.postDatabase(users, "", user);
-    navigate(routerLink.login.path);
+    setTimeout(() => {
+      navigate(routerLink.login.path);
+    }, 1500);
   };
 
   const prefixSelector = (
@@ -233,6 +238,7 @@ function Register() {
           </Form>
         </div>
       </div>
+      <Toast />
     </div>
   );
 }
