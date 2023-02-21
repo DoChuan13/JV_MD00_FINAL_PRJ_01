@@ -2,70 +2,43 @@ import React, { createContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Space, Table, Button } from "antd";
 
-import RightBarProductInfo from "./RightBarProductInfo";
 import * as stateConst from "../../../../services/constants/stateConstants";
 import {
   productsState,
   usersState,
 } from "../../../../services/redux/selectors/selectors";
 import { formatCurrency } from "../../../../utils/valueUtils/formatValue";
-// import * as picture from "../../../../assets/images/images";
-// import * as valueConfig from "../../../../config/valueConfig";
 import * as notifyAction from "../../../../services/redux/actions/notifyActions";
 import { useParams } from "react-router-dom";
 
 //import class template
-import Product from "../../../../services/class/products/Product";
 import CenteredModal from "../../../modal/CenteredModal";
 import { currencyCode, languageCode } from "../../../../config/valueConfig";
+import PaymentModal from "./paymentList/PaymentModal";
 
 export const productManager = createContext();
 function PurchasedManager() {
   let params = useParams();
   let prState = useSelector(productsState);
   let usState = useSelector(usersState);
+  const [detailList, setDetailList] = useState({ status: false, data: "" });
 
   let dispatch = useDispatch();
 
   const [cartOrderList, setCartOrderList] = useState([]);
-  const [showDrawer, setShowDrawer] = useState({
-    data: "",
-    show: false,
-    viewSt: true,
-  });
 
   const [size] = useState("small");
-  // const [filteredInfo, setFilteredInfo] = useState({});
-  // const [sortedInfo, setSortedInfo] = useState({});
 
   useEffect(() => {
-    // let renderValue = prState.map((value) => {
-    //   return { ...value, key: value.id };
-    // });
-    // let finalValue;
-    // if (params.detail === "product_detail") {
-    //   if (params.id === "2") {
-    //     finalValue = renderValue.filter((value) => {
-    //       return value.status === false;
-    //     });
-    //   } else if (params.id === "3") {
-    //     finalValue = renderValue.filter((value) => {
-    //       return value.status === "admin";
-    //     });
-    //   }
-    // }
-    // setCartOrderList(finalValue);
-    let paymentList = [],
-      key = 0;
+    let fullPaymentList = [],
+      key = 1;
 
-    let allOrderedList;
     if (usState.length !== 0) {
       for (let i = 0; i < usState.length; i++) {
         if (usState[i].purchased.length !== 0) {
           for (let j = 0; j < usState[i].purchased.length; j++) {
-            console.log(usState[i].purchased);
-            paymentList = [
-              ...paymentList,
+            fullPaymentList = [
+              ...fullPaymentList,
               {
                 key: key,
                 id: usState[i].id,
@@ -81,49 +54,41 @@ function PurchasedManager() {
           }
         }
       }
-      allOrderedList = paymentList;
-      setCartOrderList(allOrderedList);
+      let sortedPaymentList;
+      if (params.id === "2") {
+        sortedPaymentList = fullPaymentList.filter((payment) => {
+          return payment.status === "pending";
+        });
+      } else if (params.id === "3") {
+        sortedPaymentList = fullPaymentList.filter((payment) => {
+          return payment.status === "completed";
+        });
+      } else {
+        sortedPaymentList = fullPaymentList.filter((payment) => {
+          return payment.status === "canceled";
+        });
+      }
+      setCartOrderList(sortedPaymentList);
     }
   }, [prState, usState, params]);
-  console.log(cartOrderList);
 
-  const handleAdminAction = (product, action) => {
-    let viewSt = true;
-    if (
-      action === stateConst.VIEW_PROD_ACT_TYPE ||
-      action === stateConst.EDIT_PRD_ACT_TYPE
-    ) {
-      if (action === stateConst.EDIT_PRD_ACT_TYPE) {
-        viewSt = false;
-      }
-      setShowDrawer({ data: product, show: true, viewSt: viewSt, new: false });
-    }
-    if (action === stateConst.DELETE_PROD_ACT_TYPE) {
-      console.log(product, action);
-      dispatch(notifyAction.deleteProduct(product));
-    }
-
-    if (action === stateConst.ADD_PROD_ACT_TYPE) {
-      let id;
-      if (prState.length === 0) {
-        id = 1;
-      } else {
-        id = prState[prState.length - 1].id + 1;
-      }
-      let blankData = new Product(id);
-      setShowDrawer({ data: blankData, show: true, viewSt: false, new: true });
-    }
+  const showPaymentDetail = (list) => {
+    setDetailList({ status: true, data: list });
   };
 
-  const toggleDrawer = (status) => {
-    setShowDrawer({ data: "", view: status, viewSt: true });
+  const handleAdminAction = (product, action) => {
+    if (action === stateConst.CONFIRM_PAYMENT_ACT_TYPE) {
+      dispatch(notifyAction.confirmPaymentNoti(product));
+    } else if (action === stateConst.CANCEL_PAYMENT_ACT_TYPE) {
+      dispatch(notifyAction.cancelPaymentNoti(product));
+    }
   };
 
   const columns = [
     {
       title: "ID",
-      dataIndex: "id",
-      key: "id",
+      dataIndex: "key",
+      key: "key",
       width: 80,
     },
     {
@@ -152,34 +117,56 @@ function PurchasedManager() {
     {
       title: "Hành động",
       key: "key",
+      width: 250,
       render: (data) => {
         return (
           <Space size="small">
-            <Button type="primary" ghost size={size}>
-              Chi tiết
-            </Button>
             <Button
               type="primary"
-              // ghost
+              ghost
               size={size}
+              onClick={() => {
+                showPaymentDetail(data);
+              }}
             >
-              Chấp nhận
+              Chi tiết
             </Button>
-            <Button type="primary" danger size={size}>
-              Huỷ bỏ
-            </Button>
+            {params.id === "2" ? (
+              <>
+                <Button
+                  type="primary"
+                  // ghost
+                  size={size}
+                  onClick={() => {
+                    handleAdminAction(
+                      data,
+                      stateConst.CONFIRM_PAYMENT_ACT_TYPE
+                    );
+                  }}
+                >
+                  Chấp nhận
+                </Button>
+                <Button
+                  type="primary"
+                  danger
+                  size={size}
+                  onClick={() => {
+                    handleAdminAction(data, stateConst.CANCEL_PAYMENT_ACT_TYPE);
+                  }}
+                >
+                  Huỷ bỏ
+                </Button>
+              </>
+            ) : (
+              <></>
+            )}
           </Space>
         );
       },
     },
   ];
 
-  let contextValue = {
-    drawer: showDrawer,
-    toggleDrawer: toggleDrawer,
-  };
-
-  let elementDrawer = !showDrawer.show ? <></> : <RightBarProductInfo />;
+  let contextValue = {};
 
   return (
     <>
@@ -190,8 +177,8 @@ function PurchasedManager() {
             dataSource={cartOrderList}
             // onChange={handleChange}
           />
-          {elementDrawer}
         </div>
+        <PaymentModal detailList={detailList} />
         <CenteredModal />
       </productManager.Provider>
     </>

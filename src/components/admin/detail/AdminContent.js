@@ -6,21 +6,26 @@ import * as routerLink from "../../../config/routersConfig";
 import ProductGroup from "./productInfo/ProductGroup";
 
 function AdminContent() {
+  let elementContent;
   let params = useParams();
-  if (params.id < 1 || params.id > 3) {
-    return <Navigate to={routerLink.error404.path} />;
-  }
 
-  let elementContent =
-    params.detail === "notice" ? (
-      <></>
-    ) : !params.detail || params.id < 1 || params.id > 3 ? (
-      <AdminIndex />
-    ) : params.detail === "user_detail" ? (
-      <ManagerUserTable />
-    ) : (
-      <ProductGroup />
-    );
+  if (params.detail === undefined) {
+    elementContent = <AdminIndex />;
+  } else if (
+    params.detail === "user_detail" &&
+    params.id >= 1 &&
+    params.id <= 3
+  ) {
+    elementContent = <ManagerUserTable />;
+  } else if (
+    params.detail === "product_detail" &&
+    params.id >= 1 &&
+    params.id <= 4
+  ) {
+    elementContent = <ProductGroup />;
+  } else if (params.detail === "notice" && params.id >= 1 && params.id <= 2) {
+    elementContent = <></>;
+  } else return <Navigate to={routerLink.error404.path} />;
   return <>{elementContent}</>;
 }
 

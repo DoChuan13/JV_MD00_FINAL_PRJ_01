@@ -49,7 +49,6 @@ function Header() {
     setPermission("none");
   };
 
-  // console.log(123123123123123, websiteSize);
   window.addEventListener("resize", () => {
     if (window.innerWidth < 1006) {
       if (websiteSize === "pc") {

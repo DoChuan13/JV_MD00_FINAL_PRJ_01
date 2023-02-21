@@ -20,6 +20,9 @@ export const ADD_TO_CART_ACT_TYPE = "Add Product To Cart";
 export const EDIT_PRD_CART_ACT_TYPE = "Edit Product In Cart";
 export const REMOVE_FR_CART_ACT_TYPE = "Remove Product To Cart";
 export const PAYMENT_CART_ACT_TYPE = "Payment User Cart";
+//04 Payment//
+export const CONFIRM_PAYMENT_ACT_TYPE = "Confirm Payment Cart";
+export const CANCEL_PAYMENT_ACT_TYPE = "Cancel Payment Cart";
 
 //==========Redux Reducer==========//
 export const GET_USER_SUCC_TYPE = "Get User Successful";

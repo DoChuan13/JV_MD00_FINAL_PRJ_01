@@ -17,7 +17,7 @@ function Login() {
   let usState = useSelector(usersState);
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
     let id = "",
       emailCheck = false,
       passwordCheck = false,

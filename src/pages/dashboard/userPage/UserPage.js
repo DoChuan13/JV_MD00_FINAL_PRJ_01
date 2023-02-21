@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import User from "../../../components/user/User";
 
 function UserPage() {
-  console.log("User Router Successful");
   return (
     <>
       <User />

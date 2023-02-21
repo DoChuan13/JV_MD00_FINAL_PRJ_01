@@ -26,7 +26,6 @@ function PrivateRouter() {
       if (flag) {
         setPermission(true);
       } else {
-        console.log("Chuyen trang");
         navigate(routerLink.error403.path, { replace: true });
       }
     }

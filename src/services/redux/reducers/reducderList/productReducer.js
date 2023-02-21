@@ -7,7 +7,6 @@ const initState = [];
 const productReducer = (state = initState, action) => {
   switch (action.type) {
     case stateConst.GET_PROD_SUCC_TYPE:
-      // console.log("Rerender in State");
       state = [...action.payload];
       return state;
 

@@ -58,12 +58,17 @@ const navBarValue = [
       {
         key: 5,
         icon: <UnorderedListOutlined />,
-        label: <Link to={"/admin/product_detail/2"}>Đặt hàng</Link>,
+        label: <Link to={"/admin/product_detail/2"}>Đơn hàng</Link>,
       },
       {
         key: 6,
         icon: <UnorderedListOutlined />,
         label: <Link to={"/admin/product_detail/3"}>Đã bán</Link>,
+      },
+      {
+        key: 9,
+        icon: <UnorderedListOutlined />,
+        label: <Link to={"/admin/product_detail/4"}>Bị huỷ</Link>,
       },
     ],
   },

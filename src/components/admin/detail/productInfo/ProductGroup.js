@@ -11,7 +11,7 @@ function ProductGroup() {
   if (params.detail === "product_detail") {
     if (params.id === "1" || params.id === undefined) {
       return <ManagerProductTable />;
-    } else if (params.id === "2" || params.id === "3") {
+    } else if (params.id === "2" || params.id === "3" || params.id === "4") {
       return <PurchasedManager />;
     } else <Navigate to={routerLink.error404.path} />;
   }

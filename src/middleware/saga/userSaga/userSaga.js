@@ -6,7 +6,7 @@ import { checkLoginStatus } from "../../../utils/functions/commonFunctions";
 import CartItem from "../../../services/class/users/Cart";
 import Purchased from "../../../services/class/users/Purchased";
 
-export function* getAllUserSata() {
+export function* getAllUserSaga() {
   let userList = yield call(axios.getDatabase, users, "");
   yield put(stateAct.getAllUserReducer(userList));
 }
@@ -15,10 +15,10 @@ export function* blockUserSaga(action) {
   let value = action.payload;
   let id = value.id;
   yield call(axios.putDatabase, users, id, value);
-  yield getAllUserSata();
+  yield getAllUserSaga();
 }
 
-export function* addPrdToCart(action) {
+export function* addPrdToCartSaga(action) {
   let user = yield call(checkLoginStatus);
   let userList = yield call(axios.getDatabase, users, "");
   let product = action.payload;
@@ -53,15 +53,15 @@ export function* addPrdToCart(action) {
   }
 
   yield call(axios.patchDatabase, users, user.id, { cart: userCart });
-  yield getAllUserSata();
+  yield getAllUserSaga();
 }
 
-export function* editPrdCart(action) {
+export function* editPrdCartSaga(action) {
   console.log("Log in Edit Saga");
-  yield addPrdToCart(action);
+  yield addPrdToCartSaga(action);
 }
 
-export function* removePrdFromCart(action) {
+export function* rePrdFromCartSaga(action) {
   let user = yield call(checkLoginStatus);
   let userList = yield call(axios.getDatabase, users, "");
   let product = action.payload;
@@ -77,16 +77,14 @@ export function* removePrdFromCart(action) {
   }
 
   yield call(axios.patchDatabase, users, user.id, { cart: userCart });
-  yield getAllUserSata();
+  yield getAllUserSaga();
 }
 
-export function* paymentPrdAllCart(action) {
+export function* payPrdAllCartSaga(action) {
   let user = yield call(checkLoginStatus);
   let userList = yield call(axios.getDatabase, users, "");
   let productList = yield call(axios.getDatabase, products, "");
 
-  console.log("List User", userList);
-  console.log("Product List", productList);
   let userCart = [];
   let currentPurchased = [];
 
@@ -104,8 +102,12 @@ export function* paymentPrdAllCart(action) {
       if (item.id === productList[i].id) {
         paymenItem = {
           ...item,
-          productPrice: productList[i].productPrice,
+          productCode: productList[i].productCode,
           productName: productList[i].productName,
+          productTitle: productList[i].productTitle,
+          productDesc: productList[i].productDesc,
+          productImage: productList[i].productImage,
+          productPrice: productList[i].productPrice,
         };
         break;
       }
@@ -118,23 +120,67 @@ export function* paymentPrdAllCart(action) {
     "-" +
     user.id +
     "-" +
+    currentPurchased.length +
+    "-" +
     date.getFullYear() +
     (date.getMonth() + 1) +
     date.getDate() +
     date.getHours() +
     date.getMinutes() +
     date.getSeconds();
-  console.log(action);
   let purchasedOrder = new Purchased(
     orderCode,
     date,
     paymentCart,
     action.payload
   );
-  console.log(paymentCart, "Gio hang", purchasedOrder);
   yield call(axios.patchDatabase, users, user.id, {
     cart: [],
     purchased: [...currentPurchased, purchasedOrder],
   });
-  yield getAllUserSata();
+  yield getAllUserSaga();
+}
+
+export function* confPaymentSaga(action) {
+  let userId = action.payload.id;
+  let orderCode = action.payload.orderCode;
+  let userList = yield call(axios.getDatabase, users, "");
+  let userPurchasedList = [];
+  for (let i = 0; i < userList.length; i++) {
+    if (userList[i].id === userId) {
+      userPurchasedList = userList[i].purchased;
+      break;
+    }
+  }
+  let newPurchasedList = userPurchasedList.map((purchasedOrder) => {
+    if (purchasedOrder.orderCode === orderCode) {
+      return { ...purchasedOrder, status: "completed" };
+    } else return purchasedOrder;
+  });
+  yield call(axios.patchDatabase, users, userId, {
+    purchased: newPurchasedList,
+  });
+  yield getAllUserSaga();
+}
+
+export function* cancelPaymentSaga(action) {
+  let userId = action.payload.id;
+  let orderCode = action.payload.orderCode;
+  let userList = yield call(axios.getDatabase, users, "");
+  let userPurchasedList = [];
+  for (let i = 0; i < userList.length; i++) {
+    if (userList[i].id === userId) {
+      userPurchasedList = userList[i].purchased;
+      break;
+    }
+  }
+  let newPurchasedList = userPurchasedList.map((purchasedOrder) => {
+    if (purchasedOrder.orderCode === orderCode) {
+      return { ...purchasedOrder, status: "canceled" };
+    } else return purchasedOrder;
+  });
+  yield call(axios.patchDatabase, users, userId, {
+    purchased: newPurchasedList,
+  });
+  yield getAllUserSaga();
 }

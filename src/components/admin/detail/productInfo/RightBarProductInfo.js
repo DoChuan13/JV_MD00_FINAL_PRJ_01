@@ -21,6 +21,7 @@ import * as axios from "../../../../middleware/api/methods/methodAxios";
 import UploadProductImage from "./UploadProductImage";
 import * as resource from "../../../../config/resourcesAxiosConfig";
 import * as saga from "../../../../services/redux/actions/sagaAction";
+import { Success, Error, Warning } from "../../../toast/Toast";
 
 function RightBarProductInfo() {
   let dispatch = useDispatch();
@@ -75,33 +76,61 @@ function RightBarProductInfo() {
   const updateProductInfo = () => {
     let checkId = checkSatisfyCond(prState, productInfo);
     if (!checkId) {
-      window.alert("Mã sản phẩm đã tồn tại");
+      Warning("Mã sản phẩm đã tồn tại");
       return;
     }
     let pictureName = getImageInfo();
     let productValue = { ...productInfo, productImage: pictureName };
+    if (
+      productValue.productCode === "" ||
+      productValue.productDesc === "" ||
+      productValue.productImage === "" ||
+      productValue.productName === "" ||
+      productValue.productPrice === "" ||
+      productValue.productQuantity === "" ||
+      productValue.productTitle === "" ||
+      productValue.remainQuantity === ""
+    ) {
+      Error("Vui lòng điền đầy đủ các thông tin");
+      return;
+    }
     setTimeout(() => {
       dispatch(saga.update_ProdInfoAct(productValue));
     }, 200);
     closeDrawer();
     console.log("%cUpdate thành công", "color: green");
+    Success("Cập nhật sản phẩm thành công");
   };
 
   const addNewProduct = () => {
     let checkId = checkSatisfyCond(prState, productInfo);
     if (!checkId) {
-      window.alert("Mã sản phẩm đã tồn tại");
+      Warning("Mã sản phẩm đã tồn tại");
       return;
     }
     let pictureName = getImageInfo();
     let productValue = { ...productInfo, productImage: pictureName };
     console.log(productValue);
+    if (
+      productValue.productCode === "" ||
+      productValue.productDesc === "" ||
+      productValue.productImage === "" ||
+      productValue.productName === "" ||
+      productValue.productPrice === "" ||
+      productValue.productQuantity === "" ||
+      productValue.productTitle === "" ||
+      productValue.remainQuantity === ""
+    ) {
+      Error("Vui lòng điền đầy đủ các thông tin");
+      return;
+    }
     axios.postDatabase(resource.products, "", productValue);
     setTimeout(() => {
       dispatch(saga.add_NewProductAct(productValue));
     }, 200);
     closeDrawer();
     console.log("%cThêm sản phẩm mới thành công", "color: green");
+    Success("Thêm sản phẩm mới thành công");
   };
 
   const getDrawerValue = (event) => {

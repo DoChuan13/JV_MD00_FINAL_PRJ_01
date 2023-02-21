@@ -40,7 +40,6 @@ function RightBarUserInfo() {
     dispatch(notifyAction.blockUser(data));
   };
 
-  // console.log(userInfo);
   let elementBtnCtrl =
     userInfo.typeUser === "admin" ? (
       <></>

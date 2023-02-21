@@ -20,3 +20,17 @@ export const cancelAction = () => {
     payload: notifyConst.CANCEL_ACTION_NOTIFY_TYPE,
   };
 };
+
+export const confirmPaymentNoti = (value) => {
+  return {
+    type: notifyConst.CONFIRM_PAYMENT_NOTIFY_TYPE,
+    payload: value,
+  };
+};
+
+export const cancelPaymentNoti = (value) => {
+  return {
+    type: notifyConst.CANCEL_PAYMENT_NOTIFY_TYPE,
+    payload: value,
+  };
+};

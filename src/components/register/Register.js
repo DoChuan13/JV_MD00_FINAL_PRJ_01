@@ -47,12 +47,10 @@ function Register() {
   let navigate = useNavigate();
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    // console.log("Received values of form: ", values);
     let user = new User();
     user = { ...user, ...values, email: values.email.toLowerCase() };
     delete user.confirm;
     delete user.agreement;
-    // console.log(user);
     let checkEmail = true,
       checkUseName = true;
     for (let i = 0; i < usState.length; i++) {

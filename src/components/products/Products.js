@@ -4,6 +4,7 @@ import ProductItem from "./ProductItem";
 import { useSelector } from "react-redux";
 import { productsState } from "../../services/redux/selectors/selectors";
 import * as routerLink from "../../config/routersConfig";
+import SideToastify from "../toast/SideToastify";
 
 function Products() {
   // let location = useLocation();
@@ -21,7 +22,6 @@ function Products() {
   const seeMoreProduct = () => {
     setProductLoad(productLoad + 8);
     navigate(routerLink.products.path);
-    console.log("See More");
   };
 
   return (
@@ -53,6 +53,7 @@ function Products() {
         </div>
       </div>
       {/* product section end */}
+      <SideToastify />
     </>
   );
 }

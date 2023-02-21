@@ -13,6 +13,7 @@ import {
 import { checkLoginStatus } from "../../utils/functions/commonFunctions";
 import { usersState } from "../../services/redux/selectors/selectors";
 import * as routerLink from "../../config/routersConfig";
+import { Success } from "../toast/SideToastify";
 
 const checkValidUser = (usState) => {
   let loginStatus = checkLoginStatus();
@@ -48,7 +49,7 @@ function ProductItem(props) {
       navigate(routerLink.login.path);
       return;
     }
-
+    Success("Thêm vào giỏ hàng thành công");
     dispatch(saga.add_PrdCartAct(product));
   };
 

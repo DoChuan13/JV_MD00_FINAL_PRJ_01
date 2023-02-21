@@ -44,6 +44,20 @@ export const payment_PrdCartAct = (value) => {
     payload: value,
   };
 };
+//==========Payment Redux Action SAGA==========//
+export const confirm_PaymentAct = (value) => {
+  return {
+    type: stateConst.CONFIRM_PAYMENT_ACT_TYPE,
+    payload: value,
+  };
+};
+
+export const cancel_PaymentAct = (value) => {
+  return {
+    type: stateConst.CANCEL_PAYMENT_ACT_TYPE,
+    payload: value,
+  };
+};
 
 //==========Product Redux Action SAGA==========//
 

@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 //import class template
 import Product from "../../../../services/class/products/Product";
 import CenteredModal from "../../../modal/CenteredModal";
-
+import Toast from "../../../../components/toast/Toast";
 // const { Column } = Table;
 
 export const productManager = createContext();
@@ -53,12 +53,17 @@ function ManagerProductTable() {
       setShowDrawer({ data: product, show: true, viewSt: viewSt, new: false });
     }
     if (action === stateConst.DELETE_PROD_ACT_TYPE) {
-      console.log(product, action);
       dispatch(notifyAction.deleteProduct(product));
     }
 
     if (action === stateConst.ADD_PROD_ACT_TYPE) {
-      let blankData = new Product();
+      let id;
+      if (prState.length === 0) {
+        id = 1;
+      } else {
+        id = prState[prState.length - 1].id + 1;
+      }
+      let blankData = new Product(id);
       setShowDrawer({ data: blankData, show: true, viewSt: false, new: true });
     }
   };
@@ -68,7 +73,7 @@ function ManagerProductTable() {
   };
 
   const handleChange = (pagination, filters, sorter) => {
-    console.log("Various parameters", pagination, filters, sorter);
+    // console.log("Various parameters", pagination, filters, sorter);
     setFilteredInfo(filters);
     setSortedInfo(sorter);
   };
@@ -100,7 +105,7 @@ function ManagerProductTable() {
       sorter: (a, b) => {
         let arrA = a.productCode.split("");
         let arrB = b.productCode.split("");
-        // console.log("Giá trị vào", a, b);
+        // "Giá trị vào", a, b);
         if (arrA.length === arrB.length) {
           return arrA[arrA.length - 1] - arrB[arrB.length - 1];
         } else {
@@ -233,6 +238,7 @@ function ManagerProductTable() {
           {elementDrawer}
         </div>
         <CenteredModal />
+        <Toast />
       </productManager.Provider>
     </>
   );

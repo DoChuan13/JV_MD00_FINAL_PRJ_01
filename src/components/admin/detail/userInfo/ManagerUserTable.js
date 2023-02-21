@@ -7,13 +7,13 @@ import * as stateConst from "../../../../services/constants/stateConstants";
 import * as notifyAction from "../../../../services/redux/actions/notifyActions";
 import CenteredModal from "../../../modal/CenteredModal";
 import { useParams } from "react-router-dom";
+import Toast from "../../../toast/Toast";
 
 // const { Column } = Table;
 
 export const userManager = createContext();
 function ManagerUserTable() {
   let params = useParams();
-  // console.log("Parasm", params);
 
   let usState = useSelector(usersState);
   let dispatch = useDispatch();
@@ -63,7 +63,7 @@ function ManagerUserTable() {
   };
 
   const handleChange = (pagination, filters, sorter) => {
-    console.log("Various parameters", pagination, filters, sorter);
+    // console.log("Various parameters", pagination, filters, sorter);
     setFilteredInfo(filters);
     setSortedInfo(sorter);
   };
@@ -179,6 +179,7 @@ function ManagerUserTable() {
         />
         {elementDrawer}
         <CenteredModal />
+        <Toast />
       </userManager.Provider>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,15 +7,14 @@ import { notifyState } from "../../services/redux/selectors/selectors";
 import * as notifyConst from "../../services/constants/notifyConstants";
 import { cancelAction } from "../../services/redux/actions/notifyActions";
 import * as saga from "../../services/redux/actions/sagaAction";
+import { Success } from "../toast/Toast";
 
 import {
   disableScroll,
   enableScroll,
 } from "../../utils/functions/commonFunctions";
-import { useNavigate } from "react-router-dom";
 
 function MyVerticallyCenteredModal(props) {
-  let navigate = useNavigate();
   let dispatch = useDispatch();
   let modalData = props.data;
   let itemInfo = props.data.value;
@@ -27,27 +26,41 @@ function MyVerticallyCenteredModal(props) {
   const confirmAction = () => {
     props.onHide();
     if (modalData.status === notifyConst.DELETE_PRODUCT_NOTIFY_TYPE) {
+      Success("Xoá sản phẩm thành công");
       dispatch(saga.delete_ProdAct(itemInfo));
-      navigate("/admin/product_detail/1", { state: "Deleted" });
     } else if (modalData.status === notifyConst.BLOCK_USER_NOTIFY_TYPE) {
       let newValue = {
         ...itemInfo,
         statusUser: itemInfo.statusUser ? false : true,
       };
       delete newValue.key;
+      Success("Đã thay đổi trạng thái tài khoản");
       dispatch(saga.block_UserAct(newValue));
+    } else if (modalData.status === notifyConst.CANCEL_PAYMENT_NOTIFY_TYPE) {
+      let paymentValue = modalData.value;
+      Success("Đơn hàng đã bị huỷ bỏ");
+      dispatch(saga.cancel_PaymentAct(paymentValue));
+    } else if (modalData.status === notifyConst.CONFIRM_PAYMENT_NOTIFY_TYPE) {
+      let paymentValue = modalData.value;
+      Success("Đơn hàng đã được xác nhận thành công");
+      dispatch(saga.confirm_PaymentAct(paymentValue));
     }
   };
 
-  let titleModal =
-    modalData.status === notifyConst.DELETE_PRODUCT_NOTIFY_TYPE
-      ? "Xóa sản phẩm"
-      : "Chặn/Hủy chặn tài khoản";
-
-  let contentModal =
-    modalData.status === notifyConst.DELETE_PRODUCT_NOTIFY_TYPE
-      ? "Bạn có chắn chắn muốn xóa sản phẩm này không"
-      : "Bạn có chắn chắn muốn chặn/hủy chặn tài khoản này không";
+  let titleModal, contentModal;
+  if (modalData.status === notifyConst.DELETE_PRODUCT_NOTIFY_TYPE) {
+    titleModal = "Xóa sản phẩm";
+    contentModal = "Bạn có chắn chắn muốn xóa sản phẩm này không";
+  } else if (modalData.status === notifyConst.BLOCK_USER_NOTIFY_TYPE) {
+    titleModal = "Chặn/Hủy chặn tài khoản";
+    contentModal = "Bạn có chắn chắn muốn chặn/hủy chặn tài khoản này không";
+  } else if (modalData.status === notifyConst.CANCEL_PAYMENT_NOTIFY_TYPE) {
+    titleModal = "Huỷ bỏ đơn hàng";
+    contentModal = "Bạn có chắn chắn muốn huỷ đơn hàng này không";
+  } else if (modalData.status === notifyConst.CONFIRM_PAYMENT_NOTIFY_TYPE) {
+    titleModal = "Xác nhận đơn hàng";
+    contentModal = "Bạn có chắn chắn muốn chấp nhận đơn hàng này không";
+  }
 
   return (
     <Modal
@@ -79,14 +92,16 @@ function MyVerticallyCenteredModal(props) {
 
 function CenteredModal() {
   let noState = useSelector(notifyState);
-  // console.log(noState, "noState");
+
   let dispatch = useDispatch();
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     if (
       noState.status === notifyConst.DELETE_PRODUCT_NOTIFY_TYPE ||
-      noState.status === notifyConst.BLOCK_USER_NOTIFY_TYPE
+      noState.status === notifyConst.BLOCK_USER_NOTIFY_TYPE ||
+      noState.status === notifyConst.CANCEL_PAYMENT_NOTIFY_TYPE ||
+      noState.status === notifyConst.CONFIRM_PAYMENT_NOTIFY_TYPE
     ) {
       setModalShow(true);
       disableScroll();
