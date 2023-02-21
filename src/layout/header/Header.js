@@ -22,7 +22,6 @@ function Header() {
   let userBarElementMb = <></>;
   let userBarElementPc = <></>;
 
-  console.log("Header", usState);
   useEffect(() => {
     if (window.innerWidth >= 1006) setWebsiteSize("pc");
     else setWebsiteSize("mobile");

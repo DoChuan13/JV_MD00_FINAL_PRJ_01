@@ -15,7 +15,11 @@ export const DELETE_PROD_ACT_TYPE = "Delete Product";
 // 02 User//
 export const VIEW_USER_ACT_TYPE = "View User";
 export const BLOCK_USER_ACT_TYPE = "Block/Unblock User";
+//03 Cart//
 export const ADD_TO_CART_ACT_TYPE = "Add Product To Cart";
+export const EDIT_PRD_CART_ACT_TYPE = "Edit Product In Cart";
+export const REMOVE_FR_CART_ACT_TYPE = "Remove Product To Cart";
+export const PAYMENT_CART_ACT_TYPE = "Payment User Cart";
 
 //==========Redux Reducer==========//
 export const GET_USER_SUCC_TYPE = "Get User Successful";

@@ -1,9 +1,9 @@
 import React from "react";
 import { Navigate, useParams } from "react-router-dom";
-import ManagerProductTable from "./productInfo/ManagerProductTable";
 import ManagerUserTable from "./userInfo/ManagerUserTable";
 import AdminIndex from "./AdminIndex";
 import * as routerLink from "../../../config/routersConfig";
+import ProductGroup from "./productInfo/ProductGroup";
 
 function AdminContent() {
   let params = useParams();
@@ -19,7 +19,7 @@ function AdminContent() {
     ) : params.detail === "user_detail" ? (
       <ManagerUserTable />
     ) : (
-      <ManagerProductTable />
+      <ProductGroup />
     );
   return <>{elementContent}</>;
 }

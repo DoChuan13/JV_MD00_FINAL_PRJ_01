@@ -1,15 +1,6 @@
 class Product {
-  constructor(id) {
-    // id;
-    // productCode,
-    // productName,
-    // productTitle,
-    // productDesc,
-    // productImage,
-    // productPrice,
-    // productQuantity,
-    // remainQuantity
-    this.id = id;
+  constructor() {
+    // this.id = id;
     this.productCode = "";
     this.productName = "";
     this.productTitle = "";

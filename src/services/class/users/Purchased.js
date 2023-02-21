@@ -1,10 +1,10 @@
 class Purchased {
-  constructor(product) {
-    this.product = product;
-    this.review = {
-      reviewContent: "",
-      status: "",
-    };
+  constructor(orderCode, orderDate, paymentCart, totalAmount) {
+    this.orderCode = orderCode;
+    this.orderDate = orderDate;
+    this.paymentCart = paymentCart;
+    this.status = "pending";
+    this.totalAmount = totalAmount;
   }
   //
   getPurchased() {
@@ -13,11 +13,6 @@ class Purchased {
   setPurchased(product) {
     this.product = product;
   }
-  //
-  getReview() {
-    return this.review;
-  }
-  setReview(review) {
-    this.product = review;
-  }
 }
+
+export default Purchased;

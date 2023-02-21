@@ -15,10 +15,33 @@ export const block_UserAct = (value) => {
   };
 };
 
-export const add_PrdCartAct = (user, product) => {
+//==========Cart Redux Action SAGA==========//
+
+export const add_PrdCartAct = (product) => {
   return {
     type: stateConst.ADD_TO_CART_ACT_TYPE,
-    payload: { user, product },
+    payload: product,
+  };
+};
+
+export const edit_PrdCartAct = (product) => {
+  return {
+    type: stateConst.EDIT_PRD_CART_ACT_TYPE,
+    payload: product,
+  };
+};
+
+export const remove_PrdCartAct = (product) => {
+  return {
+    type: stateConst.REMOVE_FR_CART_ACT_TYPE,
+    payload: product,
+  };
+};
+
+export const payment_PrdCartAct = (value) => {
+  return {
+    type: stateConst.PAYMENT_CART_ACT_TYPE,
+    payload: value,
   };
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   formatCurrency,
   formatNumber,
@@ -9,10 +9,11 @@ import { languageCode } from "../../config/valueConfig";
 import { currencyCode } from "../../config/valueConfig";
 import * as picture from "../../assets/images/images";
 import * as selector from "../../services/redux/selectors/selectors";
-import { deleteDatabase } from "../../middleware/api/methods/methodAxios";
+import * as saga from "../../services/redux/actions/sagaAction";
 
-function Item(props) {
+function CartItem(props) {
   let prState = useSelector(selector.productsState);
+  let dispatch = useDispatch();
 
   let { cart } = props;
   let { stt } = props;
@@ -25,10 +26,14 @@ function Item(props) {
   let { productName } = item;
   let subTotal = buyQuantity * productPrice;
 
-  const deleteItem = (cart) => {
-    console.log("Xoa san pham", cart);
-    deleteDatabase();
+  const deleteItem = (cartItem) => {
+    dispatch(saga.remove_PrdCartAct(cartItem));
   };
+
+  const editItem = (cartItem) => {
+    console.log();
+  };
+
   return (
     <>
       <tr>
@@ -55,4 +60,4 @@ function Item(props) {
   );
 }
 
-export default Item;
+export default CartItem;

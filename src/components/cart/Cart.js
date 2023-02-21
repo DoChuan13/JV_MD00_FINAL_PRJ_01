@@ -1,14 +1,11 @@
 import Table from "react-bootstrap/Table";
-import Item from "./Item";
-import { useEffect } from "react";
+import CartItem from "./CartItem";
 import { formatCurrency } from "../../utils/valueUtils/formatValue";
 import { currencyCode, languageCode } from "../../config/valueConfig";
 import { checkLoginStatus } from "../../utils/functions/commonFunctions";
 import * as selector from "../../services/redux/selectors/selectors";
-import * as axios from "../../middleware/api/methods/methodAxios";
-import * as reload from "../../services/redux/actions/sagaAction";
-import * as resource from "../../config/resourcesAxiosConfig";
 import { useDispatch, useSelector } from "react-redux";
+import * as saga from "../../services/redux/actions/sagaAction";
 
 const Cart = () => {
   let loginUser = checkLoginStatus();
@@ -17,30 +14,11 @@ const Cart = () => {
   let prState = useSelector(selector.productsState);
   let cartElement = <></>;
 
-  // useEffect(() => {
-  //   axios
-  //     .getDatabase(resource.products, "")
-  //     .then((res) => {
-  //       dispatch(reload.prReload(res.data));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-
-  //   axios
-  //     .getDatabase(resource.users, "")
-  //     .then((res) => {
-  //       dispatch(reload.usReload(res.data));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message, "Có lỗi");
-  //     });
-  // }, [dispatch]);
   let blankAlert = <></>,
     totalAmount = 0;
 
   const paymentCart = (cart) => {
-    console.log("Thanh toan Cart", cart);
+    dispatch(saga.payment_PrdCartAct(totalAmount));
   };
 
   //==========Validate user ==========//
@@ -69,7 +47,7 @@ const Cart = () => {
   let totalElement = formatCurrency(totalAmount, languageCode, currencyCode);
 
   cartElement = userLog.cart.map((cart, index) => {
-    return <Item key={cart.id} cart={cart} stt={index + 1} />;
+    return <CartItem key={cart.id} cart={cart} stt={index + 1} />;
   });
 
   return (
@@ -93,6 +71,7 @@ const Cart = () => {
             <th>{totalElement}</th>
             <th>
               <button
+                style={{ opacity: 0.6, cursor: "not-allowed" }}
                 className="buy_confirm"
                 onClick={() => {
                   paymentCart();

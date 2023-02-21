@@ -1,9 +1,9 @@
 class CartItem {
-  constructor(id, buyQuantity, orderDate) {
+  constructor(id, productName, buyQuantity, productPrice) {
     this.id = id;
+    this.productName = productName;
     this.buyQuantity = buyQuantity;
-    this.orderId = "";
-    this.orderDate = orderDate;
+    this.productPrice = productPrice;
   }
   //
   getIdProduct() {
@@ -15,14 +15,6 @@ class CartItem {
   }
   setBuyQuantity(buyQuantity) {
     this.buyQuantity = buyQuantity;
-  }
-  //
-  getOrderId() {
-    return this.orderId;
-  }
-  //
-  getOrderDate() {
-    return this.orderDate;
   }
 }
 

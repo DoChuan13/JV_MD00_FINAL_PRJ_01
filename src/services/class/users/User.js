@@ -1,6 +1,6 @@
 class User {
-  constructor(id, userName, email, prefix, phone, password) {
-    this.id = id;
+  constructor(userName, email, prefix, phone, password) {
+    // this.id = id;
     this.typeUser = "user";
     this.statusUser = true;
     this.userName = userName;
@@ -16,10 +16,6 @@ class User {
     this.cart = [];
     this.bought = [];
     this.userBio = ";";
-  }
-  //
-  getIdUser() {
-    return this.id;
   }
   //
   getFirstName() {

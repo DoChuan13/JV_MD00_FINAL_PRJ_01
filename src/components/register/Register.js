@@ -48,14 +48,8 @@ function Register() {
   const [form] = Form.useForm();
   const onFinish = (values) => {
     // console.log("Received values of form: ", values);
-    let id;
-    if (usState.length === 0) {
-      id = 0;
-    } else {
-      id = usState[usState.length - 1] + 1;
-    }
     let user = new User();
-    user = { ...user, ...values, email: values.email.toLowerCase(), id: id };
+    user = { ...user, ...values, email: values.email.toLowerCase() };
     delete user.confirm;
     delete user.agreement;
     // console.log(user);

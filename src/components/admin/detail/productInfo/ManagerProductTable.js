@@ -38,21 +38,7 @@ function ManagerProductTable() {
     let renderValue = prState.map((value) => {
       return { ...value, key: value.id };
     });
-    let finalValue;
-    if (params.detail === "product_detail") {
-      if (params.id === "1" || params.id === undefined) {
-        finalValue = [...renderValue];
-      } else if (params.id === "2") {
-        // finalValue = renderValue.filter((value) => {
-        //   return value.statusUser == false;
-        // });
-      } else if (params.id === "3") {
-        // finalValue = renderValue.filter((value) => {
-        //   return value.typeUser === "admin";
-        // });
-      }
-    }
-    setProductList(finalValue);
+    setProductList(renderValue);
   }, [prState, params]);
 
   const handleAdminAction = (product, action) => {
@@ -72,13 +58,7 @@ function ManagerProductTable() {
     }
 
     if (action === stateConst.ADD_PROD_ACT_TYPE) {
-      let id;
-      if (prState.length === 0) {
-        id = 1;
-      } else {
-        id = prState[prState.length - 1].id + 1;
-      }
-      let blankData = new Product(id);
+      let blankData = new Product();
       setShowDrawer({ data: blankData, show: true, viewSt: false, new: true });
     }
   };

@@ -13,7 +13,6 @@ import {
 import { checkLoginStatus } from "../../utils/functions/commonFunctions";
 import { usersState } from "../../services/redux/selectors/selectors";
 import * as routerLink from "../../config/routersConfig";
-import CartItem from "../../services/class/users/Cart";
 
 const checkValidUser = (usState) => {
   let loginStatus = checkLoginStatus();
@@ -35,7 +34,6 @@ function ProductItem(props) {
   let navigate = useNavigate();
   let usState = useSelector(usersState);
   let dispatch = useDispatch();
-  let loginStatus = checkLoginStatus();
 
   let currency = formatCurrency(
     product["productPrice"],
@@ -50,28 +48,8 @@ function ProductItem(props) {
       navigate(routerLink.login.path);
       return;
     }
-    let orderDate = new Date();
-    let userCart = [];
-    for (let i = 0; i < usState.length; i++) {
-      if (usState[i].id === loginStatus.id) {
-        userCart = [...usState[i].cart];
-        for (let j = 0; j < usState[i].cart.length; j++) {
-          if (usState[i].cart[j].id === product.id) {
-            console.log("San pham co trong gio hang");
-            userCart[j].buyQuantity += 1;
-            break;
-          } else if (j === usState[i].cart.length - 1) {
-            let newItem = new CartItem(product.id, 1, orderDate);
-            console.log(newItem);
-            userCart.push(newItem);
-          }
-        }
-        break;
-      }
-    }
-    console.log(userCart);
-    dispatch(saga.add_PrdCartAct(loginStatus, userCart));
-    console.log("Them vao gio", product);
+
+    dispatch(saga.add_PrdCartAct(product));
   };
 
   const buyProduct = () => {
