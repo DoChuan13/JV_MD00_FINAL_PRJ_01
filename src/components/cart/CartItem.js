@@ -9,7 +9,7 @@ import { languageCode } from "../../config/valueConfig";
 import { currencyCode } from "../../config/valueConfig";
 import * as picture from "../../assets/images/images";
 import * as selector from "../../services/redux/selectors/selectors";
-import * as saga from "../../services/redux/actions/sagaAction";
+import * as notifyAction from "../../services/redux/actions/notifyActions";
 
 function CartItem(props) {
   let prState = useSelector(selector.productsState);
@@ -27,12 +27,12 @@ function CartItem(props) {
   let subTotal = buyQuantity * productPrice;
 
   const deleteItem = (cartItem) => {
-    dispatch(saga.remove_PrdCartAct(cartItem));
+    dispatch(notifyAction.deleteCartNoti(cartItem));
   };
 
-  const editItem = (cartItem) => {
-    console.log();
-  };
+  // const editItem = (cartItem) => {
+  //   console.log();
+  // };
 
   return (
     <>

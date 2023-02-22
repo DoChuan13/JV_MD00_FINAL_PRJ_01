@@ -61,6 +61,7 @@ function Login() {
       navigate(routerLink.index.path);
     }, 500);
   };
+
   return (
     <div className="login_section">
       <div className="login_section--maxsize">

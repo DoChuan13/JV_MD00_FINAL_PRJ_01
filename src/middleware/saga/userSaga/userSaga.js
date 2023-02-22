@@ -167,7 +167,9 @@ export function* payPrdAllCartSaga(action) {
     orderCode,
     date,
     paymentCart,
-    action.payload
+    action.payload.totalAmount,
+    action.payload.address,
+    action.payload.note
   );
   yield call(axios.patchDatabase, users, user.id, {
     cart: [],

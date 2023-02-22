@@ -34,3 +34,17 @@ export const cancelPaymentNoti = (value) => {
     payload: value,
   };
 };
+
+export const deleteCartNoti = (value) => {
+  return {
+    type: notifyConst.DELETE_CART_NOTIFY_TYPE,
+    payload: value,
+  };
+};
+
+export const confirmCartNoti = (value) => {
+  return {
+    type: notifyConst.CONFIRM_CART_NOTIFY_TYPE,
+    payload: value,
+  };
+};

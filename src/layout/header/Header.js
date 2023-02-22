@@ -64,11 +64,11 @@ function Header() {
     userBarElementMb = (
       <>
         <hr />
-        <NavDropdown.ItemText>
+        {/* <NavDropdown.ItemText>
           <NavLink to={routerLink.user.path}>Thông tin cá nhân </NavLink>
-        </NavDropdown.ItemText>
+        </NavDropdown.ItemText> */}
         <NavDropdown.ItemText>
-          <NavLink to={routerLink.cart.path}>Giỏ hàng</NavLink>
+          <NavLink to={routerLink.cart.path}>Quản lý đơn hàng</NavLink>
         </NavDropdown.ItemText>
         <NavDropdown.ItemText>
           <NavLink to={routerLink.favorite.path}>Yêu thích</NavLink>
@@ -92,11 +92,11 @@ function Header() {
           }
           id="collasible-nav-dropdown"
         >
-          <NavDropdown.ItemText>
+          {/* <NavDropdown.ItemText>
             <NavLink to={routerLink.user.path}>Thông tin cá nhân </NavLink>
-          </NavDropdown.ItemText>
+          </NavDropdown.ItemText> */}
           <NavDropdown.ItemText>
-            <NavLink to={routerLink.cart.path}>Giỏ hàng</NavLink>
+            <NavLink to={routerLink.cart.path}>Quản lý đơn hàng</NavLink>
           </NavDropdown.ItemText>
           <NavDropdown.ItemText>
             <NavLink to={routerLink.favorite.path}>Yêu thích</NavLink>

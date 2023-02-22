@@ -3,9 +3,7 @@ import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 // import axios from "axios";
-import * as axios from "../middleware/api/methods/methodAxios";
 import * as saga from "../services/redux/actions/sagaAction";
-import * as resource from "../config/resourcesAxiosConfig";
 
 //Router Link Config
 import * as routerLink from "../config/routersConfig";
@@ -29,7 +27,7 @@ function Router() {
   useEffect(() => {
     dispatch(saga.get_AllProdAct());
     dispatch(saga.get_AllUserAct());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -73,21 +71,15 @@ function Router() {
             />
             <Route
               exact
+              path={routerLink.cartDetail.path}
+              element={routerLink.cartDetail.page}
+            />
+            <Route
+              exact
               path={routerLink.favorite.path}
               element={routerLink.favorite.page}
             />
           </Route>
-
-          <Route
-            exact
-            path={routerLink.favorite.path}
-            element={routerLink.favorite.page}
-          />
-          <Route
-            exact
-            path={routerLink.cart.path}
-            elemenet={routerLink.cart.page}
-          />
 
           {/* Error Pages */}
           <Route

@@ -15,7 +15,7 @@ function Products() {
 
   productsElement = prState.map((product, index) => {
     if (index < productLoad) {
-      return <ProductItem key={product.id} product={product} favorite />;
+      return <ProductItem key={product.id} product={product} />;
     } else return <Fragment key={product.id}></Fragment>;
   });
 

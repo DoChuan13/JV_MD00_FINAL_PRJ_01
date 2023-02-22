@@ -69,6 +69,11 @@ export const cart = {
   page: <CartPage />,
 };
 
+export const cartDetail = {
+  path: "/cart/:id",
+  page: <CartPage />,
+};
+
 export const favorite = {
   path: "/favorite",
   page: <FavoritePage />,

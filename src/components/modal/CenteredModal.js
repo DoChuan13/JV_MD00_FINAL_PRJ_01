@@ -44,22 +44,30 @@ function MyVerticallyCenteredModal(props) {
       let paymentValue = modalData.value;
       Success("Đơn hàng đã được xác nhận thành công");
       dispatch(saga.confirm_PaymentAct(paymentValue));
+    } else if (modalData.status === notifyConst.DELETE_CART_NOTIFY_TYPE) {
+      let paymentValue = modalData.value;
+      Success("Đơn hàng đã được xác nhận thành công");
+      dispatch(saga.remove_PrdCartAct(paymentValue));
     }
   };
 
   let titleModal, contentModal;
   if (modalData.status === notifyConst.DELETE_PRODUCT_NOTIFY_TYPE) {
-    titleModal = "Xóa sản phẩm";
-    contentModal = "Bạn có chắn chắn muốn xóa sản phẩm này không";
+    titleModal = "Xóa sản phẩm!";
+    contentModal = "Bạn có chắn chắn muốn xóa sản phẩm này không?";
   } else if (modalData.status === notifyConst.BLOCK_USER_NOTIFY_TYPE) {
-    titleModal = "Chặn/Hủy chặn tài khoản";
-    contentModal = "Bạn có chắn chắn muốn chặn/hủy chặn tài khoản này không";
+    titleModal = "Chặn/Hủy chặn tài khoản!";
+    contentModal = "Bạn có chắn chắn muốn chặn/hủy chặn tài khoản này không?";
   } else if (modalData.status === notifyConst.CANCEL_PAYMENT_NOTIFY_TYPE) {
-    titleModal = "Huỷ bỏ đơn hàng";
-    contentModal = "Bạn có chắn chắn muốn huỷ đơn hàng này không";
+    titleModal = "Huỷ bỏ đơn hàng!";
+    contentModal = "Bạn có chắn chắn muốn huỷ đơn hàng này không?";
   } else if (modalData.status === notifyConst.CONFIRM_PAYMENT_NOTIFY_TYPE) {
-    titleModal = "Xác nhận đơn hàng";
-    contentModal = "Bạn có chắn chắn muốn chấp nhận đơn hàng này không";
+    titleModal = "Xác nhận đơn hàng!";
+    contentModal = "Bạn có chắn chắn muốn chấp nhận đơn hàng này không?";
+  } else if (modalData.status === notifyConst.DELETE_CART_NOTIFY_TYPE) {
+    titleModal = "Xoá sản phẩm!";
+    contentModal =
+      "Bạn có chắn chắn muốn xoá sản phẩm này khỏi giỏ hàng không?";
   }
 
   return (
@@ -101,7 +109,8 @@ function CenteredModal() {
       noState.status === notifyConst.DELETE_PRODUCT_NOTIFY_TYPE ||
       noState.status === notifyConst.BLOCK_USER_NOTIFY_TYPE ||
       noState.status === notifyConst.CANCEL_PAYMENT_NOTIFY_TYPE ||
-      noState.status === notifyConst.CONFIRM_PAYMENT_NOTIFY_TYPE
+      noState.status === notifyConst.CONFIRM_PAYMENT_NOTIFY_TYPE ||
+      noState.status === notifyConst.DELETE_CART_NOTIFY_TYPE
     ) {
       setModalShow(true);
       disableScroll();

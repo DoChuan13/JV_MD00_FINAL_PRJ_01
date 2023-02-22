@@ -35,6 +35,20 @@ const reducer02 = (state = initState, action) => {
       };
       return state;
 
+    case notifyConst.DELETE_CART_NOTIFY_TYPE:
+      state = {
+        status: notifyConst.DELETE_CART_NOTIFY_TYPE,
+        value: action.payload,
+      };
+      return state;
+
+    case notifyConst.CONFIRM_CART_NOTIFY_TYPE:
+      state = {
+        status: notifyConst.CONFIRM_CART_NOTIFY_TYPE,
+        value: action.payload,
+      };
+      return state;
+
     default:
       return state;
   }
