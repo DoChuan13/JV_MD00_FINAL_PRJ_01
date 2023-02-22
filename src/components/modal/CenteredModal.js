@@ -42,11 +42,11 @@ function MyVerticallyCenteredModal(props) {
       dispatch(saga.cancel_PaymentAct(paymentValue));
     } else if (modalData.status === notifyConst.CONFIRM_PAYMENT_NOTIFY_TYPE) {
       let paymentValue = modalData.value;
-      Success("Đơn hàng đã được xác nhận thành công");
+      Success("Đơn hàng đã được xác nhận");
       dispatch(saga.confirm_PaymentAct(paymentValue));
     } else if (modalData.status === notifyConst.DELETE_CART_NOTIFY_TYPE) {
       let paymentValue = modalData.value;
-      Success("Đơn hàng đã được xác nhận thành công");
+      Success("Sản phẩm được xóa khỏi giỏ hàng");
       dispatch(saga.remove_PrdCartAct(paymentValue));
     }
   };

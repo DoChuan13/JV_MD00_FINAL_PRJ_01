@@ -10,6 +10,8 @@ import { currencyCode } from "../../config/valueConfig";
 import * as picture from "../../assets/images/images";
 import * as selector from "../../services/redux/selectors/selectors";
 import * as notifyAction from "../../services/redux/actions/notifyActions";
+import * as saga from "../../services/redux/actions/sagaAction";
+import * as Ai from "react-icons/ai";
 
 function CartItem(props) {
   let prState = useSelector(selector.productsState);
@@ -27,12 +29,18 @@ function CartItem(props) {
   let subTotal = buyQuantity * productPrice;
 
   const deleteItem = (cartItem) => {
+    // console.log(123123);
     dispatch(notifyAction.deleteCartNoti(cartItem));
   };
 
-  // const editItem = (cartItem) => {
-  //   console.log();
-  // };
+  const changeQuantity = (action, item) => {
+    let curQuantity = item.buyQuantity;
+    if (curQuantity === 1 && action === "minus") {
+      dispatch(notifyAction.deleteCartNoti(item));
+      return;
+    }
+    dispatch(saga.edit_PrdCartAct({ action: action, product: item }));
+  };
 
   return (
     <>
@@ -41,11 +49,39 @@ function CartItem(props) {
         <td>
           <Image width={80} src={picture[item.productImage]} />
         </td>
-        <td>{productName}</td>
-        <td>{formatCurrency(productPrice, languageCode, currencyCode)}</td>
-        <td>{formatNumber(buyQuantity, languageCode)}</td>
-        <td>{formatCurrency(subTotal, languageCode, currencyCode)}</td>
-        <td>
+        <td className="cart_table_detail">{productName}</td>
+        <td className="cart_table_detail">
+          {formatCurrency(productPrice, languageCode, currencyCode)}
+        </td>
+        <td className="cart_table_detail">
+          <span>
+            <Ai.AiOutlineMinusCircle
+              size={30}
+              style={{ cursor: "pointer", color: "red" }}
+              onClick={() => {
+                changeQuantity("minus", cart);
+              }}
+            />
+            {"  "}
+          </span>
+          <span style={{ display: "inline-block", width: "30px" }}>
+            {formatNumber(buyQuantity, languageCode)}
+          </span>
+          <span>
+            {"  "}
+            <Ai.AiOutlinePlusCircle
+              size={30}
+              style={{ cursor: "pointer", color: "blue" }}
+              onClick={() => {
+                changeQuantity("plus", cart);
+              }}
+            />
+          </span>
+        </td>
+        <td className="cart_table_detail">
+          {formatCurrency(subTotal, languageCode, currencyCode)}
+        </td>
+        <td className="cart_table_detail">
           <button
             className="delete_product"
             onClick={() => {

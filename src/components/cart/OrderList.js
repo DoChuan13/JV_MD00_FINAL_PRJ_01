@@ -19,7 +19,6 @@ import PaymentModal from "./PaymentModal";
 
 export const productManager = createContext();
 function OrderList() {
-  let loginStatus = checkLoginStatus();
   let params = useParams();
   let prState = useSelector(productsState);
   let usState = useSelector(usersState);
@@ -33,6 +32,7 @@ function OrderList() {
   // console.log("Login user", userLog);
 
   useEffect(() => {
+    let loginStatus = checkLoginStatus();
     let userLog = usState.find((user) => {
       return user.id === loginStatus.id;
     });
@@ -69,14 +69,13 @@ function OrderList() {
     }
     // console.log(sortedPaymentList);
     setCartOrderList(sortedPaymentList);
-  }, [prState, usState, params, loginStatus]);
+  }, [prState, usState, params]);
 
   const showPaymentDetail = (list) => {
     setDetailList({ status: true, data: list });
   };
 
   const handleAdminAction = (product, action) => {
-    console.log(123131);
     if (action === stateConst.CONFIRM_PAYMENT_ACT_TYPE) {
       dispatch(notifyAction.confirmPaymentNoti(product));
     } else if (action === stateConst.CANCEL_PAYMENT_ACT_TYPE) {

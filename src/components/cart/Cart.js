@@ -2,7 +2,9 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import * as routerLink from "../../config/routersConfig";
 import Toast from "../toast/Toast";
 import CartList from "./CartList";
+// import CartsList from "./CartsList";
 import OrderList from "./OrderList";
+import CenteredModal from "../modal/CenteredModal";
 
 const Cart = () => {
   let params = useParams();
@@ -11,6 +13,7 @@ const Cart = () => {
   let elementComponent = <></>;
   if (params.id === undefined || params.id === "1") {
     elementComponent = <CartList />;
+    // elementComponent = <CartsList />;
   } else if (params.id === "2" || params.id === "3" || params.id === "4") {
     elementComponent = <OrderList />;
   } else {
@@ -34,7 +37,7 @@ const Cart = () => {
       </div>
       {elementComponent}
       <Toast />
-      {/* <CenteredModal /> */}
+      <CenteredModal />
     </div>
   );
 };

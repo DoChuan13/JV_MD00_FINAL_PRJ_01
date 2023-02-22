@@ -92,8 +92,29 @@ export function* addPrdToCartSaga(action) {
 }
 
 export function* editPrdCartSaga(action) {
-  console.log("Log in Edit Saga");
-  yield addPrdToCartSaga(action);
+  let user = yield call(checkLoginStatus);
+  let userList = yield call(axios.getDatabase, users, "");
+  let type = action.payload.action;
+  let product = action.payload.product;
+
+  let userCart = [];
+
+  for (let i = 0; i < userList.length; i++) {
+    if (userList[i].id === user.id) {
+      userCart = userList[i].cart.map((item) => {
+        if (item.id === product.id) {
+          let curQuantity = item.buyQuantity;
+          let newQuantity = type === "plus" ? curQuantity + 1 : curQuantity - 1;
+
+          return { ...item, buyQuantity: newQuantity };
+        } else return item;
+      });
+      break;
+    }
+  }
+
+  yield call(axios.patchDatabase, users, user.id, { cart: userCart });
+  yield getAllUserSaga();
 }
 
 export function* rePrdFromCartSaga(action) {

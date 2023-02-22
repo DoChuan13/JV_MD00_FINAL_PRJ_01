@@ -17,6 +17,7 @@ export const rootSaga = function* rootSaga() {
     takeLatest(stateConst.REMOVE_FR_CART_ACT_TYPE, userSaga.rePrdFromCartSaga),
     takeLatest(stateConst.PAYMENT_CART_ACT_TYPE, userSaga.payPrdAllCartSaga),
     takeLatest(stateConst.CANCEL_PAYMENT_ACT_TYPE, userSaga.cancelPaymentSaga),
+    takeLatest(stateConst.EDIT_PRD_CART_ACT_TYPE, userSaga.editPrdCartSaga),
 
     //Payment
     takeLatest(stateConst.CONFIRM_PAYMENT_ACT_TYPE, userSaga.confPaymentSaga),
