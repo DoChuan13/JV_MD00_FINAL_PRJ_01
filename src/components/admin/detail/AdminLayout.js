@@ -12,6 +12,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as routerLink from "../../../config/routersConfig";
 import AdminContent from "./AdminContent";
+import DropMenu from "../DropMenu";
 
 const { Header, Content, Sider } = Layout;
 
@@ -97,76 +98,81 @@ function AdminLayout() {
   } = theme.useToken();
 
   return (
-    <div className="admin_section">
-      {/* <div style={{ backgroundColor: "red" }}>Test thử</div> */}
-      <Layout>
-        <Header className="header">
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={["2"]}
-            items={topBarValue}
-          />
-        </Header>
+    <>
+      <div className="admin_drop_menu">
+        <DropMenu />
+      </div>
+      <div className="admin_section">
+        {/* <div style={{ backgroundColor: "red" }}>Test thử</div> */}
         <Layout>
-          {/* Menu Side Bar Start */}
-          <Sider
-            width={200}
-            style={{
-              background: colorBgContainer,
-            }}
-          >
+          <Header className="header">
+            <div className="logo" />
             <Menu
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["Navbar1"]}
-              style={{
-                height: "100%",
-                borderRight: 0,
-              }}
-              items={navBarValue}
+              theme="dark"
+              mode="horizontal"
+              defaultSelectedKeys={["2"]}
+              items={topBarValue}
             />
-          </Sider>
-          {/* Menu Side Bar End */}
-          {/* Layout Start */}
-          <Layout
-            style={{
-              padding: "0 24px 24px",
-            }}
-          >
-            <Breadcrumb
+          </Header>
+          <Layout>
+            {/* Menu Side Bar Start */}
+            <Sider
+              width={200}
               style={{
-                margin: "16px 0",
-              }}
-            >
-              <Breadcrumb.Item>
-                <Link to={routerLink.admin.path}>Trang chủ</Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>
-                <Link to={"/admin/user_detail/1"}>Tài khoản</Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>
-                <Link to={"/admin/product_detail/1"}>Sản phẩm</Link>
-              </Breadcrumb.Item>
-            </Breadcrumb>
-            <Content
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
                 background: colorBgContainer,
               }}
             >
-              {/* Detail Table Start */}
-              <AdminContent />
-              {/* Detail Table End */}
-            </Content>
+              <Menu
+                mode="inline"
+                defaultSelectedKeys={["1"]}
+                defaultOpenKeys={["Navbar1"]}
+                style={{
+                  height: "100%",
+                  borderRight: 0,
+                }}
+                items={navBarValue}
+              />
+            </Sider>
+            {/* Menu Side Bar End */}
+            {/* Layout Start */}
+            <Layout
+              style={{
+                padding: "0 24px 24px",
+              }}
+            >
+              <Breadcrumb
+                style={{
+                  margin: "16px 0",
+                }}
+              >
+                <Breadcrumb.Item>
+                  <Link to={routerLink.admin.path}>Trang chủ</Link>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                  <Link to={"/admin/user_detail/1"}>Tài khoản</Link>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                  <Link to={"/admin/product_detail/1"}>Sản phẩm</Link>
+                </Breadcrumb.Item>
+              </Breadcrumb>
+              <Content
+                style={{
+                  padding: 24,
+                  margin: 0,
+                  minHeight: 280,
+                  background: colorBgContainer,
+                }}
+              >
+                {/* Detail Table Start */}
+                <AdminContent />
+                {/* Detail Table End */}
+              </Content>
+            </Layout>
+            {/* Layout End */}
           </Layout>
-          {/* Layout End */}
         </Layout>
-      </Layout>
-    </div>
+      </div>
+    </>
   );
 }
 
