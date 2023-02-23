@@ -36,7 +36,7 @@ function About() {
               <div className="col-md-6">
                 <div>
                   <img
-                    src="images/about-img.png"
+                    src="images/about-img.jpg"
                     className="image_3"
                     alt="About"
                   />

@@ -144,10 +144,10 @@ function AdminLayout() {
                 <Link to={routerLink.admin.path}>Trang chủ</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                <Link to={"/admin/user_detail/"}>Tài khoản</Link>
+                <Link to={"/admin/user_detail/1"}>Tài khoản</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                <Link to={"/admin/product_detail/"}>Sản phẩm</Link>
+                <Link to={"/admin/product_detail/1"}>Sản phẩm</Link>
               </Breadcrumb.Item>
             </Breadcrumb>
             <Content

@@ -24,13 +24,22 @@ function CartItem(props) {
   });
 
   let { buyQuantity } = cart;
-  let { productPrice } = item;
-  let { productName } = item;
+  let productPrice, productName, productImage;
+  if (item !== undefined) {
+    productPrice = item.productPrice;
+    productName = item.productName;
+    productImage = picture[item.productImage];
+  } else {
+    productPrice = cart.productPrice;
+    productName = cart.productName;
+    productImage = picture[cart.productImage];
+  }
   let subTotal = buyQuantity * productPrice;
 
-  const deleteItem = (cartItem) => {
-    // console.log(123123);
-    dispatch(notifyAction.deleteCartNoti(cartItem));
+  const deleteItem = () => {
+    let deleteItem = item ? item : cart;
+    console.log(deleteItem);
+    dispatch(notifyAction.deleteCartNoti(deleteItem));
   };
 
   const changeQuantity = (action, item) => {
@@ -42,50 +51,61 @@ function CartItem(props) {
     dispatch(saga.edit_PrdCartAct({ action: action, product: item }));
   };
 
+  let existItem = item ? (
+    <>
+      <td className="cart_table_detail">
+        {formatCurrency(productPrice, languageCode, currencyCode)}
+      </td>
+      <td className="cart_table_detail">
+        <span>
+          <Ai.AiOutlineMinusCircle
+            size={30}
+            style={{ cursor: "pointer", color: "red" }}
+            onClick={() => {
+              changeQuantity("minus", cart);
+            }}
+          />
+          {"  "}
+        </span>
+        <span style={{ display: "inline-block", width: "30px" }}>
+          {formatNumber(buyQuantity, languageCode)}
+        </span>
+        <span>
+          {"  "}
+          <Ai.AiOutlinePlusCircle
+            size={30}
+            style={{ cursor: "pointer", color: "blue" }}
+            onClick={() => {
+              changeQuantity("plus", cart);
+            }}
+          />
+        </span>
+      </td>
+      <td className="cart_table_detail">
+        {formatCurrency(subTotal, languageCode, currencyCode)}
+      </td>
+    </>
+  ) : (
+    <>
+      <td colSpan={3} className="cart_table_detail">
+        {"Sản phẩm không còn tồn tại"}
+      </td>
+    </>
+  );
   return (
     <>
       <tr>
         <td>{stt}</td>
         <td>
-          <Image width={80} src={picture[item.productImage]} />
+          <Image width={80} src={productImage} />
         </td>
         <td className="cart_table_detail">{productName}</td>
-        <td className="cart_table_detail">
-          {formatCurrency(productPrice, languageCode, currencyCode)}
-        </td>
-        <td className="cart_table_detail">
-          <span>
-            <Ai.AiOutlineMinusCircle
-              size={30}
-              style={{ cursor: "pointer", color: "red" }}
-              onClick={() => {
-                changeQuantity("minus", cart);
-              }}
-            />
-            {"  "}
-          </span>
-          <span style={{ display: "inline-block", width: "30px" }}>
-            {formatNumber(buyQuantity, languageCode)}
-          </span>
-          <span>
-            {"  "}
-            <Ai.AiOutlinePlusCircle
-              size={30}
-              style={{ cursor: "pointer", color: "blue" }}
-              onClick={() => {
-                changeQuantity("plus", cart);
-              }}
-            />
-          </span>
-        </td>
-        <td className="cart_table_detail">
-          {formatCurrency(subTotal, languageCode, currencyCode)}
-        </td>
+        {existItem}
         <td className="cart_table_detail">
           <button
             className="delete_product"
             onClick={() => {
-              deleteItem(item);
+              deleteItem();
             }}
           >
             Xoá

@@ -43,7 +43,7 @@ function ProductItem(props) {
 
   const addToCart = (product) => {
     if (!checkValid) {
-      Warning("Vui lòng đăng nhập để mua hàng");
+      Warning("Vui lòng đăng nhập bằng tài khoản người dùng");
       setTimeout(() => {
         navigate(routerLink.login.path);
       }, 1500);
@@ -55,7 +55,7 @@ function ProductItem(props) {
 
   const buyProduct = (product) => {
     if (!checkValid) {
-      Warning("Vui lòng đăng nhập để mua hàng");
+      Warning("Vui lòng đăng nhập bằng tài khoản người dùng");
       setTimeout(() => {
         navigate(routerLink.login.path);
       }, 1500);

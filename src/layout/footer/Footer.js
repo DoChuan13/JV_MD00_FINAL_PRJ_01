@@ -40,7 +40,7 @@ function Footer() {
                       <Link to="#">
                         <Fa.FaEnvelope />
                         <span className="padding_left10">
-                          Email : songdacity@gmail.com
+                          Email : rikkeiacademy@gmail.com
                         </span>
                       </Link>
                     </li>
@@ -48,19 +48,16 @@ function Footer() {
                 </div>
               </div>
               <div className="col-sm-4">
-                <div className="footer_logo_1">
-                  <Link to={routerLink.index.path}>
-                    <img src="images/footer-logo.png" alt="Logo Icon" />
-                  </Link>
+                <div className="footer_logo_1 footer-brand">
+                  <Link to={routerLink.index.path}>SHOES SHOP</Link>
                 </div>
                 {/* <p className="dummy_text">Nâng cao giá trị cuộc sống</p> */}
               </div>
               <div className="col-sm-4">
-                <div className="main">
-                  <h3 className="address_text">Tốt nhất</h3>
+                <div className="main footer_right">
+                  <h3 className="address_text">Thương hiệu đỉnh cao</h3>
                   <p className="ipsum_text">
-                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non
+                    Chúng tôi có mọi thứ tốt nhất tại đây
                   </p>
                 </div>
               </div>

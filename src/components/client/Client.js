@@ -1,5 +1,6 @@
 import React from "react";
 import * as Fa from "react-icons/fa";
+import { users } from "../../assets/images/images";
 
 function Client() {
   return (
@@ -19,15 +20,18 @@ function Client() {
                   <div className="client_main">
                     <div className="client_left">
                       <div className="client_img">
-                        <img src="images/client-img.png" alt="Client" />
+                        <img
+                          src={users["minhthu"]}
+                          alt="Client"
+                          style={{ borderRadius: "300px" }}
+                        />
                       </div>
                     </div>
                     <div className="client_right">
-                      <h3 className="name_text">Jonyro</h3>
+                      <h3 className="name_text">MinhThu</h3>
                       <p className="dolor_text">
-                        consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation eu{" "}
+                        Các thương hiệu tại shop này có chất lượng rất tốt, mọi
+                        người nên ghé qua thử nhé{" "}
                       </p>
                     </div>
                   </div>
@@ -38,15 +42,18 @@ function Client() {
                   <div className="client_main">
                     <div className="client_left">
                       <div className="client_img">
-                        <img src="images/client-img.png" alt="Client" />
+                        <img
+                          src={users["minhthu"]}
+                          alt="Client"
+                          style={{ borderRadius: "300px" }}
+                        />
                       </div>
                     </div>
                     <div className="client_right">
-                      <h3 className="name_text">Jonyro</h3>
+                      <h3 className="name_text">MinhThu</h3>
                       <p className="dolor_text">
-                        consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation eu{" "}
+                        Các thương hiệu tại shop này có chất lượng rất tốt, mọi
+                        người nên ghé qua thử nhé{" "}
                       </p>
                     </div>
                   </div>
@@ -57,15 +64,18 @@ function Client() {
                   <div className="client_main">
                     <div className="client_left">
                       <div className="client_img">
-                        <img src="images/client-img.png" alt="Client" />
+                        <img
+                          src={users["minhthu"]}
+                          alt="Client"
+                          style={{ borderRadius: "300px" }}
+                        />
                       </div>
                     </div>
                     <div className="client_right">
-                      <h3 className="name_text">Jonyro</h3>
+                      <h3 className="name_text">MinhThu</h3>
                       <p className="dolor_text">
-                        consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation eu{" "}
+                        Các thương hiệu tại shop này có chất lượng rất tốt, mọi
+                        người nên ghé qua thử nhé{" "}
                       </p>
                     </div>
                   </div>

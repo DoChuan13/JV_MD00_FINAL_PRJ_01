@@ -49,14 +49,24 @@ const CartList = () => {
     dispatch(notifyAction.confirmCartNoti(totalAmount));
     // dispatch(saga.payment_PrdCartAct(totalAmount));
   };
+
+  //=====Map value and Buy Button=====//
+  let existItem = true;
+  let buyBtn = <></>;
   cartElement = userLog.cart.map((cart, index) => {
+    let existPr = prState.find((product) => {
+      return cart.id === product.id;
+    });
+    if (existPr === undefined) {
+      existItem = false;
+    }
+
     return <CartItem key={cart.id} cart={cart} stt={index + 1} />;
   });
 
-  let buyBtn;
   if (userLog.cart.length === 0) {
     buyBtn = <></>;
-  } else {
+  } else if (existItem) {
     buyBtn = (
       <>
         <button

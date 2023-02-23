@@ -66,6 +66,7 @@ export function* addPrdToCartSaga(action) {
       let newItem = new CartItem(
         product.id,
         product.productName,
+        product.productImage,
         1,
         product.productPrice
       );

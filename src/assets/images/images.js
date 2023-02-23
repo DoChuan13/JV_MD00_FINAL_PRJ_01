@@ -412,3 +412,7 @@ export {
 
 // Picture Banner group
 export { banner, banner_03, banner_04, register_banner };
+
+export const users = {
+  minhthu: require("./imageFiles/user/minhthu.jpg"),
+};

@@ -22,6 +22,12 @@ footer {
     text-align: center;
   }
 
+  .footer-brand {
+    color: #fff !important;
+    font-size: 40px;
+    font-family: "Great Vibes", cursive;
+  }
+
   .address_bt {
     width: 100%;
     float: left;
@@ -109,5 +115,8 @@ footer {
 
   .social_icon li a:hover {
     color: #ffffff;
+  }
+  .footer_right {
+    width: 100% !important;
   }
 }
