@@ -17,9 +17,7 @@ import * as Ai from "react-icons/ai";
 import { productManager } from "./ManagerProductTable";
 import * as picture from "../../../../assets/images/images";
 import * as valueConfig from "../../../../config/valueConfig";
-import * as axios from "../../../../middleware/api/methods/methodAxios";
 import UploadProductImage from "./UploadProductImage";
-import * as resource from "../../../../config/resourcesAxiosConfig";
 import * as saga from "../../../../services/redux/actions/sagaAction";
 import { Success, Error, Warning } from "../../../toast/Toast";
 
@@ -94,8 +92,8 @@ function RightBarProductInfo() {
       Error("Vui lòng điền đầy đủ các thông tin");
       return;
     }
-    delete productValue[""];
     setTimeout(() => {
+      delete productValue[""];
       dispatch(saga.update_ProdInfoAct(productValue));
     }, 200);
     closeDrawer();
@@ -125,8 +123,9 @@ function RightBarProductInfo() {
       Error("Vui lòng điền đầy đủ các thông tin");
       return;
     }
-    axios.postDatabase(resource.products, "", productValue);
+
     setTimeout(() => {
+      delete productValue[""];
       dispatch(saga.add_NewProductAct(productValue));
     }, 200);
     closeDrawer();
