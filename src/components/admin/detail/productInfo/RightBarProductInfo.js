@@ -94,6 +94,7 @@ function RightBarProductInfo() {
       Error("Vui lòng điền đầy đủ các thông tin");
       return;
     }
+    delete productValue[""];
     setTimeout(() => {
       dispatch(saga.update_ProdInfoAct(productValue));
     }, 200);
