@@ -35,17 +35,20 @@ function PurchasedManager() {
 
     if (usState.length !== 0) {
       for (let i = 0; i < usState.length; i++) {
-        if (usState[i].purchased.length !== 0) {
-          for (let j = 0; j < usState[i].purchased.length; j++) {
-            fullPaymentList = [
-              ...fullPaymentList,
-              {
-                ...usState[i].purchased[j],
-                key: key,
-                id: usState[i].id,
-              },
-            ];
-            key++;
+        // console.log(usState[i].purchased);
+        if (usState[i].purchased !== undefined) {
+          if (usState[i].purchased.length !== 0) {
+            for (let j = 0; j < usState[i].purchased.length; j++) {
+              fullPaymentList = [
+                ...fullPaymentList,
+                {
+                  ...usState[i].purchased[j],
+                  key: key,
+                  id: usState[i].id,
+                },
+              ];
+              key++;
+            }
           }
         }
       }
@@ -87,11 +90,11 @@ function PurchasedManager() {
       key: "key",
       width: 80,
     },
-    {
-      title: "Khách hàng",
-      dataIndex: "userName",
-      key: "userName",
-    },
+    // {
+    //   title: "Khách hàng",
+    //   dataIndex: "userName",
+    //   key: "userName",
+    // },
     {
       title: "Mã đơn hàng",
       dataIndex: "orderCode",
