@@ -40,17 +40,20 @@ function OrderList() {
       key = 1;
 
     let fullPaymentList = [];
-    for (let i = 0; i < userLog.purchased.length; i++) {
-      let orderItem = fullPayment[i];
-      fullPaymentList = [
-        ...fullPaymentList,
-        {
-          ...orderItem,
-          key: key,
-          id: userLog.id,
-        },
-      ];
-      key++;
+    // console.log(userLog.purchased);
+    if (userLog.purchased !== undefined) {
+      for (let i = 0; i < userLog.purchased.length; i++) {
+        let orderItem = fullPayment[i];
+        fullPaymentList = [
+          ...fullPaymentList,
+          {
+            ...orderItem,
+            key: key,
+            id: userLog.id,
+          },
+        ];
+        key++;
+      }
     }
 
     let sortedPaymentList;

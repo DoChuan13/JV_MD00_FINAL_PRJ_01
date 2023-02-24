@@ -8,6 +8,13 @@ export const get_AllUserAct = () => {
   };
 };
 
+export const register_UserAct = (value) => {
+  return {
+    type: stateConst.REGISTER_USER_ACT_TYPE,
+    payload: value,
+  };
+};
+
 export const block_UserAct = (value) => {
   return {
     type: stateConst.BLOCK_USER_ACT_TYPE,

@@ -1,15 +1,14 @@
 import React from "react";
 import { Button, Checkbox, Form, Input, Select } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { usersState } from "../../services/redux/selectors/selectors";
-import * as axios from "../../middleware/api/methods/methodAxios";
 import * as AI from "react-icons/ai";
 import * as routerLink from "../../config/routersConfig";
 import * as picture from "../../assets/images/images";
 import User from "../../services/class/users/User";
-import { users } from "../../config/resourcesAxiosConfig";
 import Toast, { Error, Success } from "../toast/Toast";
+import * as saga from "../../services/redux/actions/sagaAction";
 
 const { Option } = Select;
 const formItemLayout = {
@@ -46,6 +45,7 @@ const tailFormItemLayout = {
 function Register() {
   let usState = useSelector(usersState);
   let navigate = useNavigate();
+  let dispatch = useDispatch();
   const [form] = Form.useForm();
   const onFinish = (values) => {
     let user = new User();
@@ -73,7 +73,7 @@ function Register() {
       return;
     }
     Success("Đăng ký thành công");
-    axios.postDatabase(users, "", user);
+    dispatch(saga.register_UserAct(user));
     setTimeout(() => {
       navigate(routerLink.login.path);
     }, 1500);

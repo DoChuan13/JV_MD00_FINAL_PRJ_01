@@ -12,6 +12,12 @@ export function* getAllUserSaga() {
   yield put(stateAct.getAllUserReducer(userList));
 }
 
+export function* registerUserSaga(action) {
+  let userData = action.payload;
+  yield call(axios.postDatabase, users, "", userData);
+  yield getAllUserSaga();
+}
+
 export function* blockUserSaga(action) {
   let value = action.payload;
   let id = value.id;

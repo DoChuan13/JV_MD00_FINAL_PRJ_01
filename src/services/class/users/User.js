@@ -14,7 +14,7 @@ class User {
     this.address = "";
     this.favorite = [];
     this.cart = [];
-    this.bought = [];
+    this.purchased = [];
     this.userBio = ";";
   }
   //

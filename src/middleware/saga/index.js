@@ -10,6 +10,8 @@ export const rootSaga = function* rootSaga() {
     //User
     takeLatest(stateConst.GET_All_USR_ACT_TYPE, userSaga.getAllUserSaga),
     takeLatest(stateConst.BLOCK_USER_ACT_TYPE, userSaga.blockUserSaga),
+    //Register - Login
+    takeLatest(stateConst.REGISTER_USER_ACT_TYPE, userSaga.registerUserSaga),
     //Favorite
     takeLatest(stateConst.ADD_TO_FAV_ACT_TYPE, userSaga.addToFavoriteSaga),
     //Cart

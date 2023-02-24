@@ -6,6 +6,9 @@ export const GET_All_USR_ACT_TYPE = "Get All User";
 export const GET_ALL_PRD_ACT_TYPE = "Get All Product";
 
 //==========Other==========/
+export const REGISTER_USER_ACT_TYPE = "Register New User";
+
+//==========Other==========/
 // 01 Product//
 export const VIEW_PROD_ACT_TYPE = "View Product";
 export const ADD_PROD_ACT_TYPE = "Add New Product";
