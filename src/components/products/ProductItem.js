@@ -102,7 +102,7 @@ function ProductItem(props) {
       <div className="col-lg-3 col-sm-6">
         <div className="product_box">
           <h4 className="bursh_text">{product["productName"]}</h4>
-          <p className="lorem_text">{product["productTitle"]}g</p>
+          <p className="lorem_text">{product["productTitle"]}</p>
           <div style={{ position: "relative" }}>
             <FaHeart
               className="product_heart"

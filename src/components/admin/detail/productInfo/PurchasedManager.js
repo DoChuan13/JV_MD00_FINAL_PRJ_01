@@ -39,12 +39,14 @@ function PurchasedManager() {
         if (usState[i].purchased !== undefined) {
           if (usState[i].purchased.length !== 0) {
             for (let j = 0; j < usState[i].purchased.length; j++) {
+              // console.log(usState[i]);
               fullPaymentList = [
                 ...fullPaymentList,
                 {
                   ...usState[i].purchased[j],
                   key: key,
                   id: usState[i].id,
+                  userName: usState[i].userName,
                 },
               ];
               key++;
@@ -90,11 +92,11 @@ function PurchasedManager() {
       key: "key",
       width: 80,
     },
-    // {
-    //   title: "Khách hàng",
-    //   dataIndex: "userName",
-    //   key: "userName",
-    // },
+    {
+      title: "Khách hàng",
+      dataIndex: "userName",
+      key: "userName",
+    },
     {
       title: "Mã đơn hàng",
       dataIndex: "orderCode",
